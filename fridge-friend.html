@@ -1,0 +1,2570 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FRIDGE FRIEND — Your Fridge Has Seen Enough.</title>
+    <meta name="description"
+        content="A smart fridge companion that tracks what you have, what’s expiring, and why you bought six sauces but no actual food." />
+
+    <!-- Google Fonts: Fraunces (Culinary Editorial Serif), Bricolage Grotesque (Warm Geometric Sans), Caveat (Hand-Drawn Sharpie Notes), Space Mono (Thermal Receipt) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,600;1,9..144,800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Custom Culinary Zine & Enamel Design Tokens -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        buttermilk: '#FAF5E8',
+                        enamel: '#FFFDF7',
+                        espresso: '#1F1A17',
+                        tomato: '#D9381E',
+                        butter: '#F4C430',
+                        scallion: '#2E6F40',
+                        sage: '#EAEFE4',
+                    },
+                    fontFamily: {
+                        serif: ['"Fraunces"', 'Georgia', 'serif'],
+                        sans: ['"Bricolage Grotesque"', '-apple-system', 'sans-serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        enamel: '0 16px 38px -10px rgba(31, 26, 23, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
+                        'enamel-lg': '0 24px 54px -12px rgba(31, 26, 23, 0.18), inset 0 2px 0 rgba(255, 255, 255, 0.95)',
+                        magnet: '0 6px 14px rgba(31, 26, 23, 0.22), 0 2px 0 rgba(31, 26, 23, 0.35), inset 0 1.5px 1px rgba(255, 255, 255, 0.65)',
+                        sticker: '0 8px 18px rgba(31, 26, 23, 0.16)',
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        /* ==========================================================================
+       FRIDGE FRIEND — INDIE CULINARY ZINE × RISOGRAPH × ENAMEL FRIDGE DOOR
+       ========================================================================== */
+        :root {
+            --bg-buttermilk: #FAF5E8;
+            --surface-enamel: #FFFDF7;
+            --ink-espresso: #1F1A17;
+            --accent-tomato: #D9381E;
+            --accent-butter: #F4C430;
+            --accent-scallion: #2E6F40;
+            --tint-sage: #EAEFE4;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-buttermilk);
+            color: var(--ink-espresso);
+            font-family: 'Bricolage Grotesque', sans-serif;
+            /* Subtle Risograph Paper Grain + Culinary Recipe Index Grid */
+            background-image:
+                radial-gradient(rgba(31, 26, 23, 0.065) 0.85px, transparent 0.85px),
+                linear-gradient(to right, rgba(31, 26, 23, 0.032) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(31, 26, 23, 0.032) 1px, transparent 1px);
+            background-size: 16px 16px, 48px 48px, 48px 48px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Fine Risograph Ink Border (Warm Espresso, Never Heavy Brutalist Black) */
+        .zine-border {
+            border: 1.5px solid rgba(31, 26, 23, 0.22);
+        }
+
+        .zine-border-ink {
+            border: 1.5px solid var(--ink-espresso);
+        }
+
+        /* Enamel Panel Surface */
+        .enamel-panel {
+            background-color: var(--surface-enamel);
+            border: 1.5px solid rgba(31, 26, 23, 0.18);
+            box-shadow: 0 16px 38px -10px rgba(31, 26, 23, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+        }
+
+        /* Physical 3D Enamel Refrigerator Door */
+        .fridge-door-shell {
+            background: linear-gradient(155deg, #FFFFFF 0%, #FFFDF7 58%, #F4EFE2 100%);
+            border: 2px solid rgba(31, 26, 23, 0.22);
+            border-radius: 34px;
+            box-shadow:
+                0 28px 65px -14px rgba(31, 26, 23, 0.22),
+                inset 0 3px 6px rgba(255, 255, 255, 1),
+                inset -4px -6px 14px rgba(31, 26, 23, 0.06);
+            position: relative;
+        }
+
+        /* Brushed Chrome Vertical Fridge Handle */
+        .fridge-handle {
+            background: linear-gradient(90deg, #D6D1C7 0%, #FFFFFF 42%, #C9C3B8 100%);
+            border: 1.5px solid rgba(31, 26, 23, 0.25);
+            box-shadow: 4px 6px 14px rgba(31, 26, 23, 0.18), inset 0 1px 1px #FFFFFF;
+        }
+
+        /* Tactile 3D Alphabet Fridge Magnets */
+        .alphabet-magnet {
+            box-shadow:
+                0 5px 10px rgba(31, 26, 23, 0.22),
+                0 2.5px 0 rgba(31, 26, 23, 0.35),
+                inset 0 2px 2px rgba(255, 255, 255, 0.72);
+            border: 1.5px solid rgba(31, 26, 23, 0.24);
+            transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.18s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .alphabet-magnet:hover {
+            transform: translateY(-3px) scale(1.06);
+            box-shadow:
+                0 9px 16px rgba(31, 26, 23, 0.25),
+                0 3px 0 rgba(31, 26, 23, 0.35),
+                inset 0 2px 2px rgba(255, 255, 255, 0.85);
+        }
+
+        .alphabet-magnet:active {
+            transform: translateY(1px) scale(0.97);
+        }
+
+        /* Glossy Spherical Fridge Magnet Pin */
+        .round-magnet-pin {
+            background: radial-gradient(circle at 32% 28%, #FF7862 0%, #D9381E 62%, #9A220F 100%);
+            box-shadow: 0 4px 8px rgba(31, 26, 23, 0.28), inset 0 1.5px 2px rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(31, 26, 23, 0.25);
+        }
+
+        /* Tactile Culinary Zine CTA Buttons */
+        .zine-btn-tomato {
+            background-color: #D9381E;
+            color: #FFFDF7;
+            border: 1.5px solid #1F1A17;
+            box-shadow: 0 6px 0 #1F1A17, 0 12px 24px -6px rgba(217, 56, 30, 0.38);
+            transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.14s ease, background-color 0.15s ease;
+            cursor: pointer;
+        }
+
+        .zine-btn-tomato:hover {
+            background-color: #C42F17;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #1F1A17, 0 16px 28px -6px rgba(217, 56, 30, 0.44);
+        }
+
+        .zine-btn-tomato:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #1F1A17;
+        }
+
+        .zine-btn-butter {
+            background-color: #F4C430;
+            color: #1F1A17;
+            border: 1.5px solid #1F1A17;
+            box-shadow: 0 5px 0 #1F1A17, 0 10px 20px -6px rgba(244, 196, 48, 0.38);
+            transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.14s ease;
+            cursor: pointer;
+        }
+
+        .zine-btn-butter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #1F1A17, 0 14px 24px -6px rgba(244, 196, 48, 0.45);
+        }
+
+        .zine-btn-butter:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #1F1A17;
+        }
+
+        /* Serrated Thermal Supermarket Receipt Edges */
+        .receipt-serrated-top {
+            background:
+                linear-gradient(-45deg, #FFFDF7 7px, transparent 0),
+                linear-gradient(45deg, #FFFDF7 7px, transparent 0);
+            background-repeat: repeat-x;
+            background-position: left bottom;
+            background-size: 14px 14px;
+            height: 11px;
+        }
+
+        .receipt-serrated-bottom {
+            background:
+                linear-gradient(-135deg, #FFFDF7 7px, transparent 0),
+                linear-gradient(135deg, #FFFDF7 7px, transparent 0);
+            background-repeat: repeat-x;
+            background-position: left top;
+            background-size: 14px 14px;
+            height: 11px;
+        }
+
+        /* Rotated Physical Supermarket Ink Stamp Effect */
+        @keyframes stampSlam {
+            0% {
+                opacity: 0;
+                transform: scale(1.85) rotate(-14deg);
+            }
+
+            65% {
+                opacity: 1;
+                transform: scale(0.95) rotate(-6deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(-7deg);
+            }
+        }
+
+        .ink-stamp-slam {
+            animation: stampSlam 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* Magnet Wiggle Animation */
+        @keyframes magnetWiggle {
+
+            0%,
+            100% {
+                transform: rotate(var(--base-rot, 0deg)) scale(1);
+            }
+
+            30% {
+                transform: rotate(calc(var(--base-rot, 0deg) - 10deg)) scale(1.12);
+            }
+
+            65% {
+                transform: rotate(calc(var(--base-rot, 0deg) + 8deg)) scale(1.06);
+            }
+        }
+
+        .animate-magnet-wiggle {
+            animation: magnetWiggle 0.38s ease-out;
+        }
+
+        /* Warm Fridge Light Glow Pulse */
+        @keyframes fridgeLightFlash {
+            0% {
+                box-shadow: inset 0 0 0 rgba(244, 196, 48, 0);
+            }
+
+            35% {
+                box-shadow: inset 0 0 55px rgba(244, 196, 48, 0.45);
+            }
+
+            100% {
+                box-shadow: inset 0 0 0 rgba(244, 196, 48, 0);
+            }
+        }
+
+        .animate-fridge-light {
+            animation: fridgeLightFlash 0.6s ease-out;
+        }
+
+        /* Custom Thermal Checkbox */
+        .receipt-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1.5px solid #1F1A17;
+            border-radius: 5px;
+            background-color: #FAF5E8;
+            display: inline-grid;
+            place-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background-color 0.15s ease;
+        }
+
+        .receipt-checkbox:checked {
+            background-color: #2E6F40;
+            border-color: #2E6F40;
+        }
+
+        .receipt-checkbox:checked::before {
+            content: "";
+            width: 11px;
+            height: 11px;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+            background-color: #FFFDF7;
+        }
+
+        /* Custom Warm Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FAF5E8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(31, 26, 23, 0.25);
+            border-radius: 999px;
+            border: 2px solid #FAF5E8;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D9381E;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-butter selection:text-espresso">
+
+    <!-- ========================================================================
+       1. STICKY INDIE CULINARY ZINE & ENAMEL MAGNET TOP NAVIGATION BAR
+       ======================================================================== -->
+    <header class="sticky top-0 z-40 bg-buttermilk/92 backdrop-blur-md border-b border-espresso/15">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-[74px] flex items-center justify-between gap-3">
+
+            <!-- Left: Custom Fridge Friend Enamel Magnet Badge Logo -->
+            <a href="#top" class="flex items-center gap-3 group focus:outline-none shrink-0">
+                <div
+                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-enamel alphabet-magnet flex items-center justify-center relative overflow-hidden">
+                    <!-- Cute Mini Enamel Fridge & Tomato Pin SVG -->
+                    <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                        <rect x="6" y="4" width="20" height="24" rx="5" fill="#FFFDF7" stroke="#1F1A17"
+                            stroke-width="1.8" />
+                        <line x1="6" y1="13" x2="26" y2="13" stroke="#1F1A17" stroke-width="1.6" />
+                        <line x1="22" y1="7" x2="22" y2="10.5" stroke="#D9381E" stroke-width="2"
+                            stroke-linecap="round" />
+                        <line x1="22" y1="16" x2="22" y2="21" stroke="#2E6F40" stroke-width="2"
+                            stroke-linecap="round" />
+                        <!-- Happy Eyes -->
+                        <circle cx="12.5" cy="18.5" r="1.2" fill="#1F1A17" />
+                        <circle cx="17.5" cy="18.5" r="1.2" fill="#1F1A17" />
+                        <path d="M13 21.5C14 22.8 16 22.8 17 21.5" stroke="#D9381E" stroke-width="1.6"
+                            stroke-linecap="round" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="font-serif font-black text-xl sm:text-2xl tracking-tight text-espresso leading-none">
+                            FRIDGE FRIEND
+                        </span>
+                    </div>
+                    <span
+                        class="block font-mono text-[10px] font-bold tracking-wider text-espresso/60 uppercase mt-0.5">
+                        ISSUE 06 // SMART KITCHEN COMPANION
+                    </span>
+                </div>
+            </a>
+
+            <!-- Center: Editorial Jump Links -->
+            <nav aria-label="Primary Sections"
+                class="hidden xl:flex items-center gap-1 bg-enamel/90 px-2 py-1.5 rounded-full zine-border shadow-xs">
+                <a href="#graveyard"
+                    class="font-sans text-xs font-bold px-3.5 py-1.5 rounded-full text-espresso/80 hover:text-espresso hover:bg-butter/40 transition-colors">
+                    The Graveyard
+                </a>
+                <a href="#duplicate-blocker"
+                    class="font-sans text-xs font-bold px-3.5 py-1.5 rounded-full text-espresso/80 hover:text-espresso hover:bg-butter/40 transition-colors">
+                    Duplicate Blocker
+                </a>
+                <a href="#rescue-recipes"
+                    class="font-sans text-xs font-bold px-3.5 py-1.5 rounded-full text-espresso/80 hover:text-espresso hover:bg-butter/40 transition-colors">
+                    Rescue Recipes
+                </a>
+                <a href="#fridge-stats"
+                    class="font-sans text-xs font-bold px-3.5 py-1.5 rounded-full text-espresso/80 hover:text-espresso hover:bg-butter/40 transition-colors">
+                    Fridge Stats
+                </a>
+            </nav>
+
+            <!-- Right Controls: Kitchen SFX Toggle, Case Brief Drawer, Primary CTA -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <button id="kitchen-sfx-btn" type="button" onclick="toggleKitchenSfx()"
+                    title="Toggle Synthesized Kitchen Magnet & Timer Sounds"
+                    class="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold px-2.5 sm:px-3 py-2 rounded-full bg-enamel zine-border hover:bg-butter/45 transition-colors cursor-pointer">
+                    <span id="kitchen-sfx-dot" class="w-2 h-2 rounded-full bg-espresso/30"></span>
+                    <span id="kitchen-sfx-label">Kitchen SFX: OFF</span>
+                </button>
+
+                <button type="button" onclick="openCaseBriefDrawer()"
+                    class="hidden sm:inline-flex items-center gap-1.5 font-mono text-[11px] font-bold px-3 py-2 rounded-full bg-sage text-scallion zine-border hover:bg-scallion hover:text-enamel transition-colors cursor-pointer">
+                    <span>📋 Case Brief</span>
+                </button>
+
+                <button type="button" onclick="openInterventionQuiz()"
+                    class="zine-btn-tomato font-sans font-extrabold text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full tracking-tight">
+                    SAVE MY GROCERIES →
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- ======================================================================
+         2. HERO SECTION + INTERACTIVE ENAMEL FRIDGE DOOR SHOWCASE
+         ====================================================================== -->
+        <section class="relative pt-10 pb-20 sm:pt-16 sm:pb-28 border-b border-espresso/15 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+
+                    <!-- LEFT COLUMN (6 Cols): Indie Culinary Zine Editorial Typography -->
+                    <div class="lg:col-span-6 space-y-6 sm:space-y-7">
+                        <!-- Risograph Badge -->
+                        <div
+                            class="inline-flex items-center gap-2 bg-enamel zine-border px-3.5 py-1.5 rounded-full shadow-xs">
+                            <span class="w-2 h-2 rounded-full bg-tomato"></span>
+                            <span class="font-mono text-[11px] font-bold tracking-wider uppercase text-espresso/85">
+                                KITCHEN INTERVENTION PROTOCOL // v2.4
+                            </span>
+                        </div>
+
+                        <!-- Giant Expressive Fraunces Display Headline -->
+                        <div class="relative">
+                            <h1
+                                class="font-serif font-black text-[3.45rem] sm:text-[4.9rem] xl:text-[5.65rem] leading-[0.93] tracking-tight text-espresso">
+                                YOUR FRIDGE HAS
+                                <span class="block italic text-tomato relative inline-block mt-1">
+                                    SEEN ENOUGH.
+                                    <!-- Hand-drawn Red Sharpie Underline SVG -->
+                                    <svg class="w-full h-4 -bottom-2.5 left-0 absolute pointer-events-none"
+                                        viewBox="0 0 340 18" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                                        <path d="M4 12C95 3 235 4 335 11" stroke="#D9381E" stroke-width="4"
+                                            stroke-linecap="round" />
+                                        <path d="M35 16C125 11 240 12 310 15" stroke="#F4C430" stroke-width="3"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </span>
+                            </h1>
+
+                            <!-- Hand-Drawn Sharpie Margin Annotation -->
+                            <div class="mt-4 inline-flex items-center gap-2 transform -rotate-2">
+                                <span class="font-hand text-2xl sm:text-[1.75rem] font-bold text-tomato leading-none">
+                                    ↳ we found 6 sauces, half a lemon &amp; zero dinner
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Subline -->
+                        <p class="text-lg sm:text-xl font-medium text-espresso/85 max-w-xl leading-relaxed">
+                            A smart fridge companion that tracks what you have, what’s expiring, and why you bought
+                            <strong class="font-bold underline decoration-butter decoration-4 underline-offset-2">six
+                                sauces</strong> but no actual food.
+                        </p>
+
+                        <!-- Primary + Secondary CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-1">
+                            <button type="button" onclick="openInterventionQuiz()"
+                                class="zine-btn-tomato font-sans font-extrabold text-base sm:text-lg px-7 py-4 rounded-2xl flex items-center justify-center gap-2.5">
+                                <span>SAVE MY GROCERIES</span>
+                                <span>→</span>
+                            </button>
+
+                            <a href="#graveyard"
+                                class="bg-enamel hover:bg-butter/35 text-espresso font-sans font-bold text-sm sm:text-base px-6 py-4 rounded-2xl zine-border-ink shadow-xs transition-colors flex items-center justify-center gap-2">
+                                <span>Audit My Fridge</span>
+                                <span>↓</span>
+                            </a>
+                        </div>
+
+                        <!-- Editorial Proof Strip -->
+                        <div
+                            class="pt-2 flex flex-wrap items-center gap-4 text-xs sm:text-sm text-espresso/75 font-medium">
+                            <span
+                                class="inline-flex items-center gap-1.5 bg-sage px-3 py-1 rounded-full zine-border text-scallion font-bold">
+                                <span>🥗</span> $72/mo average produce rescued
+                            </span>
+                            <span class="font-mono text-xs text-espresso/65">
+                                Works with any fridge (even the noisy dorm one)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN (6 Cols): Interactive 3D Enamel Refrigerator Door Showcase -->
+                    <div class="lg:col-span-6">
+                        <div class="fridge-door-shell p-6 sm:p-8 pl-10 sm:pl-12 max-w-xl mx-auto">
+
+                            <!-- Brushed Chrome Vertical Door Handle on Left -->
+                            <div class="fridge-handle w-3.5 sm:w-4 h-44 sm:h-52 rounded-full absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2"
+                                aria-hidden="true"></div>
+
+                            <!-- Top Row: Interactive Clickable 3D Alphabet Fridge Magnets ("F-R-I-D-G-E") -->
+                            <div class="space-y-2 mb-6">
+                                <div class="flex items-center justify-between">
+                                    <span
+                                        class="font-mono text-[10px] font-bold uppercase tracking-wider text-espresso/55">
+                                        TAP MAGNETS TO CLACK ↓
+                                    </span>
+                                    <span id="magnet-clack-feedback" class="font-hand text-lg font-bold text-scallion">
+                                        enamel door // clean-ish
+                                    </span>
+                                </div>
+
+                                <div class="flex flex-wrap items-center justify-center sm:justify-between gap-2 pt-1">
+                                    <button type="button"
+                                        onclick="clackAlphabetMagnet(this, 'F — Forgetting cilantro since 2021')"
+                                        style="--base-rot: -4deg; transform: rotate(-4deg);"
+                                        class="alphabet-magnet w-11 h-12 sm:w-12 sm:h-14 rounded-xl bg-tomato text-enamel font-serif font-black text-2xl sm:text-3xl flex items-center justify-center">F</button>
+                                    <button type="button"
+                                        onclick="clackAlphabetMagnet(this, 'R — Ranch dressing is not a food group')"
+                                        style="--base-rot: 3deg; transform: rotate(3deg);"
+                                        class="alphabet-magnet w-11 h-12 sm:w-12 sm:h-14 rounded-xl bg-butter text-espresso font-serif font-black text-2xl sm:text-3xl flex items-center justify-center">R</button>
+                                    <button type="button"
+                                        onclick="clackAlphabetMagnet(this, 'I — Iced coffee counts as breakfast')"
+                                        style="--base-rot: -2deg; transform: rotate(-2deg);"
+                                        class="alphabet-magnet w-11 h-12 sm:w-12 sm:h-14 rounded-xl bg-scallion text-enamel font-serif font-black text-2xl sm:text-3xl flex items-center justify-center">I</button>
+                                    <button type="button"
+                                        onclick="clackAlphabetMagnet(this, 'D — Day-8 spinach needs prayers')"
+                                        style="--base-rot: 5deg; transform: rotate(5deg);"
+                                        class="alphabet-magnet w-11 h-12 sm:w-12 sm:h-14 rounded-xl bg-enamel text-tomato font-serif font-black text-2xl sm:text-3xl flex items-center justify-center">D</button>
+                                    <button type="button"
+                                        onclick="clackAlphabetMagnet(this, 'G — Garlic jars: 3 open, 1 unopened')"
+                                        style="--base-rot: -3deg; transform: rotate(-3deg);"
+                                        class="alphabet-magnet w-11 h-12 sm:w-12 sm:h-14 rounded-xl bg-butter text-espresso font-serif font-black text-2xl sm:text-3xl flex items-center justify-center">G</button>
+                                    <button type="button"
+                                        onclick="clackAlphabetMagnet(this, 'E — Expired milk speedrun')"
+                                        style="--base-rot: 2deg; transform: rotate(2deg);"
+                                        class="alphabet-magnet w-11 h-12 sm:w-12 sm:h-14 rounded-xl bg-tomato text-enamel font-serif font-black text-2xl sm:text-3xl flex items-center justify-center">E</button>
+                                </div>
+                            </div>
+
+                            <!-- Middle Row: 4 Goofy Custom Food Character SVG Stickers -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                                <!-- Sticker 1: Wilted Day-8 Spinach with Tiny Halo -->
+                                <div
+                                    class="bg-buttermilk rounded-2xl p-2.5 zine-border shadow-sticker text-center transform -rotate-2 hover:rotate-0 transition-transform">
+                                    <svg class="w-14 h-14 mx-auto" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                                        <!-- Golden Halo -->
+                                        <ellipse cx="32" cy="11" rx="11" ry="3.5" stroke="#F4C430" stroke-width="2.5" />
+                                        <!-- Droopy Spinach Leaf -->
+                                        <path
+                                            d="M32 18C21 18 16 28 19 39C21 46 28 49 32 49C36 49 43 46 45 39C48 28 43 18 32 18Z"
+                                            fill="#2E6F40" stroke="#1F1A17" stroke-width="2" />
+                                        <path d="M32 49V56" stroke="#1F1A17" stroke-width="2" stroke-linecap="round" />
+                                        <!-- Dramatic Sad X Eyes -->
+                                        <path d="M25 31L28 34M28 31L25 34" stroke="#FFFDF7" stroke-width="1.8"
+                                            stroke-linecap="round" />
+                                        <path d="M36 31L39 34M39 31L36 34" stroke="#FFFDF7" stroke-width="1.8"
+                                            stroke-linecap="round" />
+                                        <path d="M28 40C30 38 34 38 36 40" stroke="#FFFDF7" stroke-width="1.8"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                    <p class="font-mono text-[10px] font-bold text-espresso leading-tight mt-1">Spinach
+                                    </p>
+                                    <p class="font-hand text-sm font-bold text-tomato leading-none">Day 8 (RIP)</p>
+                                </div>
+
+                                <!-- Sticker 2: Sweating Milk Carton -->
+                                <div
+                                    class="bg-buttermilk rounded-2xl p-2.5 zine-border shadow-sticker text-center transform rotate-2 hover:rotate-0 transition-transform">
+                                    <svg class="w-14 h-14 mx-auto" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                                        <path d="M21 18L26 10H38L43 18V52H21V18Z" fill="#FFFDF7" stroke="#1F1A17"
+                                            stroke-width="2" stroke-linejoin="round" />
+                                        <path d="M21 18H43" stroke="#1F1A17" stroke-width="2" />
+                                        <rect x="21" y="25" width="22" height="9" fill="#D9381E" />
+                                        <!-- Nervous Eyes & Sweat Drop -->
+                                        <circle cx="28" cy="40" r="1.6" fill="#1F1A17" />
+                                        <circle cx="36" cy="40" r="1.6" fill="#1F1A17" />
+                                        <path d="M29 45H35" stroke="#1F1A17" stroke-width="1.8"
+                                            stroke-linecap="round" />
+                                        <path
+                                            d="M47 26C47 26 50 30 50 32C50 33.7 48.7 35 47 35C45.3 35 44 33.7 44 32C44 30 47 26 47 26Z"
+                                            fill="#60A5FA" stroke="#1F1A17" stroke-width="1.3" />
+                                    </svg>
+                                    <p class="font-mono text-[10px] font-bold text-espresso leading-tight mt-1">Milk
+                                        Carton</p>
+                                    <p class="font-hand text-sm font-bold text-tomato leading-none">Exp. Tmrw</p>
+                                </div>
+
+                                <!-- Sticker 3: Stoic Leftover Pizza with Tiny Crown -->
+                                <div
+                                    class="bg-buttermilk rounded-2xl p-2.5 zine-border shadow-sticker text-center transform -rotate-1 hover:rotate-0 transition-transform">
+                                    <svg class="w-14 h-14 mx-auto" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                                        <!-- Tiny Gold Crown -->
+                                        <path d="M24 14L27 9L32 13L37 9L40 14H24Z" fill="#F4C430" stroke="#1F1A17"
+                                            stroke-width="1.6" stroke-linejoin="round" />
+                                        <!-- Pizza Slice -->
+                                        <path d="M18 20L46 20L32 53L18 20Z" fill="#F4C430" stroke="#1F1A17"
+                                            stroke-width="2" stroke-linejoin="round" />
+                                        <path d="M17 20C24 17 40 17 47 20" stroke="#D97706" stroke-width="4"
+                                            stroke-linecap="round" />
+                                        <circle cx="28" cy="27" r="2.8" fill="#D9381E" />
+                                        <circle cx="36" cy="31" r="2.5" fill="#D9381E" />
+                                        <!-- Stoic Sunglasses -->
+                                        <rect x="25" y="36" width="6" height="3.5" rx="1" fill="#1F1A17" />
+                                        <rect x="33" y="36" width="6" height="3.5" rx="1" fill="#1F1A17" />
+                                        <line x1="31" y1="37.5" x2="33" y2="37.5" stroke="#1F1A17" stroke-width="1.5" />
+                                    </svg>
+                                    <p class="font-mono text-[10px] font-bold text-espresso leading-tight mt-1">Pizza
+                                        Slice</p>
+                                    <p class="font-hand text-sm font-bold text-scallion leading-none">Immortal</p>
+                                </div>
+
+                                <!-- Sticker 4: Squad of 6 Sauces -->
+                                <div
+                                    class="bg-buttermilk rounded-2xl p-2.5 zine-border shadow-sticker text-center transform rotate-3 hover:rotate-0 transition-transform">
+                                    <svg class="w-14 h-14 mx-auto" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                                        <!-- Bottle 1 (Sriracha) -->
+                                        <rect x="13" y="24" width="10" height="26" rx="3" fill="#D9381E"
+                                            stroke="#1F1A17" stroke-width="1.8" />
+                                        <path d="M16 24L18 16L20 24" fill="#2E6F40" stroke="#1F1A17"
+                                            stroke-width="1.5" />
+                                        <!-- Bottle 2 (Kewpie) -->
+                                        <rect x="27" y="22" width="11" height="28" rx="4" fill="#F4C430"
+                                            stroke="#1F1A17" stroke-width="1.8" />
+                                        <rect x="30" y="17" width="5" height="5" rx="1" fill="#D9381E" stroke="#1F1A17"
+                                            stroke-width="1.5" />
+                                        <!-- Bottle 3 (Chili Crisp Jar) -->
+                                        <rect x="41" y="29" width="11" height="21" rx="2.5" fill="#FFFDF7"
+                                            stroke="#1F1A17" stroke-width="1.8" />
+                                        <rect x="41" y="35" width="11" height="14" fill="#D9381E" opacity="0.85" />
+                                        <rect x="40" y="25" width="13" height="4" rx="1" fill="#1F1A17" />
+                                    </svg>
+                                    <p class="font-mono text-[10px] font-bold text-espresso leading-tight mt-1">6 Sauces
+                                    </p>
+                                    <p class="font-hand text-sm font-bold text-tomato leading-none">Zero Meals</p>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Row: Hand-Written Butter Sticky Note + Pinned Thermal Mini-Receipt -->
+                            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
+                                <!-- Butter Yellow Sticky Note (6 Cols) -->
+                                <div
+                                    class="sm:col-span-6 bg-butter rounded-2xl p-4 zine-border shadow-sticker transform -rotate-1 relative">
+                                    <div
+                                        class="round-magnet-pin w-4 h-4 rounded-full absolute -top-2 left-1/2 -translate-x-1/2">
+                                    </div>
+                                    <p
+                                        class="font-mono text-[9px] font-bold uppercase tracking-wider text-espresso/70 mb-1">
+                                        ROOMMATE REMINDER
+                                    </p>
+                                    <p class="font-hand text-xl sm:text-2xl font-bold text-espresso leading-[1.08]">
+                                        "Do NOT buy more minced garlic. You already have 3 open jars."
+                                    </p>
+                                </div>
+
+                                <!-- Live Thermal Mini-Receipt Pinned with Tomato Magnet (6 Cols) -->
+                                <div class="sm:col-span-6 relative">
+                                    <div class="round-magnet-pin w-4 h-4 rounded-full absolute -top-2 right-5 z-10">
+                                    </div>
+                                    <div class="receipt-serrated-top"></div>
+                                    <div
+                                        class="bg-enamel border-x border-espresso/20 px-4 py-3 font-mono text-[11px] space-y-1.5 shadow-sm">
+                                        <div
+                                            class="flex justify-between font-bold text-espresso border-b border-dashed border-espresso/25 pb-1">
+                                            <span>FRIDGE AUDIT</span>
+                                            <span>11:42 PM</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>CONDIMENTS:</span>
+                                            <span class="font-bold text-tomato">6 SAUCES</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>ACTUAL MEALS:</span>
+                                            <span class="font-bold text-espresso">0 MEALS</span>
+                                        </div>
+                                        <div
+                                            class="pt-1 border-t border-dashed border-espresso/25 text-center font-bold text-tomato">
+                                            STATUS: DELUSIONAL
+                                        </div>
+                                    </div>
+                                    <div class="receipt-serrated-bottom"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         3. "WHAT’S DYING IN YOUR FRIDGE?" (INTERACTIVE TRIAGE BOARD)
+         ====================================================================== -->
+        <section id="graveyard" class="py-20 sm:py-28 border-b border-espresso/15 bg-enamel/55">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header + Live Money Saved vs Compost Guilt Scoreboard -->
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+                    <div class="space-y-2">
+                        <span class="font-mono text-xs font-bold uppercase tracking-widest text-tomato">
+                            01 // PRODUCE TRIAGE BOARD
+                        </span>
+                        <h2
+                            class="font-serif font-black text-4xl sm:text-6xl tracking-tight text-espresso leading-none">
+                            What’s dying in your fridge?
+                        </h2>
+                        <p class="text-base sm:text-lg text-espresso/80 max-w-xl">
+                            Every resident in your crisper drawer ranked by emotional baggage. Rescue them before Sunday
+                            trash night.
+                        </p>
+                    </div>
+
+                    <!-- Live Money Saved vs. Compost Guilt Tracker -->
+                    <div
+                        class="bg-enamel rounded-2xl p-4 zine-border shadow-enamel flex flex-wrap items-center gap-4 sm:gap-6">
+                        <div>
+                            <span class="block font-mono text-[10px] font-bold uppercase text-scallion">MONEY
+                                RESCUED</span>
+                            <span id="triage-saved-cash"
+                                class="font-serif font-black text-2xl sm:text-3xl text-scallion tabular-nums">$18.50</span>
+                        </div>
+                        <div class="h-9 w-px bg-espresso/15"></div>
+                        <div>
+                            <span class="block font-mono text-[10px] font-bold uppercase text-tomato">COMPOST
+                                GUILT</span>
+                            <span id="triage-guilt-cash"
+                                class="font-serif font-black text-2xl sm:text-3xl text-tomato tabular-nums">$34.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap items-center gap-2 mb-8" role="tablist" aria-label="Filter fridge residents">
+                    <button type="button" onclick="filterGraveyard('all', this)"
+                        class="graveyard-tab font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-espresso text-enamel zine-border-ink cursor-pointer">
+                        All Residents (6)
+                    </button>
+                    <button type="button" onclick="filterGraveyard('lifesupport', this)"
+                        class="graveyard-tab font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-enamel text-espresso zine-border hover:bg-butter/40 cursor-pointer">
+                        On Life Support
+                    </button>
+                    <button type="button" onclick="filterGraveyard('delusional', this)"
+                        class="graveyard-tab font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-enamel text-espresso zine-border hover:bg-butter/40 cursor-pointer">
+                        Delusional
+                    </button>
+                    <button type="button" onclick="filterGraveyard('immortal', this)"
+                        class="graveyard-tab font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-enamel text-espresso zine-border hover:bg-butter/40 cursor-pointer">
+                        Immortal
+                    </button>
+                </div>
+
+                <!-- 6 Interactive Resident Cards Grid -->
+                <div id="graveyard-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Rendered dynamically by JS so actions & filters stay perfectly synced -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         4. EXPIRY ALERTS (MAGNETIC NOTIFICATION & TONE SWITCHER)
+         ====================================================================== -->
+        <section class="py-20 sm:py-28 border-b border-espresso/15">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="enamel-panel rounded-[2rem] p-6 sm:p-10 lg:p-12 space-y-8">
+
+                    <!-- Top Header & Interactive Tone Switcher -->
+                    <div
+                        class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-espresso/15">
+                        <div class="space-y-2">
+                            <span class="font-mono text-xs font-bold uppercase tracking-widest text-scallion">
+                                02 // CUSTOMIZABLE PUSH INTERVENTIONS
+                            </span>
+                            <h2
+                                class="font-serif font-black text-3xl sm:text-5xl tracking-tight text-espresso leading-none">
+                                Expiry alerts that actually guilt-trip you.
+                            </h2>
+                            <p class="text-sm sm:text-base text-espresso/75 max-w-xl">
+                                Pick the exact emotional tone required to stop you from ordering takeout while $22 of
+                                groceries expire behind the oat milk.
+                            </p>
+                        </div>
+
+                        <button type="button" onclick="sendTestExpiryAlert()"
+                            class="zine-btn-butter font-sans font-extrabold text-xs sm:text-sm px-5 py-3 rounded-2xl shrink-0 self-start lg:self-auto">
+                            Send Test Alert 🔔
+                        </button>
+                    </div>
+
+                    <!-- 3 Tone Selector Pills -->
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <span class="font-mono text-xs font-bold uppercase text-espresso/60 mr-1">ALERT VOICE:</span>
+                        <button type="button" onclick="setAlertTone('roommate', this)"
+                            class="alert-tone-btn font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-tomato text-enamel zine-border-ink cursor-pointer">
+                            Passive-Aggressive Roommate
+                        </button>
+                        <button type="button" onclick="setAlertTone('chef', this)"
+                            class="alert-tone-btn font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-buttermilk text-espresso zine-border hover:bg-butter/50 cursor-pointer">
+                            Disappointed Michelin Chef
+                        </button>
+                        <button type="button" onclick="setAlertTone('er', this)"
+                            class="alert-tone-btn font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-buttermilk text-espresso zine-border hover:bg-butter/50 cursor-pointer">
+                            Dramatic ER Triage
+                        </button>
+                    </div>
+
+                    <!-- 3 Dynamic Magnetic Lock-Screen / Fridge Alert Cards -->
+                    <div id="expiry-alerts-stage" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         5. "STOP BUYING DUPLICATES" (SIX-SAUCE INTERVENTION & STORE CART BLOCKER)
+         ====================================================================== -->
+        <section id="duplicate-blocker" class="py-20 sm:py-28 border-b border-espresso/15 bg-enamel/55">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+                <!-- Header + Live Sauce-to-Food Ratio Meter -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-3">
+                        <span class="font-mono text-xs font-bold uppercase tracking-widest text-tomato">
+                            03 // IN-STORE AISLE GUARDIAN
+                        </span>
+                        <h2
+                            class="font-serif font-black text-4xl sm:text-6xl tracking-tight text-espresso leading-none">
+                            Stop buying duplicates.
+                        </h2>
+                        <p class="text-base sm:text-lg text-espresso/80 max-w-2xl">
+                            Standing in the condiment aisle wondering if you already have minced garlic? Tap items below
+                            to test how Fridge Friend blocks duplicate buys in real time.
+                        </p>
+                    </div>
+
+                    <!-- Interactive Sauce-to-Food Ratio Meter Card (5 Cols) -->
+                    <div class="lg:col-span-5 bg-enamel rounded-3xl p-6 zine-border shadow-enamel space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-mono text-xs font-bold uppercase text-espresso/70">SAUCE-TO-FOOD RATIO
+                                METER</span>
+                            <span id="ratio-verdict-badge"
+                                class="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-tomato text-enamel">
+                                UNHINGED
+                            </span>
+                        </div>
+                        <div class="flex items-baseline justify-between font-serif font-black text-2xl sm:text-3xl">
+                            <span class="text-tomato"><span id="ratio-sauce-count">6</span> Condiments</span>
+                            <span class="text-espresso/40 text-lg">vs.</span>
+                            <span class="text-scallion"><span id="ratio-meal-count">0</span> Real Meals</span>
+                        </div>
+                        <div
+                            class="w-full h-4 bg-buttermilk rounded-full overflow-hidden zine-border p-0.5 flex gap-0.5">
+                            <div id="ratio-sauce-bar"
+                                class="h-full bg-tomato rounded-l-full transition-all duration-300"
+                                style="width: 100%;"></div>
+                            <div id="ratio-meal-bar"
+                                class="h-full bg-scallion rounded-r-full transition-all duration-300"
+                                style="width: 0%;"></div>
+                        </div>
+                        <p id="ratio-hand-note" class="font-hand text-xl font-bold text-espresso/80">
+                            "You cannot eat chili crisp with a spoon forever."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interactive Grocery Store Aisle Tester Grid -->
+                <div class="space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <p class="font-mono text-xs font-bold uppercase text-espresso/70">
+                            TAP AN AISLE ITEM TO ADD TO YOUR STORE BASKET:
+                        </p>
+                        <button type="button" onclick="resetAisleTester()"
+                            class="font-mono text-xs font-bold text-tomato hover:underline cursor-pointer">
+                            ↻ Reset Store Basket
+                        </button>
+                    </div>
+
+                    <div id="aisle-tester-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         6. SMART GROCERY LIST (SERRATED THERMAL SUPERMARKET RECEIPT)
+         ====================================================================== -->
+        <section class="py-20 sm:py-28 border-b border-espresso/15">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+                    <!-- Left Editorial Column (5 Cols) -->
+                    <div class="lg:col-span-5 space-y-5">
+                        <span class="font-mono text-xs font-bold uppercase tracking-widest text-scallion">
+                            04 // AUTO-DEDUPLICATED LIST
+                        </span>
+                        <h2
+                            class="font-serif font-black text-4xl sm:text-5xl tracking-tight text-espresso leading-[0.98]">
+                            A grocery list that <span class="italic text-scallion">crosses out</span> your bad habits.
+                        </h2>
+                        <p class="text-base text-espresso/80 leading-relaxed">
+                            Fridge Friend scans what’s already hiding behind the oat milk, builds a short list to finish
+                            your expiring produce, and physically strikes through duplicates before you hit checkout.
+                        </p>
+
+                        <!-- Hand-written Sharpie Callout -->
+                        <div class="bg-butter/45 rounded-2xl p-4 zine-border transform -rotate-1">
+                            <p class="font-hand text-2xl font-bold text-espresso leading-snug">
+                                ↳ Try typing “garlic” or “sriracha” in the receipt box to see what happens!
+                            </p>
+                        </div>
+
+                        <button id="copy-receipt-btn" type="button" onclick="copyThermalReceipt()"
+                            class="zine-btn-butter font-mono text-xs sm:text-sm font-bold px-5 py-3.5 rounded-2xl inline-flex items-center gap-2">
+                            <span>📋 Copy Receipt to Clipboard</span>
+                        </button>
+                    </div>
+
+                    <!-- Right Serrated Thermal Supermarket Receipt Column (7 Cols) -->
+                    <div class="lg:col-span-7 relative">
+                        <!-- Glossy Tomato Red Fridge Magnet Pinning Top of Receipt -->
+                        <div class="round-magnet-pin w-7 h-7 rounded-full mx-auto -mb-3.5 relative z-20"></div>
+
+                        <!-- Hand-drawn Sharpie Margin Doodle Top-Right -->
+                        <span
+                            class="hidden sm:block font-hand text-2xl font-bold text-scallion absolute -right-4 top-8 rotate-6 z-20 pointer-events-none">
+                            actual dinner!! ↑
+                        </span>
+
+                        <div class="drop-shadow-[0_20px_35px_rgba(31,26,23,0.14)]">
+                            <div class="receipt-serrated-top"></div>
+
+                            <div
+                                class="bg-enamel border-x border-espresso/20 px-6 sm:px-8 py-6 font-mono text-xs sm:text-sm space-y-5">
+                                <!-- Receipt Header -->
+                                <div class="text-center border-b-2 border-dashed border-espresso/25 pb-4 space-y-1">
+                                    <p class="font-bold text-base sm:text-lg tracking-wider text-espresso">
+                                        FRIDGE FRIEND MARKET
+                                    </p>
+                                    <p class="text-[11px] text-espresso/65">
+                                        RECEIPT #0408 // SMART RESCUE RUN
+                                    </p>
+                                    <p id="receipt-meals-unlocked" class="text-xs font-bold text-scallion pt-1">
+                                        MEALS UNLOCKED WITH EXISTING FRIDGE: 2 / 4
+                                    </p>
+                                </div>
+
+                                <!-- Checkable Meal-Completing Items -->
+                                <div id="receipt-checklist-items" class="space-y-3">
+                                    <!-- Populated dynamically by JS -->
+                                </div>
+
+                                <!-- Auto-Crossed-Out Duplicate Items with Sharpie Margin Notes -->
+                                <div class="border-t-2 border-dashed border-espresso/25 pt-4 space-y-2.5">
+                                    <p class="text-[10px] font-bold uppercase tracking-wider text-tomato">
+                                        AUTO-BLOCKED DUPLICATES (ALREADY IN FRIDGE):
+                                    </p>
+
+                                    <div class="flex flex-wrap items-baseline justify-between gap-2 text-espresso/50">
+                                        <span class="line-through decoration-tomato decoration-2">1x Jar Minced
+                                            Garlic</span>
+                                        <span class="font-hand text-lg sm:text-xl font-bold text-tomato -rotate-1">
+                                            NO — you already have 3 jars!
+                                        </span>
+                                    </div>
+
+                                    <div class="flex flex-wrap items-baseline justify-between gap-2 text-espresso/50">
+                                        <span class="line-through decoration-tomato decoration-2">1x Sriracha
+                                            (Large)</span>
+                                        <span class="font-hand text-lg sm:text-xl font-bold text-tomato rotate-1">
+                                            PUT IT BACK — shelf 2 is full!
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Add Custom Item Input -->
+                                <form onsubmit="addCustomReceiptItem(event)" class="pt-2 flex gap-2">
+                                    <input id="custom-receipt-input" type="text"
+                                        placeholder="Add grocery item (e.g. avocado, garlic)..."
+                                        aria-label="Add grocery item"
+                                        class="flex-1 bg-buttermilk px-3.5 py-2.5 rounded-xl zine-border font-sans text-xs sm:text-sm font-semibold text-espresso focus:outline-none focus:border-espresso" />
+                                    <button type="submit"
+                                        class="bg-espresso text-enamel hover:bg-scallion font-mono text-xs font-bold px-4 py-2.5 rounded-xl transition-colors cursor-pointer shrink-0">
+                                        + ADD
+                                    </button>
+                                </form>
+
+                                <!-- Receipt Footer Barcode -->
+                                <div class="border-t-2 border-dashed border-espresso/25 pt-4 text-center space-y-1">
+                                    <div class="flex justify-between font-bold text-xs sm:text-sm">
+                                        <span>ESTIMATED BASKET TOTAL:</span>
+                                        <span id="receipt-est-total" class="text-scallion">$11.40 (SAVED $16.50)</span>
+                                    </div>
+                                    <p class="text-[10px] tracking-[0.25em] text-espresso/50 pt-2">
+                                        |||| ||| || |||| ||| |||| |||
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="receipt-serrated-bottom"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         7. FOOD RESCUE SUGGESTIONS ("CHAOS CHEF" LEFTOVER ALCHEMIST)
+         ====================================================================== -->
+        <section id="rescue-recipes" class="py-20 sm:py-28 border-b border-espresso/15 bg-enamel/55">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+                <!-- Header -->
+                <div class="max-w-3xl space-y-2">
+                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-scallion">
+                        05 // CHAOS CHEF LEFTOVER ALCHEMIST
+                    </span>
+                    <h2 class="font-serif font-black text-4xl sm:text-6xl tracking-tight text-espresso leading-none">
+                        Food rescue suggestions.
+                    </h2>
+                    <p class="text-base sm:text-lg text-espresso/80">
+                        Toggle the questionable ingredients currently sitting in your fridge to generate real, 10-minute
+                        rescue meals before anything goes fuzzy.
+                    </p>
+                </div>
+
+                <!-- Toggleable Fridge Ingredient Chips -->
+                <div class="bg-buttermilk rounded-3xl p-5 sm:p-6 zine-border space-y-3">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="font-mono text-xs font-bold uppercase text-espresso/70">
+                            SELECT WHAT’S IN YOUR FRIDGE RIGHT NOW:
+                        </span>
+                        <span id="selected-ingredients-count" class="font-hand text-xl font-bold text-scallion">
+                            4 ingredients selected
+                        </span>
+                    </div>
+
+                    <div id="chaos-ingredient-chips" class="flex flex-wrap gap-2.5">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </div>
+
+                <!-- Dynamic 10-Minute Rescue Recipes Grid -->
+                <div id="rescue-recipes-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Populated dynamically by JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         8. FUNNY FRIDGE DASHBOARD (INTERACTIVE MAGNETIC KITCHEN COMMAND CENTER)
+         ====================================================================== -->
+        <section id="fridge-stats" class="py-20 sm:py-28 border-b border-espresso/15">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+                <!-- Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div class="space-y-2">
+                        <span class="font-mono text-xs font-bold uppercase tracking-widest text-tomato">
+                            06 // KITCHEN TELEMETRY &amp; SHAME METRICS
+                        </span>
+                        <h2
+                            class="font-serif font-black text-4xl sm:text-6xl tracking-tight text-espresso leading-none">
+                            Your fridge, quantified.
+                        </h2>
+                    </div>
+                    <p class="font-hand text-2xl sm:text-3xl font-bold text-espresso/80 rotate-1">
+                        live sensor data from shelf 2 ↓
+                    </p>
+                </div>
+
+                <!-- 2x2 Tactile Enamel & Risograph Dashboard Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-7">
+
+                    <!-- MODULE 1: "FRIDGE DOOR OPENED TONIGHT" INTERACTIVE COUNTER -->
+                    <div id="door-counter-card"
+                        class="enamel-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6 transition-all">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <span class="font-mono text-xs font-bold uppercase tracking-wider text-tomato">
+                                    DOOR SENSOR // TONIGHT
+                                </span>
+                                <h3 class="font-serif font-black text-2xl sm:text-3xl text-espresso mt-1">
+                                    Fridge Door Opened Tonight
+                                </h3>
+                            </div>
+                            <span
+                                class="font-mono text-xs font-bold px-3 py-1 rounded-full bg-butter/50 text-espresso zine-border">
+                                BULB: OVERTIME
+                            </span>
+                        </div>
+
+                        <div class="flex items-center justify-between gap-4 bg-buttermilk rounded-2xl p-5 zine-border">
+                            <div>
+                                <div
+                                    class="font-serif font-black text-5xl sm:text-6xl text-espresso tabular-nums leading-none">
+                                    <span id="door-open-count">14</span><span
+                                        class="text-2xl sm:text-3xl text-espresso/55 font-sans font-bold ml-1.5">times</span>
+                                </div>
+                                <p id="door-skeptical-msg"
+                                    class="font-hand text-xl sm:text-2xl font-bold text-tomato mt-2">
+                                    "Still just mustard and baking soda, chef."
+                                </p>
+                            </div>
+
+                            <button type="button" onclick="incrementFridgeDoorOpens()"
+                                class="zine-btn-butter font-sans font-extrabold text-xs sm:text-sm px-4 py-3 rounded-2xl shrink-0">
+                                Open Fridge Again 🚪
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- MODULE 2: "THE COUNCIL OF SIX SAUCES" INTERACTIVE CONDIMENT LINEUP -->
+                    <div class="enamel-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <span class="font-mono text-xs font-bold uppercase tracking-wider text-scallion">
+                                    DOOR SHELF 01 // DOOR SQUAD
+                                </span>
+                                <h3 class="font-serif font-black text-2xl sm:text-3xl text-espresso mt-1">
+                                    The Council of Six Sauces
+                                </h3>
+                            </div>
+                            <span class="font-mono text-xs font-bold text-espresso/60">TAP A BOTTLE</span>
+                        </div>
+
+                        <!-- 6 Interactive Sauce Bottles -->
+                        <div id="sauce-council-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <!-- Selected Sauce Readout Bar -->
+                        <div
+                            class="bg-buttermilk rounded-2xl px-4 py-3 zine-border flex flex-wrap items-center justify-between gap-2 text-xs">
+                            <span id="sauce-detail-name" class="font-bold text-espresso">Chili Crisp (Jar #1)</span>
+                            <span id="sauce-detail-meta" class="font-mono text-tomato font-bold">88% full • Last used:
+                                11 days ago</span>
+                        </div>
+                    </div>
+
+                    <!-- MODULE 3: "PRODUCE GRAVEYARD VS. RESCUED CASH" BAR BREAKDOWN -->
+                    <div class="enamel-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <span class="font-mono text-xs font-bold uppercase tracking-wider text-scallion">
+                                    MONTHLY WALLET IMPACT
+                                </span>
+                                <h3 class="font-serif font-black text-2xl sm:text-3xl text-espresso mt-1">
+                                    Produce Graveyard vs. Rescued Cash
+                                </h3>
+                            </div>
+                            <span
+                                class="font-mono text-xs font-bold px-3 py-1 rounded-full bg-sage text-scallion zine-border">
+                                +83% EFFICIENCY
+                            </span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Rescued Cash Bar -->
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between font-mono text-xs font-bold">
+                                    <span class="text-scallion">RESCUED GROCERIES (THIS MONTH)</span>
+                                    <span id="dash-rescued-amount" class="text-scallion tabular-nums">$72.40</span>
+                                </div>
+                                <div class="w-full h-5 bg-buttermilk rounded-full overflow-hidden zine-border p-0.5">
+                                    <div id="dash-rescued-bar"
+                                        class="h-full bg-scallion rounded-full transition-all duration-300"
+                                        style="width: 83%;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Composted Bar -->
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between font-mono text-xs font-bold">
+                                    <span class="text-tomato">PRODUCE GRAVEYARD (COMPOSTED)</span>
+                                    <span id="dash-compost-amount" class="text-tomato tabular-nums">$14.50</span>
+                                </div>
+                                <div class="w-full h-5 bg-buttermilk rounded-full overflow-hidden zine-border p-0.5">
+                                    <div id="dash-compost-bar"
+                                        class="h-full bg-tomato rounded-full transition-all duration-300"
+                                        style="width: 17%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MODULE 4: "LEFTOVER PIZZA HALL OF FAME" STREAK BADGE -->
+                    <div
+                        class="bg-butter/35 rounded-3xl p-6 sm:p-8 zine-border shadow-enamel flex flex-col sm:flex-row items-center gap-6">
+                        <!-- Custom Enamel Rosette Trophy SVG -->
+                        <div
+                            class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-enamel alphabet-magnet flex items-center justify-center shrink-0 relative">
+                            <svg class="w-20 h-20" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                                <circle cx="40" cy="40" r="34" fill="#F4C430" stroke="#1F1A17" stroke-width="2"
+                                    stroke-dasharray="4 3" />
+                                <path d="M24 25L56 25L40 62L24 25Z" fill="#D9381E" stroke="#1F1A17" stroke-width="2"
+                                    stroke-linejoin="round" />
+                                <path d="M23 25C32 21 48 21 57 25" stroke="#1F1A17" stroke-width="4"
+                                    stroke-linecap="round" />
+                                <circle cx="36" cy="34" r="3" fill="#FFFDF7" />
+                                <circle cx="44" cy="39" r="2.5" fill="#FFFDF7" />
+                            </svg>
+                        </div>
+
+                        <div class="space-y-2 text-center sm:text-left">
+                            <span
+                                class="inline-block font-mono text-[10px] font-bold uppercase tracking-wider bg-tomato text-enamel px-2.5 py-0.5 rounded-full">
+                                LEFTOVER PIZZA HALL OF FAME
+                            </span>
+                            <h3 class="font-serif font-black text-2xl sm:text-3xl text-espresso leading-tight">
+                                Day 4 — Unbothered.
+                            </h3>
+                            <p class="text-sm text-espresso/80 font-medium leading-relaxed">
+                                Wrapped in aluminum foil since Tuesday. Structurally sound, emotionally resilient, and
+                                officially eligible for cold breakfast status.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         9. FINAL RISOGRAPH PRINTMAKER CTA BANNER
+         ====================================================================== -->
+        <section class="py-20 sm:py-28">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div
+                    class="rounded-[2.25rem] bg-tomato text-enamel p-8 sm:p-14 lg:p-16 zine-border-ink shadow-enamel-lg relative overflow-hidden">
+                    <!-- Decorative Butter Yellow Halftone Corner Accent -->
+                    <div class="w-44 h-44 rounded-full bg-butter/20 -top-12 -right-12 absolute pointer-events-none">
+                    </div>
+
+                    <div class="max-w-3xl mx-auto text-center space-y-6 relative z-10">
+                        <span
+                            class="inline-block font-mono text-xs font-bold uppercase tracking-widest bg-butter text-espresso px-3.5 py-1 rounded-full zine-border-ink">
+                            FREE FOR STUDENTS &amp; CHRONIC CONDIMENT COLLECTORS
+                        </span>
+
+                        <h2
+                            class="font-serif font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.95]">
+                            Give your spinach a fighting chance.
+                        </h2>
+
+                        <p class="text-lg sm:text-xl text-enamel/90 max-w-xl mx-auto font-medium">
+                            Take the 60-second fridge intervention and get your custom leftover rescue plan before
+                            Sunday night.
+                        </p>
+
+                        <div class="pt-2">
+                            <button type="button" onclick="openInterventionQuiz()"
+                                class="zine-btn-butter font-sans font-extrabold text-lg sm:text-xl px-9 py-4 rounded-2xl inline-flex items-center gap-3">
+                                <span>SAVE MY GROCERIES</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+    <footer class="bg-enamel border-t border-espresso/15 py-10">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="font-serif font-black text-xl text-espresso">FRIDGE FRIEND</p>
+                <p class="font-mono text-xs text-espresso/60 mt-0.5">
+                    ISSUE 06 // PRODUCT LAUNCH &amp; INDIE CULINARY ZINE CASE STUDY
+                </p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button type="button" onclick="openCaseBriefDrawer()"
+                    class="font-mono text-xs font-bold px-4 py-2 rounded-full bg-sage text-scallion zine-border hover:bg-scallion hover:text-enamel transition-colors cursor-pointer">
+                    📋 Case Brief
+                </button>
+                <a href="#top"
+                    class="font-mono text-xs font-bold px-3.5 py-2 rounded-full bg-buttermilk zine-border hover:bg-butter/50 transition-colors">
+                    Top ↑
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================================================
+       SUBTLE KITCHEN TOAST NOTIFICATION (Replaces browser alert())
+       ======================================================================== -->
+    <div id="kitchen-toast"
+        class="fixed bottom-5 right-5 z-50 hidden max-w-sm bg-enamel rounded-2xl p-4 zine-border-ink shadow-enamel-lg space-y-1.5"
+        role="status">
+        <div class="flex items-center justify-between gap-2">
+            <span id="kitchen-toast-tag"
+                class="font-mono text-[10px] font-bold uppercase tracking-wider bg-butter text-espresso px-2.5 py-0.5 rounded-full">
+                FRIDGE ALERT
+            </span>
+            <button type="button" onclick="hideKitchenToast()"
+                class="font-mono text-xs font-bold text-espresso/60 hover:text-espresso cursor-pointer">×</button>
+        </div>
+        <p id="kitchen-toast-msg" class="font-sans text-xs sm:text-sm font-bold text-espresso leading-snug">
+            Notification sent.
+        </p>
+    </div>
+
+    <!-- ========================================================================
+       MODAL 1: "60-SECOND FRIDGE INTERVENTION" MINI-QUIZ & DIAGNOSIS CARD
+       ======================================================================== -->
+    <div id="intervention-quiz-modal"
+        class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-espresso/75 backdrop-blur-xs" role="dialog"
+        aria-modal="true" aria-labelledby="quiz-modal-title">
+        <div class="w-full max-w-xl bg-buttermilk rounded-3xl zine-border-ink shadow-enamel-lg overflow-hidden">
+            <!-- Top Header -->
+            <div class="bg-tomato text-enamel px-6 py-4 border-b border-espresso/20 flex items-center justify-between">
+                <span class="font-mono text-xs font-bold uppercase tracking-wider">
+                    60-SECOND FRIDGE INTERVENTION
+                </span>
+                <button type="button" onclick="closeInterventionQuiz()"
+                    class="w-8 h-8 rounded-full bg-enamel text-espresso font-mono font-bold flex items-center justify-center hover:bg-butter transition-colors cursor-pointer"
+                    aria-label="Close Intervention Quiz">
+                    ×
+                </button>
+            </div>
+
+            <!-- Quiz Form Body -->
+            <div id="quiz-questions-stage" class="p-6 sm:p-8 space-y-5 max-h-[82vh] overflow-y-auto">
+                <div>
+                    <h3 id="quiz-modal-title" class="font-serif font-black text-3xl text-espresso leading-tight">
+                        Let’s assess the damage.
+                    </h3>
+                    <p class="text-sm text-espresso/75 mt-1">
+                        Answer 3 honest questions to generate your personalized Fridge Diagnosis Card.
+                    </p>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="space-y-2">
+                    <label class="block font-sans text-xs sm:text-sm font-extrabold text-espresso">
+                        1. What’s currently in your crisper drawer?
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <button type="button" onclick="pickQuizOpt(1, 'Wilted Spinach & Hope', this)"
+                            class="quiz-opt-1 text-left p-3 rounded-xl bg-butter/65 zine-border-ink font-sans text-xs font-bold cursor-pointer">
+                            Wilted Spinach &amp; Hope
+                        </button>
+                        <button type="button" onclick="pickQuizOpt(1, '3 Half-Lemons & Carrots', this)"
+                            class="quiz-opt-1 text-left p-3 rounded-xl bg-enamel zine-border font-sans text-xs font-bold cursor-pointer">
+                            3 Half-Lemons &amp; Carrots
+                        </button>
+                        <button type="button" onclick="pickQuizOpt(1, 'Extra Soda Cans', this)"
+                            class="quiz-opt-1 text-left p-3 rounded-xl bg-enamel zine-border font-sans text-xs font-bold cursor-pointer">
+                            Extra Soda Cans
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="space-y-2">
+                    <label class="block font-sans text-xs sm:text-sm font-extrabold text-espresso">
+                        2. How many open condiment jars do you own?
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <button type="button" onclick="pickQuizOpt(2, '1–3 (Rookie Numbers)', this)"
+                            class="quiz-opt-2 text-left p-3 rounded-xl bg-enamel zine-border font-sans text-xs font-bold cursor-pointer">
+                            1–3 (Rookie)
+                        </button>
+                        <button type="button" onclick="pickQuizOpt(2, '4–7 (Sauce Collector)', this)"
+                            class="quiz-opt-2 text-left p-3 rounded-xl bg-butter/65 zine-border-ink font-sans text-xs font-bold cursor-pointer">
+                            4–7 (Sauce Collector)
+                        </button>
+                        <button type="button" onclick="pickQuizOpt(2, '8+ (Full Door Shelf)', this)"
+                            class="quiz-opt-2 text-left p-3 rounded-xl bg-enamel zine-border font-sans text-xs font-bold cursor-pointer">
+                            8+ (Full Door Shelf)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="space-y-2">
+                    <label class="block font-sans text-xs sm:text-sm font-extrabold text-espresso">
+                        3. What’s your 9 PM dinner move?
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <button type="button" onclick="pickQuizOpt(3, 'Stare Into Fridge & Sigh', this)"
+                            class="quiz-opt-3 text-left p-3 rounded-xl bg-butter/65 zine-border-ink font-sans text-xs font-bold cursor-pointer">
+                            Stare &amp; Sigh
+                        </button>
+                        <button type="button" onclick="pickQuizOpt(3, 'Cereal Over the Sink', this)"
+                            class="quiz-opt-3 text-left p-3 rounded-xl bg-enamel zine-border font-sans text-xs font-bold cursor-pointer">
+                            Cereal Over Sink
+                        </button>
+                        <button type="button" onclick="pickQuizOpt(3, '$28 Delivery Burrito', this)"
+                            class="quiz-opt-3 text-left p-3 rounded-xl bg-enamel zine-border font-sans text-xs font-bold cursor-pointer">
+                            $28 Delivery Burrito
+                        </button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="generateDiagnosisCard()"
+                    class="w-full zine-btn-tomato font-sans font-extrabold text-base py-3.5 rounded-2xl mt-2">
+                    GENERATE MY FRIDGE DIAGNOSIS →
+                </button>
+            </div>
+
+            <!-- Diagnosis Result Card Stage (Hidden until generated) -->
+            <div id="quiz-result-stage" class="hidden p-6 sm:p-8 space-y-5 max-h-[82vh] overflow-y-auto">
+                <div class="bg-enamel rounded-2xl p-5 zine-border-ink shadow-enamel space-y-3">
+                    <div class="flex items-center justify-between font-mono text-[11px] font-bold">
+                        <span class="text-tomato">OFFICIAL FRIDGE DIAGNOSIS</span>
+                        <span class="text-scallion">RESCUE PLAN READY</span>
+                    </div>
+                    <h4 id="diag-archetype-title" class="font-serif font-black text-3xl text-espresso leading-tight">
+                        The Chaotic Condiment Sommelier
+                    </h4>
+                    <p id="diag-archetype-summary" class="text-sm text-espresso/80 leading-relaxed">
+                        You possess 6 world-class sauces and zero base proteins. Starter prescription: buy 1 carton of
+                        eggs, fry your Day-8 spinach in chili crisp, and step away from the garlic aisle.
+                    </p>
+                    <div class="bg-buttermilk rounded-xl p-3 zine-border font-mono text-xs space-y-1">
+                        <p><strong>Crisper Status:</strong> <span id="diag-ans-1">Wilted Spinach &amp; Hope</span></p>
+                        <p><strong>Condiment Load:</strong> <span id="diag-ans-2">4–7 (Sauce Collector)</span></p>
+                        <p><strong>9 PM Habit:</strong> <span id="diag-ans-3">Stare Into Fridge &amp; Sigh</span></p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                    <button type="button" onclick="resetInterventionQuiz()"
+                        class="font-mono text-xs font-bold text-espresso/70 hover:text-espresso underline cursor-pointer">
+                        ← Retake Quiz
+                    </button>
+                    <button id="copy-diagnosis-btn" type="button" onclick="copyDiagnosisToClipboard()"
+                        class="zine-btn-butter font-mono text-xs font-bold px-5 py-3 rounded-xl">
+                        📋 Copy Diagnosis Card
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================
+       MODAL / DRAWER 2: PORTFOLIO CASE STUDY BRIEF ("📋 Case Brief")
+       ======================================================================== -->
+    <div id="case-brief-backdrop" class="fixed inset-0 z-50 hidden justify-end bg-espresso/70 backdrop-blur-xs"
+        role="dialog" aria-modal="true" aria-labelledby="case-brief-title">
+        <div
+            class="w-full max-w-xl bg-buttermilk border-l border-espresso/25 h-full overflow-y-auto p-6 sm:p-8 flex flex-col justify-between space-y-8">
+            <div class="space-y-6">
+                <div class="flex items-start justify-between gap-4 pb-4 border-b border-espresso/15">
+                    <div>
+                        <span
+                            class="inline-block font-mono text-[10px] font-bold uppercase tracking-wider bg-sage text-scallion px-2.5 py-0.5 rounded-full zine-border mb-2">
+                            PORTFOLIO CASE STUDY 06 // PRODUCT LAUNCH
+                        </span>
+                        <h2 id="case-brief-title"
+                            class="font-serif font-black text-3xl sm:text-4xl text-espresso leading-none">
+                            FRIDGE FRIEND Campaign Brief
+                        </h2>
+                    </div>
+                    <button type="button" onclick="closeCaseBriefDrawer()"
+                        class="w-9 h-9 rounded-full bg-enamel text-espresso font-mono font-bold flex items-center justify-center zine-border hover:bg-tomato hover:text-enamel transition-colors cursor-pointer shrink-0"
+                        aria-label="Close Case Brief Drawer">
+                        ×
+                    </button>
+                </div>
+
+                <div class="enamel-panel rounded-2xl p-5 space-y-2">
+                    <span class="font-mono text-xs font-bold text-tomato uppercase">01 // CAMPAIGN POSITIONING</span>
+                    <p class="text-sm sm:text-base text-espresso/85 leading-relaxed">
+                        Built as the final capstone in a 6-project marketing portfolio progression—demonstrating
+                        <strong>conversational product storytelling</strong>, <strong>behavioral UX hooks</strong>, and
+                        high-converting consumer app positioning without sterile SaaS clichés.
+                    </p>
+                </div>
+
+                <div class="enamel-panel rounded-2xl p-5 space-y-2">
+                    <span class="font-mono text-xs font-bold text-scallion uppercase">02 // VISUAL ART DIRECTION</span>
+                    <p class="text-sm sm:text-base text-espresso/85 leading-relaxed">
+                        <strong>Indie Culinary Zine × Risograph Printmaker × Enamel Fridge Door:</strong> Warm
+                        buttermilk paper grain (<code>#FAF5E8</code>), heirloom tomato red (<code>#D9381E</code>),
+                        salted butter yellow (<code>#F4C430</code>), and herb scallion green (<code>#2E6F40</code>)
+                        paired with <em>Fraunces</em> editorial display type and hand-drawn <em>Caveat</em> Sharpie
+                        notes.
+                    </p>
+                </div>
+
+                <div class="bg-butter/40 rounded-2xl p-5 zine-border space-y-2.5">
+                    <span class="font-mono text-xs font-bold text-espresso uppercase">03 // CONVERSION &amp; RETENTION
+                        HOOKS</span>
+                    <ul class="space-y-2 text-xs sm:text-sm font-medium text-espresso/90">
+                        <li>• <strong>Tactile Play:</strong> Clickable 3D fridge magnets and "Door Opened Tonight"
+                            counter increase time-on-page.</li>
+                        <li>• <strong>Immediate Value Proof:</strong> Interactive Store Aisle Duplicate Blocker and
+                            Chaos Chef Recipe Alchemist prove product utility before signup.</li>
+                        <li>• <strong>Target KPIs:</strong> 38% quiz completion rate, 19% waitlist conversion, and high
+                            organic social shareability via personalized Diagnosis Cards.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-espresso/15 flex items-center justify-between">
+                <span class="font-mono text-[11px] text-espresso/60">PORTFOLIO ARTIFACT 06 // 2026</span>
+                <button type="button" onclick="closeCaseBriefDrawer()"
+                    class="zine-btn-tomato font-sans font-bold text-xs px-5 py-2.5 rounded-full">
+                    Back to Landing Page →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================
+       JAVASCRIPT: WEB AUDIO KITCHEN SFX, TRIAGE BOARD, AISLE STAMP, RECEIPT, QUIZ
+       ======================================================================== -->
+    <script>
+        // ========================================================================
+        // 1. SYNTHESIZED WEB AUDIO KITCHEN SFX (Magnet Clack, Timer Ding, Stamp Thud)
+        // ========================================================================
+        let kitchenSfxOn = false;
+        let kitchenAudioCtx = null;
+
+        function getKitchenAudio() {
+            if (!kitchenAudioCtx) {
+                kitchenAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (kitchenAudioCtx.state === 'suspended') {
+                kitchenAudioCtx.resume();
+            }
+            return kitchenAudioCtx;
+        }
+
+        function playKitchenSound(type = 'clack') {
+            if (!kitchenSfxOn) return;
+            try {
+                const ctx = getKitchenAudio();
+                const now = ctx.currentTime;
+
+                if (type === 'clack') {
+                    // Crisp ceramic/enamel magnet tap
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(920, now);
+                    osc.frequency.exponentialRampToValueAtTime(240, now + 0.045);
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.055);
+                } else if (type === 'stamp') {
+                    // Punchy rubber ink stamp thud
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(160, now);
+                    osc.frequency.exponentialRampToValueAtTime(52, now + 0.12);
+                    gain.gain.setValueAtTime(0.14, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.13);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.14);
+                } else if (type === 'ding') {
+                    // Warm oven/kitchen timer bell chime
+                    [1046.5, 1318.5].forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+                        gain.gain.setValueAtTime(0.06, now + idx * 0.05);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.05 + 0.35);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + idx * 0.05);
+                        osc.stop(now + idx * 0.05 + 0.36);
+                    });
+                }
+            } catch (e) { }
+        }
+
+        function toggleKitchenSfx() {
+            kitchenSfxOn = !kitchenSfxOn;
+            const dot = document.getElementById('kitchen-sfx-dot');
+            const label = document.getElementById('kitchen-sfx-label');
+            if (kitchenSfxOn) {
+                dot.classList.remove('bg-espresso/30');
+                dot.classList.add('bg-scallion');
+                label.textContent = 'Kitchen SFX: ON';
+                playKitchenSound('ding');
+            } else {
+                dot.classList.remove('bg-scallion');
+                dot.classList.add('bg-espresso/30');
+                label.textContent = 'Kitchen SFX: OFF';
+            }
+        }
+
+        // ========================================================================
+        // 2. HERO: INTERACTIVE 3D ALPHABET FRIDGE MAGNETS
+        // ========================================================================
+        function clackAlphabetMagnet(btn, noteText) {
+            playKitchenSound('clack');
+            btn.classList.remove('animate-magnet-wiggle');
+            void btn.offsetWidth;
+            btn.classList.add('animate-magnet-wiggle');
+            document.getElementById('magnet-clack-feedback').textContent = noteText;
+        }
+
+        // ========================================================================
+        // 3. "WHAT’S DYING IN YOUR FRIDGE?" (INTERACTIVE TRIAGE BOARD)
+        // ========================================================================
+        let moneyRescued = 18.5;
+        let compostGuilt = 34.0;
+        let currentGraveyardFilter = 'all';
+
+        const fridgeResidents = [
+            {
+                id: 'spinach',
+                name: 'Spinach — Day 8',
+                tagline: 'It had dreams.',
+                category: 'lifesupport',
+                badge: 'ON LIFE SUPPORT',
+                badgeStyle: 'bg-tomato text-enamel',
+                value: 4.5,
+                note: 'Currently 40% leaf, 60% emotional moisture.',
+                svg: `
+          <svg class="w-16 h-16" viewBox="0 0 64 64" fill="none">
+            <ellipse cx="32" cy="10" rx="11" ry="3.5" stroke="#F4C430" stroke-width="2.5" />
+            <path d="M32 17C20 17 15 28 18 40C21 48 28 50 32 50C36 50 43 48 46 40C49 28 44 17 32 17Z" fill="#2E6F40" stroke="#1F1A17" stroke-width="2" />
+            <path d="M32 50V57" stroke="#1F1A17" stroke-width="2" stroke-linecap="round" />
+            <path d="M25 31L28 34M28 31L25 34M36 31L39 34M39 31L36 34" stroke="#FFFDF7" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M28 41C30 39 34 39 36 41" stroke="#FFFDF7" stroke-width="1.8" stroke-linecap="round" />
+          </svg>`
+            },
+            {
+                id: 'milk',
+                name: 'Milk — expires tomorrow',
+                tagline: 'We both know you’re not finishing this.',
+                category: 'lifesupport',
+                badge: 'ON LIFE SUPPORT',
+                badgeStyle: 'bg-tomato text-enamel',
+                value: 4.2,
+                note: 'Still 3/4 gallon remaining. Bold optimism.',
+                svg: `
+          <svg class="w-16 h-16" viewBox="0 0 64 64" fill="none">
+            <path d="M20 18L26 10H38L44 18V53H20V18Z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="2" stroke-linejoin="round" />
+            <path d="M20 18H44" stroke="#1F1A17" stroke-width="2" />
+            <rect x="20" y="25" width="24" height="9" fill="#D9381E" />
+            <circle cx="28" cy="41" r="1.7" fill="#1F1A17" />
+            <circle cx="36" cy="41" r="1.7" fill="#1F1A17" />
+            <path d="M29 46H35" stroke="#1F1A17" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M49 24C49 24 52 28 52 30.5C52 32.2 50.7 33.5 49 33.5C47.3 33.5 46 32.2 46 30.5C46 28 49 24 49 24Z" fill="#60A5FA" stroke="#1F1A17" stroke-width="1.3" />
+          </svg>`
+            },
+            {
+                id: 'pizza',
+                name: 'Leftover pizza',
+                tagline: 'Still here. Respect.',
+                category: 'immortal',
+                badge: 'IMMORTAL',
+                badgeStyle: 'bg-scallion text-enamel',
+                value: 6.0,
+                note: 'Wrapped in foil since Tuesday. Peak structural integrity.',
+                svg: `
+          <svg class="w-16 h-16" viewBox="0 0 64 64" fill="none">
+            <path d="M23 13L27 8L32 12L37 8L41 13H23Z" fill="#F4C430" stroke="#1F1A17" stroke-width="1.6" stroke-linejoin="round" />
+            <path d="M17 19L47 19L32 54L17 19Z" fill="#F4C430" stroke="#1F1A17" stroke-width="2" stroke-linejoin="round" />
+            <path d="M16 19C24 16 40 16 48 19" stroke="#D97706" stroke-width="4" stroke-linecap="round" />
+            <circle cx="28" cy="27" r="3" fill="#D9381E" />
+            <circle cx="36" cy="31" r="2.6" fill="#D9381E" />
+            <rect x="25" y="37" width="6" height="3.5" rx="1" fill="#1F1A17" />
+            <rect x="33" y="37" width="6" height="3.5" rx="1" fill="#1F1A17" />
+          </svg>`
+            },
+            {
+                id: 'cilantro',
+                name: 'Cilantro — Day 5',
+                tagline: 'Currently transitioning into dark green soup.',
+                category: 'lifesupport',
+                badge: 'ON LIFE SUPPORT',
+                badgeStyle: 'bg-tomato text-enamel',
+                value: 2.3,
+                note: 'Bought for two tacos. Remaining 94% abandoned.',
+                svg: `
+          <svg class="w-16 h-16" viewBox="0 0 64 64" fill="none">
+            <path d="M32 52V28" stroke="#2E6F40" stroke-width="3" stroke-linecap="round" />
+            <circle cx="24" cy="24" r="7" fill="#2E6F40" stroke="#1F1A17" stroke-width="1.8" />
+            <circle cx="40" cy="25" r="7" fill="#2E6F40" stroke="#1F1A17" stroke-width="1.8" />
+            <circle cx="32" cy="17" r="7" fill="#4ADE80" stroke="#1F1A17" stroke-width="1.8" />
+            <path d="M29 37C31 35 33 35 35 37" stroke="#1F1A17" stroke-width="1.8" stroke-linecap="round" />
+          </svg>`
+            },
+            {
+                id: 'sauces',
+                name: 'Six Assorted Sauces',
+                tagline: 'Sriracha, Chili Crisp, Kewpie, Pesto, Mystery Mustard, Sweet Chili. Zero protein.',
+                category: 'delusional',
+                badge: 'DELUSIONAL',
+                badgeStyle: 'bg-butter text-espresso',
+                value: 12.0,
+                note: 'Taking up 100% of door shelf real estate.',
+                svg: `
+          <svg class="w-16 h-16" viewBox="0 0 64 64" fill="none">
+            <rect x="12" y="24" width="11" height="27" rx="3" fill="#D9381E" stroke="#1F1A17" stroke-width="1.8" />
+            <path d="M15 24L17.5 15L20 24" fill="#2E6F40" stroke="#1F1A17" stroke-width="1.5" />
+            <rect x="26" y="21" width="12" height="30" rx="4" fill="#F4C430" stroke="#1F1A17" stroke-width="1.8" />
+            <rect x="29" y="16" width="6" height="5" rx="1" fill="#D9381E" stroke="#1F1A17" stroke-width="1.5" />
+            <rect x="41" y="28" width="12" height="23" rx="2.5" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.8" />
+            <rect x="41" y="34" width="12" height="16" fill="#D9381E" opacity="0.85" />
+            <rect x="40" y="24" width="14" height="4" rx="1" fill="#1F1A17" />
+          </svg>`
+            },
+            {
+                id: 'carrots',
+                name: 'Baby Carrots — Day 19',
+                tagline: 'Sweating inside a sealed bag since last month.',
+                category: 'delusional',
+                badge: 'DELUSIONAL',
+                badgeStyle: 'bg-butter text-espresso',
+                value: 3.5,
+                note: 'You bought them during a 4-hour “healthy era.”',
+                svg: `
+          <svg class="w-16 h-16" viewBox="0 0 64 64" fill="none">
+            <path d="M24 22C24 19 40 19 40 22L35 51C34.5 53.5 29.5 53.5 29 51L24 22Z" fill="#F97316" stroke="#1F1A17" stroke-width="2" />
+            <path d="M32 19L27 11M32 19L32 10M32 19L37 11" stroke="#2E6F40" stroke-width="2.2" stroke-linecap="round" />
+            <circle cx="29" cy="30" r="1.5" fill="#1F1A17" />
+            <circle cx="35" cy="30" r="1.5" fill="#1F1A17" />
+            <path d="M30 35H34" stroke="#1F1A17" stroke-width="1.6" stroke-linecap="round" />
+          </svg>`
+            }
+        ];
+
+        function renderGraveyardCards() {
+            const grid = document.getElementById('graveyard-cards-grid');
+            const filtered = currentGraveyardFilter === 'all'
+                ? fridgeResidents
+                : fridgeResidents.filter((item) => item.category === currentGraveyardFilter);
+
+            grid.innerHTML = filtered
+                .map(
+                    (item) => `
+          <article class="enamel-panel rounded-3xl p-6 flex flex-col justify-between space-y-5 transition-transform hover:-translate-y-1">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-16 h-16 rounded-2xl bg-buttermilk zine-border flex items-center justify-center shrink-0">
+                  ${item.svg}
+                </div>
+                <span id="badge-${item.id}" class="font-mono text-[10px] font-bold uppercase px-3 py-1 rounded-full zine-border ${item.badgeStyle}">
+                  ${item.badge}
+                </span>
+              </div>
+
+              <div>
+                <h3 class="font-serif font-black text-2xl text-espresso leading-tight">
+                  ${item.name}
+                </h3>
+                <p class="font-sans text-base font-bold text-tomato mt-1">
+                  “${item.tagline}”
+                </p>
+              </div>
+
+              <p id="note-${item.id}" class="font-hand text-xl font-bold text-espresso/80 leading-snug bg-buttermilk/80 px-3.5 py-2 rounded-xl zine-border">
+                ↳ ${item.note}
+              </p>
+            </div>
+
+            <!-- Interactive Triage Action Buttons -->
+            <div class="pt-2 border-t border-espresso/12 flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onclick="handleResidentAction('${item.id}', 'rescue')"
+                class="flex-1 bg-sage hover:bg-scallion text-scallion hover:text-enamel font-sans text-xs font-extrabold py-2.5 px-3 rounded-xl zine-border transition-colors cursor-pointer"
+              >
+                🍳 Rescue It
+              </button>
+              <button
+                type="button"
+                onclick="handleResidentAction('${item.id}', 'candle')"
+                class="bg-buttermilk hover:bg-butter/60 text-espresso font-sans text-xs font-bold py-2.5 px-3 rounded-xl zine-border transition-colors cursor-pointer"
+              >
+                🕯️ Light Candle
+              </button>
+              <button
+                type="button"
+                onclick="handleResidentAction('${item.id}', 'defeat')"
+                class="bg-buttermilk hover:bg-tomato/15 text-espresso/75 hover:text-tomato font-sans text-xs font-bold py-2.5 px-3 rounded-xl zine-border transition-colors cursor-pointer"
+              >
+                🏳️ Defeat
+              </button>
+            </div>
+          </article>`
+                )
+                .join('');
+        }
+
+        function filterGraveyard(category, btnEl) {
+            playKitchenSound('clack');
+            currentGraveyardFilter = category;
+            document.querySelectorAll('.graveyard-tab').forEach((tab) => {
+                tab.className = 'graveyard-tab font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-enamel text-espresso zine-border hover:bg-butter/40 cursor-pointer';
+            });
+            btnEl.className = 'graveyard-tab font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-espresso text-enamel zine-border-ink cursor-pointer';
+            renderGraveyardCards();
+        }
+
+        function handleResidentAction(id, action) {
+            const resident = fridgeResidents.find((r) => r.id === id);
+            if (!resident) return;
+
+            if (action === 'rescue') {
+                playKitchenSound('ding');
+                resident.badge = 'RESCUED ✓';
+                resident.badgeStyle = 'bg-scallion text-enamel';
+                resident.note = `Added to tonight's skillet! Saved $${resident.value.toFixed(2)}.`;
+                moneyRescued += resident.value;
+                compostGuilt = Math.max(0, compostGuilt - resident.value);
+                showKitchenToast('PRODUCE RESCUED', `${resident.name} moved to tonight's rescue recipe!`);
+            } else if (action === 'candle') {
+                playKitchenSound('clack');
+                resident.badge = 'MEMORIALIZED 🕯️';
+                resident.badgeStyle = 'bg-butter text-espresso';
+                resident.note = 'Gone too soon. At least you had good intentions at Trader Joe’s.';
+                showKitchenToast('CANDLE LIT', `Paying respects to ${resident.name}.`);
+            } else {
+                playKitchenSound('stamp');
+                resident.badge = 'COMPOSTED';
+                resident.badgeStyle = 'bg-espresso text-enamel';
+                resident.note = `Accepted defeat. Added $${resident.value.toFixed(2)} to compost guilt.`;
+                compostGuilt += resident.value;
+            }
+
+            document.getElementById('triage-saved-cash').textContent = `$${moneyRescued.toFixed(2)}`;
+            document.getElementById('triage-guilt-cash').textContent = `$${compostGuilt.toFixed(2)}`;
+            renderGraveyardCards();
+        }
+
+        renderGraveyardCards();
+
+        // ========================================================================
+        // 4. EXPIRY ALERTS (MAGNETIC NOTIFICATION & TONE SWITCHER)
+        // ========================================================================
+        const alertTonesLibrary = {
+            roommate: [
+                {
+                    item: 'Milk (1/2 Gallon)',
+                    time: 'EXPIRES TOMORROW',
+                    msg: '“Hey, just a heads-up your milk expires tomorrow. Maybe pour a bowl of cereal instead of ordering $24 pad thai again?”'
+                },
+                {
+                    item: 'Baby Spinach',
+                    time: 'DAY 8 CRITICAL',
+                    msg: '“Not to be dramatic, but the spinach bag is starting to look like a science fair terrarium.”'
+                },
+                {
+                    item: 'Leftover Pizza',
+                    time: 'DAY 4 STREAK',
+                    msg: '“Two slices left on shelf 2. Eat them for lunch before someone else claims ‘I thought it was free.’”'
+                }
+            ],
+            chef: [
+                {
+                    item: 'Whole Milk',
+                    time: '24 HRS REMAINING',
+                    msg: '“Chef! Your dairy is turning before our eyes. Whisk it into a savory custard or béchamel tonight—do not waste good ingredients!”'
+                },
+                {
+                    item: 'Wilted Spinach',
+                    time: 'FINAL SERVICE',
+                    msg: '“This spinach has lost its crunch, yes—but wilt it in hot garlic oil with two eggs and you have an instant bistro frittata!”'
+                },
+                {
+                    item: 'Leftover Pizza',
+                    time: 'REHEAT PROTOCOL',
+                    msg: '“Put the microwave away. Crisp that slice in a dry cast-iron skillet for 3 minutes and restore its dignity.”'
+                }
+            ],
+            er: [
+                {
+                    item: 'CODE DAIRY // MILK',
+                    time: 'T-MINUS 18 HOURS',
+                    msg: '“STAT! Lactose levels critical! Administer 200ml into iced coffee or oatmeal immediately before total spoilage!”'
+                },
+                {
+                    item: 'CODE GREEN // SPINACH',
+                    time: 'FLATLINING',
+                    msg: '“Clear the stovetop! We’re losing the spinach! Apply high heat and scrambled eggs now—we can still save her!”'
+                },
+                {
+                    item: 'STABLE // PIZZA SLICE',
+                    time: 'VITALS STRONG',
+                    msg: '“Patient remains stable in aluminum foil wrap. Ready for immediate cold consumption at 11:58 PM.”'
+                }
+            ]
+        };
+
+        let currentAlertTone = 'roommate';
+
+        function renderExpiryAlerts() {
+            const stage = document.getElementById('expiry-alerts-stage');
+            const cards = alertTonesLibrary[currentAlertTone];
+            stage.innerHTML = cards
+                .map(
+                    (a) => `
+          <div class="bg-buttermilk rounded-2xl p-5 zine-border relative space-y-3">
+            <div class="round-magnet-pin w-3.5 h-3.5 rounded-full absolute -top-1.5 right-4"></div>
+            <div class="flex items-center justify-between gap-2 font-mono text-[10px] font-bold">
+              <span class="text-espresso uppercase">${a.item}</span>
+              <span class="text-tomato bg-enamel px-2 py-0.5 rounded-full zine-border">${a.time}</span>
+            </div>
+            <p class="font-sans text-sm sm:text-base font-semibold text-espresso leading-relaxed">
+              ${a.msg}
+            </p>
+          </div>`
+                )
+                .join('');
+        }
+
+        function setAlertTone(tone, btnEl) {
+            playKitchenSound('clack');
+            currentAlertTone = tone;
+            document.querySelectorAll('.alert-tone-btn').forEach((b) => {
+                b.className = 'alert-tone-btn font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-buttermilk text-espresso zine-border hover:bg-butter/50 cursor-pointer';
+            });
+            btnEl.className = 'alert-tone-btn font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full bg-tomato text-enamel zine-border-ink cursor-pointer';
+            renderExpiryAlerts();
+        }
+
+        function sendTestExpiryAlert() {
+            playKitchenSound('ding');
+            const sample = alertTonesLibrary[currentAlertTone][0];
+            showKitchenToast(`TEST ALERT // ${sample.item}`, sample.msg);
+        }
+
+        renderExpiryAlerts();
+
+        // ========================================================================
+        // 5. "STOP BUYING DUPLICATES" (STORE CART BLOCKER & SAUCE RATIO METER)
+        // ========================================================================
+        const aisleItems = [
+            {
+                id: 'sriracha',
+                name: 'Sriracha Bottle',
+                price: '$4.99',
+                isDuplicate: true,
+                stampMain: 'STOP! YOU HAVE 2 AT HOME',
+                stampSub: 'Shelf 2, behind the ranch',
+                emoji: '🌶️'
+            },
+            {
+                id: 'garlic',
+                name: 'Jar of Minced Garlic',
+                price: '$3.79',
+                isDuplicate: true,
+                stampMain: 'STOP! YOU HAVE 3 AT HOME',
+                stampSub: 'Crisper door & back shelf',
+                emoji: '🧄'
+            },
+            {
+                id: 'eggs',
+                name: 'Pasture Eggs (12ct)',
+                price: '$4.50',
+                isDuplicate: false,
+                stampMain: 'APPROVED ✓ REAL MEAL',
+                stampSub: 'Unlocks 4 dinners with your spinach',
+                emoji: '🥚'
+            },
+            {
+                id: 'tortillas',
+                name: 'Flour Tortillas',
+                price: '$3.20',
+                isDuplicate: false,
+                stampMain: 'APPROVED ✓ REAL MEAL',
+                stampSub: 'Turns leftover eggs & sauces into tacos',
+                emoji: '🫓'
+            },
+            {
+                id: 'soysauce',
+                name: 'Soy Sauce (Large)',
+                price: '$4.25',
+                isDuplicate: true,
+                stampMain: 'STOP! YOU HAVE 2 AT HOME',
+                stampSub: 'One bottle is still shrink-wrapped',
+                emoji: '🍶'
+            },
+            {
+                id: 'tofu',
+                name: 'Crispy Tofu / Chicken',
+                price: '$5.40',
+                isDuplicate: false,
+                stampMain: 'APPROVED ✓ REAL PROTEIN',
+                stampSub: 'Finally gives your 6 sauces a job',
+                emoji: '🍗'
+            },
+            {
+                id: 'spinach2',
+                name: 'Fresh Baby Spinach',
+                price: '$3.99',
+                isDuplicate: true,
+                stampMain: 'STOP! FINISH DAY-8 FIRST',
+                stampSub: 'It is literally watching you',
+                emoji: '🥬'
+            },
+            {
+                id: 'avocado',
+                name: 'Ripe Avocados (2pk)',
+                price: '$2.99',
+                isDuplicate: false,
+                stampMain: 'APPROVED ✓ RESCUE SIDE',
+                stampSub: 'Pairs with leftover pizza & eggs',
+                emoji: '🥑'
+            }
+        ];
+
+        let testedAisleIds = new Set();
+
+        function renderAisleTester() {
+            const grid = document.getElementById('aisle-tester-grid');
+            let realMealsAdded = 0;
+
+            grid.innerHTML = aisleItems
+                .map((item) => {
+                    const tested = testedAisleIds.has(item.id);
+                    if (tested && !item.isDuplicate) realMealsAdded++;
+
+                    let overlayHtml = '';
+                    if (tested && item.isDuplicate) {
+                        overlayHtml = `
+              <div class="ink-stamp-slam mt-3 border-2 border-tomato text-tomato rounded-xl px-3 py-2 bg-tomato/5">
+                <p class="font-mono text-[11px] font-bold leading-tight">${item.stampMain}</p>
+                <p class="font-hand text-base font-bold leading-tight mt-0.5">${item.stampSub}</p>
+              </div>`;
+                    } else if (tested && !item.isDuplicate) {
+                        overlayHtml = `
+              <div class="ink-stamp-slam mt-3 border-2 border-scallion text-scallion rounded-xl px-3 py-2 bg-sage">
+                <p class="font-mono text-[11px] font-bold leading-tight">${item.stampMain}</p>
+                <p class="font-hand text-base font-bold leading-tight mt-0.5">${item.stampSub}</p>
+              </div>`;
+                    }
+
+                    return `
+            <button
+              type="button"
+              onclick="testAisleItem('${item.id}')"
+              class="text-left bg-enamel hover:bg-butter/25 rounded-2xl p-5 zine-border shadow-xs transition-all flex flex-col justify-between cursor-pointer"
+            >
+              <div class="flex items-start justify-between gap-2">
+                <span class="text-3xl">${item.emoji}</span>
+                <span class="font-mono text-xs font-bold text-espresso/65">${item.price}</span>
+              </div>
+              <div class="mt-3">
+                <p class="font-sans text-base font-extrabold text-espresso">${item.name}</p>
+                ${!tested
+                            ? '<p class="font-mono text-[11px] text-espresso/55 mt-1">+ Tap to put in cart</p>'
+                            : overlayHtml
+                        }
+              </div>
+            </button>`;
+                })
+                .join('');
+
+            // Update Sauce-to-Food Ratio Meter
+            document.getElementById('ratio-meal-count').textContent = realMealsAdded;
+            const totalUnits = 6 + realMealsAdded;
+            const saucePct = Math.round((6 / totalUnits) * 100);
+            const mealPct = 100 - saucePct;
+            document.getElementById('ratio-sauce-bar').style.width = `${saucePct}%`;
+            document.getElementById('ratio-meal-bar').style.width = `${mealPct}%`;
+
+            const verdict = document.getElementById('ratio-verdict-badge');
+            const note = document.getElementById('ratio-hand-note');
+            if (realMealsAdded === 0) {
+                verdict.textContent = 'UNHINGED';
+                verdict.className = 'font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-tomato text-enamel';
+                note.textContent = '"You cannot eat chili crisp with a spoon forever."';
+            } else if (realMealsAdded < 3) {
+                verdict.textContent = 'RECOVERING';
+                verdict.className = 'font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-butter text-espresso';
+                note.textContent = '"Progress! Your sauces finally have something to sit on."';
+            } else {
+                verdict.textContent = 'ACTUAL ADULT';
+                verdict.className = 'font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-scallion text-enamel';
+                note.textContent = '"Look at you—buying actual groceries instead of hot sauce."';
+            }
+        }
+
+        function testAisleItem(id) {
+            const item = aisleItems.find((i) => i.id === id);
+            if (!item) return;
+            testedAisleIds.add(id);
+            playKitchenSound(item.isDuplicate ? 'stamp' : 'ding');
+            renderAisleTester();
+        }
+
+        function resetAisleTester() {
+            playKitchenSound('clack');
+            testedAisleIds.clear();
+            renderAisleTester();
+        }
+
+        renderAisleTester();
+
+        // ========================================================================
+        // 6. SMART GROCERY LIST (SERRATED THERMAL SUPERMARKET RECEIPT)
+        // ========================================================================
+        const receiptItems = [
+            { id: 'r1', label: '1x Carton Eggs (completes Spinach Frittata)', checked: true, duplicateNote: null },
+            { id: 'r2', label: '1x Pack Flour Tortillas (completes Pizza Tacos)', checked: true, duplicateNote: null },
+            { id: 'r3', label: '1x Block Sharp Cheddar (rescues Day-8 Spinach)', checked: false, duplicateNote: null },
+            { id: 'r4', label: '1x Crispy Tofu / Rotisserie Chicken', checked: false, duplicateNote: null }
+        ];
+
+        const duplicateKeywords = ['garlic', 'sriracha', 'sauce', 'spinach', 'mustard', 'soy', 'kewpie', 'pesto'];
+
+        function renderThermalReceipt() {
+            const container = document.getElementById('receipt-checklist-items');
+            let checkedCount = 0;
+
+            container.innerHTML = receiptItems
+                .map((item) => {
+                    if (item.checked && !item.duplicateNote) checkedCount++;
+                    if (item.duplicateNote) {
+                        return `
+              <div class="flex flex-wrap items-baseline justify-between gap-2 text-espresso/50">
+                <span class="line-through decoration-tomato decoration-2">${item.label}</span>
+                <span class="font-hand text-lg font-bold text-tomato">${item.duplicateNote}</span>
+              </div>`;
+                    }
+                    return `
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                class="receipt-checkbox mt-0.5"
+                ${item.checked ? 'checked' : ''}
+                onchange="toggleReceiptItem('${item.id}')"
+              />
+              <span class="leading-snug ${item.checked ? 'line-through text-espresso/50' : 'font-bold text-espresso group-hover:text-scallion'}">
+                ${item.label}
+              </span>
+            </label>`;
+                })
+                .join('');
+
+            const activeTotal = receiptItems.filter((i) => !i.duplicateNote).length;
+            document.getElementById('receipt-meals-unlocked').textContent =
+                `MEALS UNLOCKED WITH EXISTING FRIDGE: ${checkedCount} / ${activeTotal}`;
+        }
+
+        function toggleReceiptItem(id) {
+            const item = receiptItems.find((i) => i.id === id);
+            if (!item) return;
+            item.checked = !item.checked;
+            playKitchenSound(item.checked ? 'ding' : 'clack');
+            renderThermalReceipt();
+        }
+
+        function addCustomReceiptItem(e) {
+            e.preventDefault();
+            const input = document.getElementById('custom-receipt-input');
+            const raw = input.value.trim();
+            if (!raw) return;
+
+            const lower = raw.toLowerCase();
+            const isDup = duplicateKeywords.some((kw) => lower.includes(kw));
+
+            if (isDup) {
+                playKitchenSound('stamp');
+                receiptItems.push({
+                    id: 'r' + Date.now(),
+                    label: `1x ${raw}`,
+                    checked: false,
+                    duplicateNote: 'BLOCKED — already in your fridge!'
+                });
+                showKitchenToast('DUPLICATE CAUGHT', `"${raw}" was crossed out on your receipt—you already own it!`);
+            } else {
+                playKitchenSound('ding');
+                receiptItems.push({
+                    id: 'r' + Date.now(),
+                    label: `1x ${raw} (added manually)`,
+                    checked: false,
+                    duplicateNote: null
+                });
+            }
+
+            input.value = '';
+            renderThermalReceipt();
+        }
+
+        function copyThermalReceipt() {
+            playKitchenSound('ding');
+            const lines = [
+                'FRIDGE FRIEND MARKET // RECEIPT #0408',
+                '----------------------------------------',
+                ...receiptItems.map((i) => (i.duplicateNote ? `[X] ${i.label} (${i.duplicateNote})` : `[${i.checked ? '✓' : ' '}] ${i.label}`)),
+                '[X] 1x Jar Minced Garlic (NO — you already have 3 jars!)',
+                '[X] 1x Sriracha (PUT IT BACK — shelf 2 is full!)'
+            ].join('\n');
+
+            const temp = document.createElement('textarea');
+            temp.value = lines;
+            temp.style.position = 'fixed';
+            temp.style.opacity = '0';
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) { }
+            document.body.removeChild(temp);
+
+            const btn = document.getElementById('copy-receipt-btn');
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<span>✓ Receipt Copied!</span>';
+            setTimeout(() => {
+                btn.innerHTML = orig;
+            }, 1600);
+        }
+
+        renderThermalReceipt();
+
+        // ========================================================================
+        // 7. FOOD RESCUE SUGGESTIONS ("CHAOS CHEF" LEFTOVER ALCHEMIST)
+        // ========================================================================
+        const chaosIngredients = [
+            { id: 'pizza', label: 'Leftover Pizza', active: true },
+            { id: 'spinach', label: 'Day-8 Spinach', active: true },
+            { id: 'milk', label: 'Expiring Milk', active: false },
+            { id: 'eggs', label: '3 Eggs', active: true },
+            { id: 'sauces', label: '6 Random Sauces', active: true },
+            { id: 'tortillas', label: 'Stale Tortillas', active: false }
+        ];
+
+        const rescueRecipesCatalog = [
+            {
+                title: 'The “Spinach Funeral” Skillet Frittata',
+                prep: '10 MINS',
+                tags: ['spinach', 'eggs', 'milk', 'sauces'],
+                pitch: 'Wilt the emotional Day-8 spinach before it turns to soup, drown in beaten eggs, and crown with chili crisp.',
+                steps: [
+                    '1. Toss Day-8 spinach in a hot oiled skillet for 60 seconds until it admits defeat.',
+                    '2. Whisk 3 eggs with a splash of expiring milk and pour straight over the greens.',
+                    '3. Spoon chili crisp & Kewpie on top so it tastes intentional.'
+                ]
+            },
+            {
+                title: 'Crispy Pizza-Crust Garlic Crouton & Egg Bowl',
+                prep: '8 MINS',
+                tags: ['pizza', 'eggs', 'sauces'],
+                pitch: 'Cube your Day-4 leftover pizza, pan-toast until crunchy, and top with a runny fried egg and sriracha.',
+                steps: [
+                    '1. Chop cold leftover pizza into bite-sized squares and crisp in a dry skillet for 4 mins.',
+                    '2. Fry 1–2 eggs in the same pan until the edges get lacy.',
+                    '3. Drizzle with sriracha & sweet chili. Tell nobody how good this is.'
+                ]
+            },
+            {
+                title: 'Emergency Chili-Crisp & Spinach Quesadilla',
+                prep: '9 MINS',
+                tags: ['tortillas', 'spinach', 'sauces', 'pizza'],
+                pitch: 'Revive stale tortillas in a hot pan with wilted greens, leftover pizza cheese, and whatever sauce is closest.',
+                steps: [
+                    '1. Warm stale tortillas in a skillet with a damp paper towel steam trick for 30 seconds.',
+                    '2. Stuff with wilted Day-8 spinach, scraped pizza toppings, and pesto or kewpie.',
+                    '3. Fold, toast both sides until golden, and slice like a bistro pro.'
+                ]
+            },
+            {
+                title: 'Midnight Savory French Toast Rescue',
+                prep: '11 MINS',
+                tags: ['milk', 'eggs', 'sauces', 'tortillas'],
+                pitch: 'Uses up expiring milk and eggs in 10 minutes flat—savory umami glaze courtesy of your door-shelf sauces.',
+                steps: [
+                    '1. Whisk expiring milk, 2 eggs, and a dash of soy sauce or mustard in a shallow bowl.',
+                    '2. Soak bread or folded tortillas for 20 seconds per side.',
+                    '3. Pan-fry in butter until golden and finish with chili crisp.'
+                ]
+            }
+        ];
+
+        function renderChaosChef() {
+            const chipWrap = document.getElementById('chaos-ingredient-chips');
+            const activeIds = new Set(chaosIngredients.filter((c) => c.active).map((c) => c.id));
+            document.getElementById('selected-ingredients-count').textContent = `${activeIds.size} ingredients selected`;
+
+            chipWrap.innerHTML = chaosIngredients
+                .map(
+                    (chip) => `
+          <button
+            type="button"
+            onclick="toggleChaosChip('${chip.id}')"
+            class="font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all cursor-pointer ${chip.active
+                            ? 'bg-scallion text-enamel zine-border-ink shadow-xs'
+                            : 'bg-enamel text-espresso/75 zine-border hover:bg-butter/40'
+                        }"
+          >
+            ${chip.active ? '✓ ' : '+ '}${chip.label}
+          </button>`
+                )
+                .join('');
+
+            // Score and sort recipes by matching selected ingredients
+            const scored = rescueRecipesCatalog
+                .map((rec) => {
+                    const matches = rec.tags.filter((t) => activeIds.has(t));
+                    return { ...rec, matchCount: matches.length, matchedTags: matches };
+                })
+                .sort((a, b) => b.matchCount - a.matchCount)
+                .slice(0, 3);
+
+            const grid = document.getElementById('rescue-recipes-grid');
+            grid.innerHTML = scored
+                .map(
+                    (rec) => `
+          <article class="enamel-panel rounded-3xl p-6 flex flex-col justify-between space-y-5">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between gap-2 font-mono text-[10px] font-bold">
+                <span class="px-2.5 py-1 rounded-full bg-butter text-espresso zine-border">
+                  ⏱️ ${rec.prep}
+                </span>
+                <span class="px-2.5 py-1 rounded-full bg-sage text-scallion zine-border">
+                  USES ${rec.matchCount} OF YOUR ITEMS
+                </span>
+              </div>
+
+              <h3 class="font-serif font-black text-2xl text-espresso leading-tight">
+                ${rec.title}
+              </h3>
+
+              <p class="text-sm text-espresso/80 leading-relaxed">
+                ${rec.pitch}
+              </p>
+
+              <div class="bg-buttermilk rounded-2xl p-4 zine-border space-y-2 text-xs font-medium text-espresso/90">
+                ${rec.steps.map((s) => `<p>${s}</p>`).join('')}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onclick="showKitchenToast('RESCUE RECIPE SAVED', '${rec.title.replace(/'/g, '')} pinned to your kitchen counter!')"
+              class="w-full bg-enamel hover:bg-scallion text-espresso hover:text-enamel font-sans text-xs font-extrabold py-3 rounded-xl zine-border-ink transition-colors cursor-pointer"
+            >
+              Cook This Tonight →
+            </button>
+          </article>`
+                )
+                .join('');
+        }
+
+        function toggleChaosChip(id) {
+            const target = chaosIngredients.find((c) => c.id === id);
+            if (!target) return;
+            target.active = !target.active;
+            playKitchenSound('clack');
+            renderChaosChef();
+        }
+
+        renderChaosChef();
+
+        // ========================================================================
+        // 8. FUNNY FRIDGE DASHBOARD (DOOR COUNTER & COUNCIL OF SIX SAUCES)
+        // ========================================================================
+        let fridgeDoorOpens = 14;
+        const doorQuips = [
+            '"Still just mustard and baking soda, chef."',
+            '"Opening it a 15th time will not spawn tacos."',
+            '"The interior light bulb is filing for overtime pay."',
+            '"Lowering your standards will not turn ranch into dinner."',
+            '"Congrats on the 18th inspection. Still 6 sauces."'
+        ];
+
+        function incrementFridgeDoorOpens() {
+            fridgeDoorOpens++;
+            playKitchenSound('clack');
+            document.getElementById('door-open-count').textContent = fridgeDoorOpens;
+            const quip = doorQuips[(fridgeDoorOpens - 14) % doorQuips.length];
+            document.getElementById('door-skeptical-msg').textContent = quip;
+
+            const card = document.getElementById('door-counter-card');
+            card.classList.remove('animate-fridge-light');
+            void card.offsetWidth;
+            card.classList.add('animate-fridge-light');
+        }
+
+        const councilSauces = [
+            { name: 'Chili Crisp (Jar #1)', fill: 88, color: 'bg-tomato', meta: '88% full • Last used: 11 days ago' },
+            { name: 'Sriracha (Backup)', fill: 94, color: 'bg-tomato', meta: '94% full • Last used: 3 weeks ago' },
+            { name: 'Kewpie Mayo', fill: 62, color: 'bg-butter', meta: '62% full • Last used: 4 days ago' },
+            { name: 'Jarred Pesto', fill: 35, color: 'bg-scallion', meta: '35% full • Top layer questionable' },
+            { name: 'Mystery Mustard', fill: 79, color: 'bg-butter', meta: '79% full • Predates your lease' },
+            { name: 'Sweet Chili Sauce', fill: 91, color: 'bg-tomato', meta: '91% full • Bought for 1 spring roll' }
+        ];
+
+        let activeSauceIdx = 0;
+
+        function renderSauceCouncil() {
+            const grid = document.getElementById('sauce-council-grid');
+            grid.innerHTML = councilSauces
+                .map(
+                    (s, idx) => `
+          <button
+            type="button"
+            onclick="selectCouncilSauce(${idx})"
+            class="p-2 rounded-2xl bg-buttermilk hover:bg-butter/35 transition-all flex flex-col items-center gap-1.5 cursor-pointer ${idx === activeSauceIdx ? 'zine-border-ink ring-2 ring-tomato/40' : 'zine-border'
+                        }"
+          >
+            <div class="w-6 h-14 rounded-lg bg-enamel zine-border p-0.5 flex items-end overflow-hidden">
+              <div class="w-full ${s.color} rounded-xs transition-all" style="height: ${s.fill}%;"></div>
+            </div>
+            <span class="font-mono text-[9px] font-bold text-espresso text-center leading-tight line-clamp-1">
+              ${s.name.split(' ')[0]}
+            </span>
+          </button>`
+                )
+                .join('');
+
+            const active = councilSauces[activeSauceIdx];
+            document.getElementById('sauce-detail-name').textContent = active.name;
+            document.getElementById('sauce-detail-meta').textContent = active.meta;
+        }
+
+        function selectCouncilSauce(idx) {
+            playKitchenSound('clack');
+            activeSauceIdx = idx;
+            renderSauceCouncil();
+        }
+
+        renderSauceCouncil();
+
+        // ========================================================================
+        // 9. MODAL 1 ("60-SECOND FRIDGE INTERVENTION") & MODAL 2 ("CASE BRIEF")
+        // ========================================================================
+        const quizSelections = {
+            1: 'Wilted Spinach & Hope',
+            2: '4–7 (Sauce Collector)',
+            3: 'Stare Into Fridge & Sigh'
+        };
+
+        function openInterventionQuiz() {
+            playKitchenSound('ding');
+            const modal = document.getElementById('intervention-quiz-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeInterventionQuiz() {
+            playKitchenSound('clack');
+            const modal = document.getElementById('intervention-quiz-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function pickQuizOpt(qNum, val, btnEl) {
+            playKitchenSound('clack');
+            quizSelections[qNum] = val;
+            document.querySelectorAll(`.quiz-opt-${qNum}`).forEach((b) => {
+                b.className = `quiz-opt-${qNum} text-left p-3 rounded-xl bg-enamel zine-border font-sans text-xs font-bold cursor-pointer`;
+            });
+            btnEl.className = `quiz-opt-${qNum} text-left p-3 rounded-xl bg-butter/65 zine-border-ink font-sans text-xs font-bold cursor-pointer`;
+        }
+
+        function generateDiagnosisCard() {
+            playKitchenSound('ding');
+            document.getElementById('diag-ans-1').textContent = quizSelections[1];
+            document.getElementById('diag-ans-2').textContent = quizSelections[2];
+            document.getElementById('diag-ans-3').textContent = quizSelections[3];
+
+            const archetypeEl = document.getElementById('diag-archetype-title');
+            const summaryEl = document.getElementById('diag-archetype-summary');
+
+            if (quizSelections[2].includes('8+')) {
+                archetypeEl.textContent = 'The International Condiment Cartel';
+                summaryEl.textContent = `With ${quizSelections[1]} in your crisper and 8+ sauces on the door, your fridge is 92% liquid flavor. Prescription: buy 1 carton of eggs, 1 pack of tortillas, and ban yourself from the sauce aisle for 30 days.`;
+            } else if (quizSelections[3].includes('Delivery')) {
+                archetypeEl.textContent = 'The $28 Burrito Repeat Offender';
+                summaryEl.textContent = `You buy ambitious produce (${quizSelections[1]}) on Sunday and order takeout by Tuesday. Prescription: 10-minute skillet rescues using the sauces you already paid for.`;
+            } else {
+                archetypeEl.textContent = 'The Chaotic Condiment Sommelier';
+                summaryEl.textContent = `You possess world-class sauces (${quizSelections[2]}) and zero base proteins. Starter rescue plan: fry your ${quizSelections[1]} with 2 eggs and chili crisp tonight.`;
+            }
+
+            document.getElementById('quiz-questions-stage').classList.add('hidden');
+            document.getElementById('quiz-result-stage').classList.remove('hidden');
+        }
+
+        function resetInterventionQuiz() {
+            playKitchenSound('clack');
+            document.getElementById('quiz-result-stage').classList.add('hidden');
+            document.getElementById('quiz-questions-stage').classList.remove('hidden');
+        }
+
+        function copyDiagnosisToClipboard() {
+            playKitchenSound('ding');
+            const title = document.getElementById('diag-archetype-title').textContent;
+            const summary = document.getElementById('diag-archetype-summary').textContent;
+            const text = `FRIDGE FRIEND DIAGNOSIS: ${title}\n${summary}`;
+
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            temp.style.position = 'fixed';
+            temp.style.opacity = '0';
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand('copy');
+            } catch (e) { }
+            document.body.removeChild(temp);
+
+            const btn = document.getElementById('copy-diagnosis-btn');
+            const orig = btn.textContent;
+            btn.textContent = '✓ Diagnosis Copied!';
+            setTimeout(() => {
+                btn.textContent = orig;
+            }, 1500);
+        }
+
+        function openCaseBriefDrawer() {
+            playKitchenSound('clack');
+            const drawer = document.getElementById('case-brief-backdrop');
+            drawer.classList.remove('hidden');
+            drawer.classList.add('flex');
+        }
+
+        function closeCaseBriefDrawer() {
+            playKitchenSound('clack');
+            const drawer = document.getElementById('case-brief-backdrop');
+            drawer.classList.add('hidden');
+            drawer.classList.remove('flex');
+        }
+
+        // ========================================================================
+        // 10. TOAST & KEYBOARD ESCAPE HANDLERS
+        // ========================================================================
+        let kitchenToastTimer = null;
+
+        function showKitchenToast(tag, msg) {
+            const toast = document.getElementById('kitchen-toast');
+            document.getElementById('kitchen-toast-tag').textContent = tag;
+            document.getElementById('kitchen-toast-msg').textContent = msg;
+            toast.classList.remove('hidden');
+            clearTimeout(kitchenToastTimer);
+            kitchenToastTimer = setTimeout(hideKitchenToast, 4200);
+        }
+
+        function hideKitchenToast() {
+            document.getElementById('kitchen-toast').classList.add('hidden');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeInterventionQuiz();
+                closeCaseBriefDrawer();
+                hideKitchenToast();
+            }
+        });
+
+        document.getElementById('intervention-quiz-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'intervention-quiz-modal') closeInterventionQuiz();
+        });
+
+        document.getElementById('case-brief-backdrop').addEventListener('click', (e) => {
+            if (e.target.id === 'case-brief-backdrop') closeCaseBriefDrawer();
+        });
+    </script>
+</body>
+
+</html>

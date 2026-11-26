@@ -1,0 +1,417 @@
+{
+  "technical": [
+    {
+      "slug": "evalforge",
+      "title": "EvalForge",
+      "kind": "technical",
+      "label": "AI Agent Evaluation & Reliability",
+      "color": "mint",
+      "summary": "AI agent evaluation platform comparing task completion, tool accuracy, latency percentiles, cost, and safety.",
+      "detail": "EvalForge automates multi-turn AI agent evaluation across ReAct, planning, reflection, retrieval, and model-routing strategies. It captures structured traces, supports deterministic replay, clusters failures, and detects regressions across token overhead and latency.",
+      "stack": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "React.js",
+        "Docker",
+        "AWS",
+        "OpenAI API"
+      ],
+      "modules": [
+        "Scenario suite",
+        "Async runner",
+        "Trace replay",
+        "Scoring lens"
+      ]
+    },
+    {
+      "slug": "warehousegraph",
+      "title": "WarehouseGraph",
+      "kind": "technical",
+      "label": "Operations Exception Intelligence",
+      "color": "coral",
+      "summary": "AI operations platform investigating discrepancies across RFID, inventory, order, shipment, and receiving events.",
+      "detail": "Reconstructs end-to-end product timelines across fragmented operational data. Pairs statistical anomaly detection with agent-driven root-cause reports and Power BI dashboards tracking fulfillment accuracy and cycle time.",
+      "stack": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "RFID",
+        "Power BI",
+        "Docker",
+        "OpenAI API"
+      ],
+      "modules": [
+        "Event ingest",
+        "Timeline rebuild",
+        "Exception analysis",
+        "Root-cause report"
+      ]
+    },
+    {
+      "slug": "incident-twin",
+      "title": "IncidentTwin",
+      "kind": "technical",
+      "label": "Autonomous AI Incident Commander",
+      "color": "sun",
+      "summary": "Agentic incident-response system diagnosing application, database, network, and infrastructure failures.",
+      "detail": "Integrates tools for querying logs, metrics, DNS, deployment history, and service health into iterative hypothesis, diagnosis, remediation, and verification workflows—with explicit human approval gates, OpenTelemetry tracing, and rollback controls.",
+      "stack": [
+        "Python",
+        "FastAPI",
+        "LangGraph",
+        "PostgreSQL",
+        "Docker",
+        "OpenTelemetry",
+        "AWS"
+      ],
+      "modules": [
+        "Signal gather",
+        "Hypothesis loop",
+        "Approval gate",
+        "Reliability record"
+      ]
+    },
+    {
+      "slug": "traceiq",
+      "title": "TraceIQ",
+      "kind": "technical",
+      "label": "Requirements & Change-Impact",
+      "color": "lilac",
+      "summary": "Traceability platform linking business rules, database fields, REST APIs, reports, and test cases.",
+      "detail": "TraceIQ maps downstream dependencies across data sources, integrations, and KPIs before implementation. Uses SQL-based validation and API inspection to verify expected business rules and generate UAT checklists.",
+      "stack": [
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "FastAPI",
+        "Power BI",
+        "REST APIs"
+      ],
+      "modules": [
+        "Rule map",
+        "Dependency graph",
+        "Validation lens",
+        "UAT checklist"
+      ]
+    }
+  ],
+  "campaigns": [
+    {
+      "slug": "panic-button",
+      "title": "PANIC BUTTON®",
+      "kind": "marketing",
+      "type": "app",
+      "url": "./projects/panic-button.html",
+      "label": "Product Launch & Strategy",
+      "color": "coral",
+      "summary": "Last-Minute Academic Survival OS for students who become academic weapons at 11:48 PM.",
+      "detail": "A high-converting product launch landing page and marketing campaign built with Swiss Editorial Brutalism. Features an interactive 'How Cooked Are You?' diagnostic slider, dynamic thermal survival receipt, Web Audio synthesizer, app jail lockdown simulator, and emergency cockpit sprint timer.",
+      "stack": [
+        "Swiss Editorial Brutalism",
+        "TailwindCSS",
+        "Web Audio API",
+        "Interactive UX",
+        "Copywriting"
+      ],
+      "modules": [
+        "Deadline Triage",
+        "Task Shredder",
+        "App Jail",
+        "Cockpit Timer"
+      ]
+    },
+    {
+      "slug": "touch-grass",
+      "title": "TOUCH GRASS™",
+      "kind": "marketing",
+      "type": "app",
+      "url": "./projects/touch-grass.html",
+      "label": "Digital Advertising Campaign",
+      "color": "lime",
+      "summary": "Anti-advertising digital wellness campaign across Meta Feed, Stories, Display, and YouTube Pre-Roll.",
+      "detail": "An omnichannel paid digital advertising campaign and portfolio case study engineered in Frutiger Aero and Pentagram editorial aesthetics. Hijacks familiar operating system alerts and SaaS pricing parodies into playful, thumb-stopping prompts for students to close the tab and step outside.",
+      "stack": [
+        "Frutiger Aero",
+        "Meta Feed (4:5)",
+        "IG Stories (9:16)",
+        "IAB Display",
+        "YouTube Pre-Roll"
+      ],
+      "modules": [
+        "Reality Check",
+        "Meta Feed Ads",
+        "Interactive Stories",
+        "Programmatic MPU"
+      ]
+    },
+    {
+      "slug": "fridge-friend",
+      "title": "FRIDGE FRIEND",
+      "kind": "marketing",
+      "type": "app",
+      "url": "./projects/fridge-friend.html",
+      "label": "Consumer App Launch",
+      "color": "sun",
+      "summary": "Your fridge has seen enough. A smart kitchen companion tackling grocery waste and condiment hoarding.",
+      "detail": "Product launch landing page designed in an Indie Culinary Zine and Risograph aesthetic. Showcases a physical 3D enamel fridge door with clacking alphabet magnets, an interactive Produce Graveyard triage board, an in-store Duplicate Blocker with ink-stamp physics, and a Chaos Chef leftover alchemy engine.",
+      "stack": [
+        "Risograph Art Direction",
+        "Culinary Editorial",
+        "Web Audio SFX",
+        "State Machines",
+        "Behavioral UX"
+      ],
+      "modules": [
+        "Crisper Triage",
+        "Aisle Guardian",
+        "Chaos Chef",
+        "Enamel Dashboard"
+      ]
+    },
+    {
+      "slug": "dont-take-the-bait",
+      "title": "DON’T TAKE THE BAIT.",
+      "kind": "marketing",
+      "type": "app",
+      "url": "./projects/dont-take-the-bait.html",
+      "label": "Cybersecurity Awareness",
+      "color": "blue",
+      "summary": "Dark-mode cyber-ops phishing awareness poster and educational campaign for university IT.",
+      "detail": "A high-impact enterprise cybersecurity poster designed in an Apple / Linear-grade dark cyber-intelligence system. Deconstructs the anatomy of credential-harvesting emails with optical metallic hook layering, interactive threat vector inspector, and zero-trust verification rules.",
+      "stack": [
+        "Cyber-Ops Visual System",
+        "Space Grotesk",
+        "Dark Glass UI",
+        "Threat Diagnostics",
+        "18×24″ Print"
+      ],
+      "modules": [
+        "Lookalike Detector",
+        "Urgency Deconstruct",
+        "Link Hover Preview",
+        "Zero-Trust Policy"
+      ]
+    }
+  ],
+  "posters": [
+    {
+      "slug": "motorental-lubbock",
+      "title": "MotoRental — Lubbock Rental Platform",
+      "shortTitle": "MotoRental",
+      "kind": "design",
+      "type": "figma",
+      "series": "figma-prototype",
+      "label": "UI/UX Figma Prototype · Lubbock Market",
+      "color": "blue",
+      "embedUrl": "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FS55HoJsgKrsj1bEhXf5a1V%2FHigh-Fidelity-Prototype---Group-1%3Fnode-id%3D278-9383%26starting-point-node-id%3D278%253A9383%26t%3DX4AfCa8Cvzw0Bgv1-1",
+      "figmaUrl": "https://www.figma.com/proto/S55HoJsgKrsj1bEhXf5a1V/High-Fidelity-Prototype---Group-1?node-id=278-9383&starting-point-node-id=278%3A9383&t=X4AfCa8Cvzw0Bgv1-1",
+      "summary": "High-fidelity interactive Figma prototype for MotoRental, designed to simplify vehicle rentals in the Lubbock market.",
+      "detail": "End-to-end user flow covering local Lubbock rental discovery, transparent pricing, availability filtering, and streamlined booking handoff.",
+      "stack": [
+        "Figma",
+        "High-Fidelity Prototype",
+        "UI/UX Design",
+        "Lubbock Market"
+      ],
+      "modules": [
+        "Discovery Flow",
+        "Booking UX"
+      ]
+    },
+    {
+      "slug": "poster-001-printer",
+      "title": "Poster 001 — Printer",
+      "shortTitle": "001 Printer",
+      "kind": "design",
+      "type": "canva",
+      "series": "campus-it-carousel",
+      "label": "Campus IT Etiquette · 001",
+      "color": "mint",
+      "embedUrl": "https://www.canva.com/design/DAHb5EYmst8/JWPUNBbVVIKRpbuZNv574Q/view?embed",
+      "canvaUrl": "https://www.canva.com/design/DAHb5EYmst8/JWPUNBbVVIKRpbuZNv574Q/view",
+      "summary": "Hardware preservation and paper jam intervention signage for campus computer labs.",
+      "detail": "Part of the 'Please Do Not Feed the Printer' campus signage series pairing playful warning metaphors with clear troubleshooting cues to cut down lab maintenance tickets.",
+      "stack": [
+        "Campus Signage",
+        "Canva Pro",
+        "Visual Hierarchy",
+        "Behavioral Copy"
+      ],
+      "modules": [
+        "Paper Jam Logic",
+        "Visual Etiquette"
+      ]
+    },
+    {
+      "slug": "poster-002-wifi",
+      "title": "Poster 002 — Wi-Fi",
+      "shortTitle": "002 Wi-Fi",
+      "kind": "design",
+      "type": "canva",
+      "series": "campus-it-carousel",
+      "label": "Network & Connectivity · 002",
+      "color": "blue",
+      "embedUrl": "https://www.canva.com/design/DAHb5HBjut8/8q8lGg5xoBGu63M-RyaaJw/view?embed",
+      "canvaUrl": "https://www.canva.com/design/DAHb5HBjut8/8q8lGg5xoBGu63M-RyaaJw/view",
+      "summary": "Authentication diagnostics and eduroam connection cues designed to reduce helpdesk tickets.",
+      "detail": "Guides students through fast campus Wi-Fi onboarding and common certificate fixes using high-contrast, scannable typographic blocks.",
+      "stack": [
+        "Network Comms",
+        "Canva Pro",
+        "Information Design",
+        "Print / Display"
+      ],
+      "modules": [
+        "Visual Etiquette",
+        "Auditory Cueing"
+      ]
+    },
+    {
+      "slug": "poster-003-password-reset",
+      "title": "Poster 003 — Password Reset",
+      "shortTitle": "003 Password",
+      "kind": "design",
+      "type": "canva",
+      "series": "campus-it-carousel",
+      "label": "Identity & Access · 003",
+      "color": "coral",
+      "embedUrl": "https://www.canva.com/design/DAHb5MofMww/FLabmqSQb_McsG8Dtr1dJw/view?embed",
+      "canvaUrl": "https://www.canva.com/design/DAHb5MofMww/FLabmqSQb_McsG8Dtr1dJw/view",
+      "summary": "Clear credential recovery steps and 2FA self-service guidance for student portals.",
+      "detail": "Demystifies self-service password resets and multi-factor authentication recovery during peak exam-week lockouts.",
+      "stack": [
+        "Identity UX",
+        "Canva Pro",
+        "Security Comms",
+        "Print / Display"
+      ],
+      "modules": [
+        "Zero-Trust Policy",
+        "Visual Etiquette"
+      ]
+    },
+    {
+      "slug": "poster-004-computer-lab",
+      "title": "Poster 004 — Computer Lab",
+      "shortTitle": "004 Lab",
+      "kind": "design",
+      "type": "canva",
+      "series": "campus-it-carousel",
+      "label": "Lab Environment · 004",
+      "color": "sun",
+      "embedUrl": "https://www.canva.com/design/DAHb5Ui2oZ8/qK9soi_no6yYcQserrxeIA/view?embed",
+      "canvaUrl": "https://www.canva.com/design/DAHb5Ui2oZ8/qK9soi_no6yYcQserrxeIA/view",
+      "summary": "Shared workstation hygiene, peripheral etiquette, and clean workspace standards.",
+      "detail": "Closes the 4-poster Campus IT series with friendly, memorable reminders on logging out, saving cloud work, and respecting shared lab gear.",
+      "stack": [
+        "Lab Etiquette",
+        "Canva Pro",
+        "Poster Series",
+        "Print / Display"
+      ],
+      "modules": [
+        "Visual Etiquette",
+        "Paper Jam Logic"
+      ]
+    },
+    {
+      "slug": "night-shift",
+      "title": "NIGHT SHIFT — Refined Night Letter",
+      "shortTitle": "NIGHT SHIFT",
+      "kind": "design",
+      "type": "canva",
+      "series": "standalone",
+      "label": "Campus Culture & Study",
+      "color": "lilac",
+      "embedUrl": "https://www.canva.com/design/DAHb41PGjeo/yzYM6z6HKaTXcTJ86AarYQ/view?embed",
+      "canvaUrl": "https://www.canva.com/design/DAHb41PGjeo/yzYM6z6HKaTXcTJ86AarYQ/view",
+      "summary": "Atmospheric editorial campaign framing the library after dark as a sanctuary for focused creators.",
+      "detail": "A moody, cinematic visual series capturing late-night university study culture and aligning 24-hour campus facility availability with student productivity cycles.",
+      "stack": [
+        "Editorial Layout",
+        "Canva Pro",
+        "Moody Color Theory",
+        "Campus IT Strategy"
+      ],
+      "modules": [
+        "Circadian UI",
+        "Study Routines"
+      ]
+    },
+    {
+      "slug": "half-full",
+      "title": "HALF FULL",
+      "shortTitle": "HALF FULL",
+      "kind": "design",
+      "type": "canva",
+      "series": "standalone",
+      "label": "Student Wellness Initiative",
+      "color": "coral",
+      "embedUrl": "https://www.canva.com/design/DAHb8X6VukI/YhVPEpQEtWLfmRQKMSYcVA/view?embed",
+      "canvaUrl": "https://canva.link/vsu6dj6igty5vio",
+      "summary": "Gentle, non-preachy mental health and hydration nudges designed for student desk spaces.",
+      "detail": "An optimistic micro-campaign using conversational, warm design cues to counter mid-semester burnout across university common areas.",
+      "stack": [
+        "Brand Identity",
+        "Wellness Messaging",
+        "Canva Pro",
+        "Print Collateral"
+      ],
+      "modules": [
+        "Mindful UX",
+        "Affirmation Cues"
+      ]
+    },
+    {
+      "slug": "noirtone",
+      "title": "NOIRTONE",
+      "shortTitle": "NOIRTONE",
+      "kind": "design",
+      "type": "canva",
+      "series": "standalone",
+      "label": "Monochrome Editorial Identity",
+      "color": "mint",
+      "embedUrl": "https://www.canva.com/design/DAHb8VDlCGA/ZVG_3mBiVYi9SCROKhlJLw/view?embed",
+      "canvaUrl": "https://canva.link/4rnz3ryrtoalapc",
+      "summary": "Ultra-disciplined black-and-white typography and brand study inspired by classic Swiss Modernism.",
+      "detail": "An exploration of pure contrast, negative space, and typographic grid systems demonstrating how strict aesthetic constraints produce high-memorability communication.",
+      "stack": [
+        "Swiss Modernism",
+        "Monochrome Branding",
+        "Canva Pro",
+        "Display Typography"
+      ],
+      "modules": [
+        "High-Contrast Mono",
+        "Typography Hierarchy"
+      ]
+    },
+    {
+      "slug": "save-point",
+      "title": "SAVE POINT",
+      "shortTitle": "SAVE POINT",
+      "kind": "design",
+      "type": "canva",
+      "series": "standalone",
+      "label": "Gamified Academic Progress",
+      "color": "sun",
+      "embedUrl": "https://www.canva.com/design/DAHb8faz30g/H6c7i3uvk1C6nrDvD2vo2g/view?embed",
+      "canvaUrl": "https://canva.link/wy4gs1bys4cxxy8",
+      "summary": "Retro RPG milestone tracker framing semester checkpoints as comforting gaming save-states.",
+      "detail": "A playful retention and habit-tracking concept translating overwhelming term deliverables into discrete, low-anxiety quest checkpoints.",
+      "stack": [
+        "Gamification",
+        "Retro Game Metaphors",
+        "Canva Pro",
+        "Student UX"
+      ],
+      "modules": [
+        "Milestone Cache",
+        "Progress Persistence"
+      ]
+    }
+  ]
+}

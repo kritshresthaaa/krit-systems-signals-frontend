@@ -1,0 +1,2721 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOUCH GRASS™ — Digital Advertising Campaign &amp; Case Study</title>
+    <meta name="description"
+        content="You’ve been online for 7 hours. The grass misses you. An anti-advertising digital wellness campaign across Meta, Stories, Display, YouTube Pre-Roll, and Retargeting." />
+
+    <!-- Google Fonts: Instrument Serif (Editorial Display), Plus Jakarta Sans (Clean UI/Copy), IBM Plex Mono & VT323 (Retro OS & Telemetry) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=VT323&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Brand & Aesthetic Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cloud: '#F6F8F2',
+                        gallery: '#FFFFFF',
+                        forest: '#0D2B1D',
+                        lime: '#84FF00',
+                        chlorophyll: '#65D900',
+                        cerulean: '#38BDF8',
+                        ocean: '#0284C7',
+                        sunbeam: '#FDE047',
+                    },
+                    fontFamily: {
+                        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                        vt: ['"VT323"', 'monospace'],
+                    },
+                    boxShadow: {
+                        ambient: '0 20px 50px rgba(13, 43, 29, 0.08)',
+                        'ambient-lg': '0 28px 70px rgba(13, 43, 29, 0.12)',
+                        aqua: '0 10px 25px -5px rgba(2, 132, 199, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.65)',
+                        'lime-glow': '0 12px 30px -6px rgba(101, 217, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.75)',
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        /* ==========================================================================
+       TOUCH GRASS™ — FRUTIGER AERO × PENTAGRAM EDITORIAL × AQUA OS SYSTEM
+       Zero heavy black borders. Airy hairlines, frosted glass, sunlit gradients.
+       ========================================================================== */
+        :root {
+            --bg-cloud: #F6F8F2;
+            --surface-gallery: #FFFFFF;
+            --ink-forest: #0D2B1D;
+            --lime-vivid: #84FF00;
+            --lime-rich: #65D900;
+            --sky-light: #38BDF8;
+            --sky-deep: #0284C7;
+            --sun-yellow: #FDE047;
+            --hairline: rgba(13, 43, 29, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-cloud);
+            color: var(--ink-forest);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Editorial Hairline & Frosted Aqua Glass Surfaces */
+        .hairline-border {
+            border: 1px solid rgba(13, 43, 29, 0.12);
+        }
+
+        .frosted-glass {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 20px 50px rgba(13, 43, 29, 0.08);
+        }
+
+        .gallery-card {
+            background: #FFFFFF;
+            border: 1px solid rgba(13, 43, 29, 0.11);
+            box-shadow: 0 20px 50px rgba(13, 43, 29, 0.07);
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 28px 65px rgba(13, 43, 29, 0.11);
+        }
+
+        /* Glossy macOS Aqua / Frutiger Aero Pill Buttons */
+        .aqua-pill-sky {
+            background: linear-gradient(180deg, #5CE1FF 0%, #0284C7 100%);
+            color: #FFFFFF;
+            border: 1px solid rgba(2, 132, 199, 0.5);
+            box-shadow: 0 10px 24px -6px rgba(2, 132, 199, 0.45), inset 0 1.5px 1px rgba(255, 255, 255, 0.7);
+            transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+        }
+
+        .aqua-pill-sky:hover {
+            filter: brightness(1.05);
+            transform: translateY(-1.5px);
+            box-shadow: 0 14px 28px -6px rgba(2, 132, 199, 0.55), inset 0 1.5px 1px rgba(255, 255, 255, 0.85);
+        }
+
+        .aqua-pill-sky:active {
+            transform: translateY(1px);
+        }
+
+        .aqua-pill-lime {
+            background: linear-gradient(180deg, #A3FF33 0%, #65D900 100%);
+            color: #0D2B1D;
+            border: 1px solid rgba(101, 217, 0, 0.6);
+            box-shadow: 0 12px 26px -6px rgba(101, 217, 0, 0.48), inset 0 1.5px 1px rgba(255, 255, 255, 0.85);
+            transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+        }
+
+        .aqua-pill-lime:hover {
+            filter: brightness(1.04);
+            transform: translateY(-1.5px);
+            box-shadow: 0 16px 32px -6px rgba(101, 217, 0, 0.58), inset 0 1.5px 1px rgba(255, 255, 255, 0.95);
+        }
+
+        .aqua-pill-lime:active {
+            transform: translateY(1px);
+        }
+
+        /* Windows XP / Aqua Retro Dialog Window */
+        .xp-aqua-dialog {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(18px);
+            border-radius: 14px;
+            border: 1px solid rgba(2, 132, 199, 0.42);
+            box-shadow:
+                0 24px 60px rgba(13, 43, 29, 0.16),
+                0 0 0 3px rgba(56, 189, 248, 0.16),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            overflow: hidden;
+        }
+
+        .xp-titlebar {
+            background: linear-gradient(180deg, #38BDF8 0%, #0284C7 55%, #0369A1 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+        }
+
+        /* Bliss Sunlit Sky & Meadow Hero Backdrop */
+        .bliss-sky-gradient {
+            background: linear-gradient(180deg,
+                    #BAE6FD 0%,
+                    #E0F2FE 34%,
+                    #F6F8F2 74%,
+                    #ECFCCB 100%);
+        }
+
+        /* Custom Aero Range Slider */
+        input[type="range"].aero-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 10px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #38BDF8 0%, #84FF00 55%, #FDE047 100%);
+            border: 1px solid rgba(13, 43, 29, 0.14);
+            outline: none;
+        }
+
+        input[type="range"].aero-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #E0F2FE 60%, #38BDF8 100%);
+            border: 2px solid #0284C7;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4), inset 0 1px 2px #FFFFFF;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        input[type="range"].aero-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.12);
+        }
+
+        input[type="range"].aero-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #E0F2FE 60%, #38BDF8 100%);
+            border: 2px solid #0284C7;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+            cursor: pointer;
+        }
+
+        /* Clean Artboard View Mode (Section 01 Toggle) */
+        .meta-gallery-clean .feed-chrome {
+            display: none !important;
+        }
+
+        .meta-gallery-clean .feed-card-shell {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+
+        .meta-gallery-clean .clean-artboard-badge {
+            display: flex !important;
+        }
+
+        /* Display Portal Isolated IAB Specs Toggle (Section 03) */
+        .portal-isolated-mode .portal-blog-chrome {
+            display: none !important;
+        }
+
+        .portal-isolated-mode .portal-layout-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 2.5rem !important;
+        }
+
+        /* Gentle Floating & Sunbeam Animations */
+        @keyframes cloudDrift {
+
+            0%,
+            100% {
+                transform: translateX(0px) translateY(0px);
+            }
+
+            50% {
+                transform: translateX(10px) translateY(-4px);
+            }
+        }
+
+        .animate-cloud-drift {
+            animation: cloudDrift 7s ease-in-out infinite;
+        }
+
+        @keyframes grassBurstPulse {
+            0% {
+                transform: scaleY(1);
+            }
+
+            40% {
+                transform: scaleY(1.18);
+            }
+
+            100% {
+                transform: scaleY(1);
+            }
+        }
+
+        .animate-grass-burst {
+            transform-origin: bottom center;
+            animation: grassBurstPulse 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .animate-float-badge {
+            animation: floatBadge 2.8s ease-in-out infinite;
+        }
+
+        /* Custom Subtle Scrollbar */
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F6F8F2;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(13, 43, 29, 0.22);
+            border-radius: 999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(2, 132, 199, 0.55);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-lime selection:text-forest">
+
+    <!-- ========================================================================
+       1. MINIMALIST EDITORIAL TOP NAVIGATION BAR (STICKY, FROSTED AQUA GLASS)
+       ======================================================================== -->
+    <header class="sticky top-0 z-40 frosted-glass border-b border-forest/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-[72px] flex items-center justify-between gap-3">
+
+            <!-- Left: Custom Glossy Pixel-Leaf & Cursor Emblem + Wordmark -->
+            <a href="#overview" class="flex items-center gap-3 group focus:outline-none shrink-0">
+                <div
+                    class="w-10 h-10 rounded-2xl bg-gradient-to-br from-lime via-chlorophyll to-cerulean p-[1.5px] shadow-md group-hover:scale-105 transition-transform">
+                    <div
+                        class="w-full h-full rounded-[14px] bg-white/90 flex items-center justify-center relative overflow-hidden">
+                        <svg class="w-6 h-6" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                            <!-- Sunlit Leaf Silhouette -->
+                            <path d="M6 21C6 12 12 6 22 6C22 16 16 21 6 21Z" fill="url(#leafGrad)" />
+                            <path d="M6 21L16 11" stroke="#0D2B1D" stroke-width="1.5" stroke-linecap="round" />
+                            <!-- Crisp Pixel Cursor Overlay -->
+                            <path d="M14 12V24L17.2 20.8L19.4 25L21.5 23.9L19.3 19.7H23.5L14 12Z" fill="#FFFFFF"
+                                stroke="#0D2B1D" stroke-width="1.5" stroke-linejoin="round" />
+                            <defs>
+                                <linearGradient id="leafGrad" x1="6" y1="6" x2="22" y2="21"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#84FF00" />
+                                    <stop offset="1" stop-color="#38BDF8" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-sans font-extrabold text-base sm:text-lg tracking-tight text-forest">
+                            TOUCH GRASS™
+                        </span>
+                    </div>
+                    <span class="block font-mono text-[10px] font-medium tracking-wider text-forest/55 uppercase">
+                        CAMPAIGN CASE STUDY 05 // PAID SOCIAL &amp; DISPLAY
+                    </span>
+                </div>
+            </a>
+
+            <!-- Center: Channel Jump Pills -->
+            <nav aria-label="Campaign Sections"
+                class="hidden xl:flex items-center gap-1 bg-forest/[0.04] p-1 rounded-full border border-forest/10">
+                <a href="#overview"
+                    class="font-sans text-xs font-semibold px-3 py-1.5 rounded-full text-forest/80 hover:text-forest hover:bg-white transition-all">Overview</a>
+                <a href="#meta-feed"
+                    class="font-sans text-xs font-semibold px-3 py-1.5 rounded-full text-forest/80 hover:text-forest hover:bg-white transition-all">Meta
+                    Feed</a>
+                <a href="#stories-reels"
+                    class="font-sans text-xs font-semibold px-3 py-1.5 rounded-full text-forest/80 hover:text-forest hover:bg-white transition-all">Stories
+                    &amp; Reels</a>
+                <a href="#display-youtube"
+                    class="font-sans text-xs font-semibold px-3 py-1.5 rounded-full text-forest/80 hover:text-forest hover:bg-white transition-all">Display
+                    &amp; YouTube</a>
+                <a href="#retargeting"
+                    class="font-sans text-xs font-semibold px-3 py-1.5 rounded-full text-forest/80 hover:text-forest hover:bg-white transition-all">Retargeting</a>
+                <a href="#strategy-brief"
+                    class="font-sans text-xs font-semibold px-3 py-1.5 rounded-full text-forest/80 hover:text-forest hover:bg-white transition-all">Strategy
+                    Brief</a>
+            </nav>
+
+            <!-- Right: Live Session Time Pill + Glossy Sky-Blue LOG OFF -> Button -->
+            <div class="flex items-center gap-2.5">
+                <div
+                    class="hidden sm:flex items-center gap-2 bg-white/90 px-3 py-1.5 rounded-full hairline-border shadow-xs">
+                    <span class="w-2 h-2 rounded-full bg-chlorophyll animate-pulse"></span>
+                    <span id="nav-session-timer" class="font-mono text-xs font-medium text-forest/80 tabular-nums">
+                        Session Time: 00:00:01
+                    </span>
+                </div>
+
+                <button type="button" onclick="openShutdownScreensaver()"
+                    class="aqua-pill-sky font-sans font-bold text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full tracking-tight flex items-center gap-1.5">
+                    <span>LOG OFF</span>
+                    <span>→</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======================================================================
+         2. HERO: "BLISS" HORIZON & INTERACTIVE REALITY CHECK
+         ====================================================================== -->
+        <section id="overview"
+            class="relative bliss-sky-gradient pt-12 pb-28 sm:pt-16 sm:pb-36 border-b border-forest/10 overflow-hidden">
+
+            <!-- Floating Pixel Clouds & Oversized Glossy Cursor Arrows in Sky -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+                <!-- Decorative Sky Clouds -->
+                <div class="hidden md:flex items-center justify-between pointer-events-none mb-4 opacity-90">
+                    <!-- Pixel Cloud Left -->
+                    <svg class="w-24 h-12 animate-cloud-drift" viewBox="0 0 48 24" fill="none" aria-hidden="true">
+                        <rect x="14" y="4" width="16" height="4" fill="#FFFFFF" />
+                        <rect x="8" y="8" width="28" height="4" fill="#FFFFFF" />
+                        <rect x="4" y="12" width="38" height="6" fill="#FFFFFF" />
+                        <rect x="4" y="18" width="38" height="2" fill="#BAE6FD" />
+                    </svg>
+
+                    <!-- Sun Orb + Pixel Cloud Right -->
+                    <div class="flex items-center gap-6">
+                        <div
+                            class="w-14 h-14 rounded-full bg-gradient-to-b from-sunbeam to-lime/80 shadow-[0_0_45px_rgba(253,224,71,0.85)] border border-white/80">
+                        </div>
+                        <svg class="w-28 h-14 animate-cloud-drift" style="animation-delay: 1.8s;" viewBox="0 0 48 24"
+                            fill="none" aria-hidden="true">
+                            <rect x="16" y="3" width="14" height="4" fill="#FFFFFF" />
+                            <rect x="10" y="7" width="26" height="4" fill="#FFFFFF" />
+                            <rect x="4" y="11" width="40" height="7" fill="#FFFFFF" />
+                            <rect x="4" y="18" width="40" height="2" fill="#BAE6FD" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Two-Column Editorial Hero Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center">
+
+                    <!-- LEFT COLUMN (7 Cols): Editorial Serif Headline + Interactive Reality Slider -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Eyebrow Pill -->
+                        <div
+                            class="inline-flex items-center gap-2 bg-white/85 backdrop-blur-md px-3.5 py-1.5 rounded-full hairline-border shadow-xs">
+                            <span class="w-2 h-2 rounded-full bg-cerulean"></span>
+                            <span class="font-mono text-[11px] font-semibold tracking-wider text-forest/80 uppercase">
+                                DIGITAL WELLNESS CAMPAIGN • GEN Z ANTI-ADVERTISING
+                            </span>
+                        </div>
+
+                        <!-- Giant Editorial Serif Headline -->
+                        <h1
+                            class="font-serif text-[3.35rem] sm:text-[4.85rem] xl:text-[5.6rem] leading-[0.96] tracking-tight text-forest">
+                            You’ve been online for 7 hours.
+                            <span class="block mt-1 italic">
+                                <span
+                                    class="bg-lime/85 px-3 py-0.5 rounded-2xl box-decoration-clone shadow-[0_6px_24px_rgba(132,255,0,0.35)]">
+                                    The grass misses you.
+                                </span>
+                            </span>
+                        </h1>
+
+                        <!-- Creative Premise Subcopy -->
+                        <p class="text-base sm:text-lg md:text-xl text-forest/80 font-normal max-w-2xl leading-relaxed">
+                            Built to break through Gen Z banner blindness, <strong
+                                class="font-semibold text-forest">TOUCH GRASS™</strong> hijacks familiar
+                            operating-system alerts and anti-advertising honesty—turning paid social and display
+                            placements into joyful prompts to close the tab.
+                        </p>
+
+                        <!-- Interactive "Hours Online Reality Slider" (1 hr to 12 hrs) -->
+                        <div class="frosted-glass rounded-2xl p-5 sm:p-6 max-w-xl space-y-3.5">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <label for="hours-reality-slider"
+                                    class="font-mono text-xs font-semibold uppercase tracking-wide text-forest/70">
+                                    HOURS ONLINE REALITY CHECK:
+                                </label>
+                                <div class="flex items-center gap-2">
+                                    <span id="slider-hours-readout"
+                                        class="font-mono text-sm font-bold text-forest bg-white px-2.5 py-0.5 rounded-full hairline-border tabular-nums">
+                                        7 hrs
+                                    </span>
+                                    <span id="slider-status-pill"
+                                        class="font-mono text-xs font-semibold px-3 py-0.5 rounded-full bg-sunbeam/80 text-forest">
+                                        404: Vitamin D Not Found
+                                    </span>
+                                </div>
+                            </div>
+
+                            <input id="hours-reality-slider" type="range" min="1" max="12" value="7"
+                                oninput="updateHoursReality(this.value)" class="aero-slider" />
+
+                            <div class="flex justify-between font-mono text-[11px] text-forest/55">
+                                <span>1 hr (Mildly Glazed)</span>
+                                <span>7 hrs (Vitamin D Deficit)</span>
+                                <span>12 hrs (Terminal Doomscroll)</span>
+                            </div>
+                        </div>
+
+                        <!-- Primary & Secondary CTAs -->
+                        <div class="flex flex-wrap items-center gap-3.5 pt-1">
+                            <button type="button" onclick="triggerHeroGrassBurst()"
+                                class="aqua-pill-lime font-sans font-bold text-sm sm:text-base px-7 py-3.5 rounded-full flex items-center gap-2">
+                                <span>TOUCH GRASS</span>
+                                <span>→</span>
+                            </button>
+
+                            <a href="#meta-feed"
+                                class="bg-white/90 hover:bg-white text-forest font-sans font-semibold text-sm sm:text-base px-6 py-3.5 rounded-full hairline-border shadow-xs hover:shadow-md transition-all flex items-center gap-2">
+                                <span>Explore Ad Suite</span>
+                                <span>↓</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN (5 Cols): Glossy Windows XP / Aqua System Dialog + Dynamic Extra Alerts -->
+                    <div class="lg:col-span-5 relative space-y-3">
+                        <!-- Oversized Glossy Cursor Arrow Floating Near Dialog -->
+                        <svg class="w-11 h-11 absolute -top-6 -left-4 z-30 drop-shadow-md pointer-events-none hidden sm:block"
+                            viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                            <path d="M5 3V23L10.2 17.8L13.6 25L16.8 23.4L13.4 16.2H20.5L5 3Z" fill="#FFFFFF"
+                                stroke="#0D2B1D" stroke-width="1.6" stroke-linejoin="round" />
+                        </svg>
+
+                        <!-- Primary Glossy Windows XP / Aqua System Dialog (ScreenTime_Alert.exe) -->
+                        <div class="xp-aqua-dialog relative z-20">
+                            <!-- Glossy Cerulean XP Titlebar -->
+                            <div class="xp-titlebar px-4 py-2.5 flex items-center justify-between text-white">
+                                <div class="flex items-center gap-2 font-mono text-xs font-semibold tracking-tight">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-lime border border-white/80"></span>
+                                    <span>ScreenTime_Alert.exe</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <span
+                                        class="w-5 h-5 rounded-md bg-white/20 hover:bg-white/30 flex items-center justify-center font-mono text-xs">_</span>
+                                    <span
+                                        class="w-5 h-5 rounded-md bg-rose-500/90 flex items-center justify-center font-mono text-xs">×</span>
+                                </div>
+                            </div>
+
+                            <!-- Dialog Body -->
+                            <div class="p-5 sm:p-6 space-y-4">
+                                <div class="flex items-start gap-3.5">
+                                    <!-- Retro Pixel Sun-Alert Icon -->
+                                    <div
+                                        class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sunbeam to-amber-300 flex items-center justify-center shrink-0 shadow-sm border border-amber-400/40">
+                                        <span class="font-vt text-2xl font-bold text-forest">!</span>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <p class="font-vt text-xl leading-none text-ocean tracking-wide">
+                                            404: VITAMIN D NOT FOUND.
+                                        </p>
+                                        <p
+                                            class="font-sans text-sm sm:text-base font-semibold text-forest leading-snug">
+                                            Your screen time report would like a word.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Interactive Sunlight Deficit Progress Bar -->
+                                <div class="bg-cloud rounded-xl p-3.5 hairline-border space-y-1.5">
+                                    <div class="flex justify-between font-mono text-xs font-semibold">
+                                        <span class="text-forest/70">Sunlight Deficit</span>
+                                        <span id="deficit-pct-label"
+                                            class="text-ocean font-bold tabular-nums">94%</span>
+                                    </div>
+                                    <div class="w-full h-3 bg-white rounded-full overflow-hidden hairline-border p-0.5">
+                                        <div id="deficit-progress-fill"
+                                            class="h-full rounded-full bg-gradient-to-r from-cerulean via-lime to-sunbeam transition-all duration-300"
+                                            style="width: 94%;"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap items-center justify-end gap-2.5 pt-1">
+                                    <button type="button" onclick="spawnLieMiniAlert()"
+                                        class="font-sans text-xs font-semibold text-forest/75 hover:text-forest bg-cloud hover:bg-forest/5 px-3.5 py-2.5 rounded-full hairline-border transition-colors cursor-pointer">
+                                        Remind Me in 5 Mins (Lie)
+                                    </button>
+                                    <button type="button" onclick="openShutdownScreensaver()"
+                                        class="aqua-pill-lime font-sans text-xs font-bold px-4 py-2.5 rounded-full">
+                                        GO OUTSIDE →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Stack for Slider-Triggered / "Lie" Nested Mini-Alerts -->
+                        <div id="hero-nested-alerts" class="space-y-2.5 relative z-20"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Rolling Y2K "Bliss" Toxic-Lime & Chlorophyll Meadow Hills SVG at Bottom of Hero -->
+            <div id="hero-meadow-hills" class="absolute bottom-0 inset-x-0 pointer-events-none z-10">
+                <svg class="w-full h-28 sm:h-40 block" viewBox="0 0 1440 200" preserveAspectRatio="none"
+                    aria-hidden="true">
+                    <defs>
+                        <linearGradient id="hillBack" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#A3FF33" />
+                            <stop offset="100%" stop-color="#65D900" />
+                        </linearGradient>
+                        <linearGradient id="hillFront" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#84FF00" />
+                            <stop offset="60%" stop-color="#65D900" />
+                            <stop offset="100%" stop-color="#4ADE80" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Back Rolling Hill -->
+                    <path d="M0 110 C320 35, 640 165, 980 75 C1180 25, 1340 80, 1440 95 L1440 200 L0 200 Z"
+                        fill="url(#hillBack)" opacity="0.72" />
+                    <!-- Front Sunlit Bliss Hill -->
+                    <path d="M0 145 C280 95, 560 40, 920 125 C1150 175, 1320 110, 1440 120 L1440 200 L0 200 Z"
+                        fill="url(#hillFront)" />
+                </svg>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         3. SECTION 01: INSTAGRAM / META FEED ADS (4:5 ART-DIRECTED UNITS)
+         ====================================================================== -->
+        <section id="meta-feed" class="py-20 sm:py-28 border-b border-forest/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header + View Toggle Bar -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                    <div class="space-y-2">
+                        <span class="font-mono text-xs font-semibold uppercase tracking-widest text-ocean">
+                            01 // PAID SOCIAL CAMPAIGN
+                        </span>
+                        <h2 class="font-serif text-4xl sm:text-6xl tracking-tight text-forest leading-none">
+                            Instagram &amp; Meta Feed Ads
+                        </h2>
+                        <p class="text-sm sm:text-base text-forest/70 max-w-xl">
+                            Three museum-grade 4:5 creative executions engineered to stop mid-scroll thumb momentum
+                            without looking like a corporate wellness lecture.
+                        </p>
+                    </div>
+
+                    <!-- View Toggle Bar: Phone Feed Context vs Clean Artboard View -->
+                    <div class="inline-flex items-center bg-white p-1.5 rounded-full hairline-border shadow-xs self-start md:self-auto"
+                        role="group" aria-label="Meta Ad Display Mode">
+                        <button id="meta-view-context-btn" type="button" onclick="setMetaGalleryMode('context')"
+                            class="font-sans text-xs font-bold px-4 py-2 rounded-full bg-forest text-white transition-all cursor-pointer">
+                            Phone Feed Context
+                        </button>
+                        <button id="meta-view-clean-btn" type="button" onclick="setMetaGalleryMode('clean')"
+                            class="font-sans text-xs font-semibold px-4 py-2 rounded-full text-forest/75 hover:text-forest transition-all cursor-pointer">
+                            Clean Artboard View
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3-Column Museum-Grade 4:5 Feed Grid -->
+                <div id="meta-gallery-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+
+                    <!-- ================================================================
+               AD UNIT A: EDITORIAL WELLNESS PARODY ("THE SUN IS FREE.")
+               ================================================================ -->
+                    <div class="feed-card-shell gallery-card rounded-3xl overflow-hidden">
+                        <div
+                            class="clean-artboard-badge hidden items-center justify-between mb-2.5 px-1 font-mono text-xs text-forest/65">
+                            <span>AD UNIT 01A • 4:5 FEED</span>
+                            <span>1080 × 1350 PX</span>
+                        </div>
+
+                        <!-- Instagram Feed Header Chrome -->
+                        <div
+                            class="feed-chrome px-4 py-3.5 flex items-center justify-between border-b border-forest/10">
+                            <div class="flex items-center gap-2.5">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-gradient-to-tr from-chlorophyll to-cerulean flex items-center justify-center text-white font-mono text-xs font-bold">
+                                    TG
+                                </div>
+                                <div class="leading-tight">
+                                    <p class="font-sans text-xs font-bold text-forest">touchgrass.irl</p>
+                                    <p class="font-sans text-[11px] text-forest/50">Sponsored</p>
+                                </div>
+                            </div>
+                            <span class="text-forest/45 text-sm font-bold">•••</span>
+                        </div>
+
+                        <!-- 4:5 ARTBOARD A -->
+                        <div
+                            class="aspect-[4/5] relative overflow-hidden flex flex-col justify-between p-6 sm:p-7 bg-gradient-to-b from-[#E0F2FE] via-[#F6F8F2] to-[#ECFCCB]">
+                            <!-- Radiant Glowing Sun Orb -->
+                            <div class="relative flex items-center justify-between">
+                                <span
+                                    class="font-mono text-[10px] font-semibold uppercase tracking-widest text-forest/60 bg-white/80 px-2.5 py-1 rounded-full hairline-border">
+                                    TOUCH GRASS™
+                                </span>
+                                <div
+                                    class="w-16 h-16 rounded-full bg-gradient-to-br from-sunbeam via-amber-200 to-lime shadow-[0_0_50px_rgba(253,224,71,0.95)] border border-white">
+                                </div>
+                            </div>
+
+                            <!-- Editorial Serif Typography -->
+                            <div class="my-auto space-y-2 relative z-10">
+                                <h3
+                                    class="font-serif text-[2.65rem] sm:text-[3rem] leading-[0.95] tracking-tight text-forest">
+                                    THE SUN IS FREE.
+                                    <span class="block italic text-ocean mt-1">No subscription required.</span>
+                                </h3>
+                            </div>
+
+                            <!-- SaaS Spec Comparison Table inside Ad -->
+                            <div
+                                class="bg-white/88 backdrop-blur-md rounded-2xl p-3.5 hairline-border shadow-sm space-y-2 relative z-10 text-xs">
+                                <div class="flex items-center justify-between pb-1.5 border-b border-forest/10">
+                                    <span class="font-medium text-forest/75">Vitamin D</span>
+                                    <span
+                                        class="font-mono font-bold text-chlorophyll bg-lime/20 px-2 py-0.5 rounded-full">$0.00/mo</span>
+                                </div>
+                                <div class="flex items-center justify-between pb-1.5 border-b border-forest/10">
+                                    <span class="font-medium text-forest/75">Fresh Air</span>
+                                    <span
+                                        class="font-mono font-bold text-chlorophyll bg-lime/20 px-2 py-0.5 rounded-full">$0.00/mo</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-medium text-forest/75">Doomscrolling</span>
+                                    <span class="font-mono font-semibold text-rose-600">4h 32m of your Tuesday</span>
+                                </div>
+                            </div>
+
+                            <!-- Soft Meadow Hill Curve at Bottom -->
+                            <svg class="w-full h-14 absolute bottom-0 inset-x-0 pointer-events-none opacity-65"
+                                viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
+                                <path d="M0 30 Q120 0 240 28 T400 18 L400 60 L0 60 Z" fill="#84FF00" />
+                            </svg>
+                        </div>
+
+                        <!-- Instagram CTA Bar & Caption -->
+                        <div class="feed-chrome">
+                            <button type="button"
+                                onclick="showCampaignToast('Meta Feed Unit 01A', 'GO OUTSIDE → clicked. Zero signup wall—just step outside.')"
+                                class="w-full px-5 py-3 bg-lime/35 hover:bg-lime/60 border-y border-forest/10 flex items-center justify-between font-sans text-xs font-bold text-forest transition-colors cursor-pointer">
+                                <span>GO OUTSIDE →</span>
+                                <span class="text-forest/60">↗</span>
+                            </button>
+                            <div class="p-4 space-y-1.5">
+                                <div class="flex items-center justify-between text-forest/75 text-sm">
+                                    <div class="flex items-center gap-3">
+                                        <button type="button" onclick="toggleHeart(this)"
+                                            class="hover:scale-110 transition-transform cursor-pointer"
+                                            aria-label="Like ad">♡</button>
+                                        <span>💬</span>
+                                        <span>➤</span>
+                                    </div>
+                                    <span class="font-mono text-[11px] text-forest/50">14.2K likes</span>
+                                </div>
+                                <p class="text-xs text-forest/85 leading-relaxed">
+                                    <strong class="font-bold text-forest">touchgrass.irl</strong> No free trial. No
+                                    credit card on file. Literally just walk out the door.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================================================================
+               AD UNIT B: ANTI-ADVERTISING DISRUPTION (12 CURSOR SWARM + OS DIALOG)
+               ================================================================ -->
+                    <div class="feed-card-shell gallery-card rounded-3xl overflow-hidden">
+                        <div
+                            class="clean-artboard-badge hidden items-center justify-between mb-2.5 px-1 font-mono text-xs text-forest/65">
+                            <span>AD UNIT 01B • 4:5 FEED</span>
+                            <span>1080 × 1350 PX</span>
+                        </div>
+
+                        <!-- Instagram Feed Header Chrome -->
+                        <div
+                            class="feed-chrome px-4 py-3.5 flex items-center justify-between border-b border-forest/10">
+                            <div class="flex items-center gap-2.5">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-gradient-to-tr from-chlorophyll to-cerulean flex items-center justify-center text-white font-mono text-xs font-bold">
+                                    TG
+                                </div>
+                                <div class="leading-tight">
+                                    <p class="font-sans text-xs font-bold text-forest">touchgrass.irl</p>
+                                    <p class="font-sans text-[11px] text-forest/50">Sponsored</p>
+                                </div>
+                            </div>
+                            <span class="text-forest/45 text-sm font-bold">•••</span>
+                        </div>
+
+                        <!-- 4:5 ARTBOARD B -->
+                        <div
+                            class="aspect-[4/5] relative overflow-hidden flex flex-col justify-between p-6 bg-gradient-to-br from-cerulean via-[#7DD3FC] to-lime">
+                            <!-- Top Brand Pill -->
+                            <div class="flex items-center justify-between relative z-20">
+                                <span
+                                    class="font-mono text-[10px] font-bold bg-white/90 text-forest px-2.5 py-1 rounded-full shadow-xs">
+                                    ANTI-AD DISRUPTION
+                                </span>
+                                <span class="font-mono text-[10px] font-bold text-forest/80">TOUCH GRASS™</span>
+                            </div>
+
+                            <!-- Surreal Cluster of 12 Pixel Cursor Arrows Pointing Inward at Retro OS Alert Dialog -->
+                            <div class="relative my-auto py-4 flex items-center justify-center">
+                                <!-- 12 Surrounding Inward-Pointing Pixel Cursors SVG -->
+                                <svg class="w-full h-64 absolute inset-0 pointer-events-none z-10" viewBox="0 0 320 260"
+                                    fill="none" aria-hidden="true">
+                                    <!-- Top Row (3 cursors pointing down-inward) -->
+                                    <g transform="translate(55, 12) rotate(135)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#FFFFFF"
+                                            stroke="#0D2B1D" stroke-width="1.4" />
+                                    </g>
+                                    <g transform="translate(160, 6) rotate(160)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#0D2B1D"
+                                            stroke="#FFFFFF" stroke-width="1.2" />
+                                    </g>
+                                    <g transform="translate(268, 18) rotate(-135)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#FFFFFF"
+                                            stroke="#0D2B1D" stroke-width="1.4" />
+                                    </g>
+                                    <!-- Left Column (3 cursors pointing right) -->
+                                    <g transform="translate(10, 68) rotate(95)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#0D2B1D"
+                                            stroke="#FFFFFF" stroke-width="1.2" />
+                                    </g>
+                                    <g transform="translate(6, 130) rotate(75)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#FFFFFF"
+                                            stroke="#0D2B1D" stroke-width="1.4" />
+                                    </g>
+                                    <g transform="translate(14, 195) rotate(55)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#FFFFFF"
+                                            stroke="#0D2B1D" stroke-width="1.4" />
+                                    </g>
+                                    <!-- Right Column (3 cursors pointing left) -->
+                                    <g transform="translate(310, 72) rotate(-95)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#FFFFFF"
+                                            stroke="#0D2B1D" stroke-width="1.4" />
+                                    </g>
+                                    <g transform="translate(314, 134) rotate(-75)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#0D2B1D"
+                                            stroke="#FFFFFF" stroke-width="1.2" />
+                                    </g>
+                                    <g transform="translate(306, 196) rotate(-55)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#FFFFFF"
+                                            stroke="#0D2B1D" stroke-width="1.4" />
+                                    </g>
+                                    <!-- Bottom Row (3 cursors pointing up-inward) -->
+                                    <g transform="translate(62, 248) rotate(25)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#FFFFFF"
+                                            stroke="#0D2B1D" stroke-width="1.4" />
+                                    </g>
+                                    <g transform="translate(158, 254) rotate(-15)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#0D2B1D"
+                                            stroke="#FFFFFF" stroke-width="1.2" />
+                                    </g>
+                                    <g transform="translate(262, 246) rotate(-35)">
+                                        <path d="M0 0V16L4 12L6.5 17L9 15.8L6.5 10.8H11.5L0 0Z" fill="#FFFFFF"
+                                            stroke="#0D2B1D" stroke-width="1.4" />
+                                    </g>
+                                </svg>
+
+                                <!-- Center Retro OS Dialog Box (Flips on click!) -->
+                                <div id="ad-b-os-dialog"
+                                    class="xp-aqua-dialog w-full max-w-[245px] relative z-20 transition-all duration-300">
+                                    <div
+                                        class="xp-titlebar px-3 py-1.5 flex items-center justify-between text-white font-mono text-[10px] font-semibold">
+                                        <span>Ad_Intervention.exe</span>
+                                        <span>×</span>
+                                    </div>
+                                    <div id="ad-b-dialog-body" class="p-4 text-center space-y-3">
+                                        <p
+                                            class="font-sans font-extrabold text-sm sm:text-base leading-tight text-forest">
+                                            THIS AD IS ASKING YOU TO STOP LOOKING AT ADS.
+                                        </p>
+                                        <button type="button" onclick="terminateAdUnitB()"
+                                            class="aqua-pill-sky font-mono text-[11px] font-semibold px-3.5 py-1.5 rounded-full">
+                                            [ Close Ad &amp; Log Off ]
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Subtle Bottom Note -->
+                            <p class="font-mono text-[10px] text-center font-semibold text-forest/80 relative z-20">
+                                0% Conversion Funnel • 100% Reality Check
+                            </p>
+                        </div>
+
+                        <!-- Instagram CTA Bar & Caption -->
+                        <div class="feed-chrome">
+                            <button type="button" onclick="openShutdownScreensaver()"
+                                class="w-full px-5 py-3 bg-sky-50 hover:bg-sky-100 border-y border-forest/10 flex items-center justify-between font-sans text-xs font-bold text-ocean transition-colors cursor-pointer">
+                                <span>LOG OFF →</span>
+                                <span>↗</span>
+                            </button>
+                            <div class="p-4 space-y-1.5">
+                                <div class="flex items-center justify-between text-forest/75 text-sm">
+                                    <div class="flex items-center gap-3">
+                                        <button type="button" onclick="toggleHeart(this)"
+                                            class="hover:scale-110 transition-transform cursor-pointer"
+                                            aria-label="Like ad">♡</button>
+                                        <span>💬</span>
+                                        <span>➤</span>
+                                    </div>
+                                    <span class="font-mono text-[11px] text-forest/50">28.9K likes</span>
+                                </div>
+                                <p class="text-xs text-forest/85 leading-relaxed">
+                                    <strong class="font-bold text-forest">touchgrass.irl</strong> We bought this ad
+                                    placement specifically so another brand couldn’t sell you blue-light glasses.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================================================================
+               AD UNIT C: INTERACTIVE 3-SLIDE META CAROUSEL
+               ================================================================ -->
+                    <div class="feed-card-shell gallery-card rounded-3xl overflow-hidden">
+                        <div
+                            class="clean-artboard-badge hidden items-center justify-between mb-2.5 px-1 font-mono text-xs text-forest/65">
+                            <span>AD UNIT 01C • 3-SLIDE CAROUSEL</span>
+                            <span>1080 × 1350 PX</span>
+                        </div>
+
+                        <!-- Instagram Feed Header Chrome -->
+                        <div
+                            class="feed-chrome px-4 py-3.5 flex items-center justify-between border-b border-forest/10">
+                            <div class="flex items-center gap-2.5">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-gradient-to-tr from-chlorophyll to-cerulean flex items-center justify-center text-white font-mono text-xs font-bold">
+                                    TG
+                                </div>
+                                <div class="leading-tight">
+                                    <p class="font-sans text-xs font-bold text-forest">touchgrass.irl</p>
+                                    <p class="font-sans text-[11px] text-forest/50">Sponsored • Carousel</p>
+                                </div>
+                            </div>
+                            <span id="carousel-counter-pill"
+                                class="font-mono text-[11px] font-semibold bg-cloud px-2.5 py-0.5 rounded-full hairline-border text-forest/75">
+                                1 / 3
+                            </span>
+                        </div>
+
+                        <!-- 4:5 INTERACTIVE CAROUSEL ARTBOARD -->
+                        <div class="aspect-[4/5] relative overflow-hidden bg-cloud flex flex-col justify-between">
+                            <!-- Dynamic Slide Container -->
+                            <div id="meta-carousel-stage"
+                                class="w-full h-full p-6 sm:p-7 flex flex-col justify-between transition-all duration-300">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+
+                            <!-- Left / Right Carousel Navigation Arrows -->
+                            <button type="button" onclick="stepMetaCarousel(-1)" aria-label="Previous carousel slide"
+                                class="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-forest shadow-md hairline-border flex items-center justify-center absolute left-3 top-1/2 -translate-y-1/2 z-20 font-bold text-sm cursor-pointer transition-transform hover:scale-105">
+                                ‹
+                            </button>
+                            <button type="button" onclick="stepMetaCarousel(1)" aria-label="Next carousel slide"
+                                class="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-forest shadow-md hairline-border flex items-center justify-center absolute right-3 top-1/2 -translate-y-1/2 z-20 font-bold text-sm cursor-pointer transition-transform hover:scale-105">
+                                ›
+                            </button>
+                        </div>
+
+                        <!-- Instagram CTA Bar + Carousel Dots + Caption -->
+                        <div class="feed-chrome">
+                            <button type="button"
+                                onclick="showCampaignToast('Meta Carousel Unit 01C', 'TOUCH GRASS → clicked from Slide ' + (metaSlideIndex + 1) + '.')"
+                                class="w-full px-5 py-3 bg-lime/35 hover:bg-lime/60 border-y border-forest/10 flex items-center justify-between font-sans text-xs font-bold text-forest transition-colors cursor-pointer">
+                                <span>TOUCH GRASS →</span>
+                                <span class="text-forest/60">↗</span>
+                            </button>
+                            <div class="p-4 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3 text-forest/75 text-sm">
+                                        <button type="button" onclick="toggleHeart(this)"
+                                            class="hover:scale-110 transition-transform cursor-pointer"
+                                            aria-label="Like ad">♡</button>
+                                        <span>💬</span>
+                                        <span>➤</span>
+                                    </div>
+                                    <!-- Carousel Dots -->
+                                    <div class="flex items-center gap-1.5">
+                                        <button type="button" onclick="setMetaCarousel(0)"
+                                            class="meta-dot w-2 h-2 rounded-full bg-ocean transition-all cursor-pointer"
+                                            aria-label="Slide 1"></button>
+                                        <button type="button" onclick="setMetaCarousel(1)"
+                                            class="meta-dot w-2 h-2 rounded-full bg-forest/20 transition-all cursor-pointer"
+                                            aria-label="Slide 2"></button>
+                                        <button type="button" onclick="setMetaCarousel(2)"
+                                            class="meta-dot w-2 h-2 rounded-full bg-forest/20 transition-all cursor-pointer"
+                                            aria-label="Slide 3"></button>
+                                    </div>
+                                    <span class="font-mono text-[11px] text-forest/50">19.4K likes</span>
+                                </div>
+                                <p class="text-xs text-forest/85 leading-relaxed">
+                                    <strong class="font-bold text-forest">touchgrass.irl</strong> Swipe right three
+                                    times to unlock your side quest outside.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         4. SECTION 02: STORY & REEL VERTICAL ADS (9:16 SLEEK DEVICE MOCKUPS)
+         ====================================================================== -->
+        <section id="stories-reels" class="py-20 sm:py-28 bg-white/60 border-b border-forest/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header -->
+                <div class="text-center max-w-2xl mx-auto space-y-3 mb-14">
+                    <span class="font-mono text-xs font-semibold uppercase tracking-widest text-ocean">
+                        02 // VERTICAL FULL-SCREEN &amp; NATIVE STICKERS
+                    </span>
+                    <h2 class="font-serif text-4xl sm:text-6xl tracking-tight text-forest leading-none">
+                        Story &amp; Reel Vertical Ads
+                    </h2>
+                    <p class="text-sm sm:text-base text-forest/70">
+                        Designed for thumb-native interaction: tap or hold the meadow sticker to grow real grass on
+                        screen, or confess your screen time in the live poll.
+                    </p>
+                </div>
+
+                <!-- Two Sleek Bezel-Less Smartphone Mockups -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+
+                    <!-- ================================================================
+               VERTICAL UNIT 01: INTERACTIVE "HOLD TO TOUCH GRASS" STORY AD
+               ================================================================ -->
+                    <div class="mx-auto w-full max-w-[360px]">
+                        <div
+                            class="rounded-[2.75rem] p-2.5 bg-gradient-to-b from-white to-slate-100 shadow-ambient-lg hairline-border">
+                            <div
+                                class="aspect-[9/16] rounded-[2.2rem] overflow-hidden relative flex flex-col justify-between p-5 bg-gradient-to-b from-[#0EA5E9] via-[#7DD3FC] to-[#ECFCCB]">
+
+                                <!-- Story Top Progress Bars & Profile Header -->
+                                <div class="space-y-3 relative z-20">
+                                    <div class="grid grid-cols-2 gap-1.5">
+                                        <div class="h-1 rounded-full bg-white overflow-hidden">
+                                            <div id="story1-progress-bar"
+                                                class="h-full bg-lime transition-all duration-300" style="width: 35%;">
+                                            </div>
+                                        </div>
+                                        <div class="h-1 rounded-full bg-white/35"></div>
+                                    </div>
+                                    <div class="flex items-center justify-between text-white">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="w-7 h-7 rounded-full bg-white text-forest font-mono text-[10px] font-bold flex items-center justify-center shadow-xs">TG</span>
+                                            <span
+                                                class="font-sans text-xs font-bold drop-shadow-xs">touchgrass.irl</span>
+                                            <span class="text-[11px] text-white/80">Sponsored</span>
+                                        </div>
+                                        <span class="text-white/85 font-mono text-sm">×</span>
+                                    </div>
+                                </div>
+
+                                <!-- Center Headline + Interactive Hold/Tap Sticker + Vitamin D Meter -->
+                                <div class="my-auto space-y-5 relative z-20 text-center">
+                                    <h3
+                                        class="font-serif text-3xl sm:text-[2.3rem] leading-[0.98] text-white drop-shadow-[0_2px_12px_rgba(13,43,29,0.22)]">
+                                        You’ve been online for 7 hours.
+                                        <span class="block italic text-lime mt-0.5">The grass misses you.</span>
+                                    </h3>
+
+                                    <!-- Interactive Sticker Button -->
+                                    <div>
+                                        <button id="story-grass-sticker" type="button" onmousedown="startHoldingGrass()"
+                                            onmouseup="stopHoldingGrass()" onmouseleave="stopHoldingGrass()"
+                                            ontouchstart="startHoldingGrass()" ontouchend="stopHoldingGrass()"
+                                            onclick="growStoryGrassStep()"
+                                            class="aqua-pill-lime font-mono text-xs font-bold px-4 py-3 rounded-2xl tracking-tight shadow-lg transform -rotate-1 hover:rotate-0">
+                                            [ TAP / HOLD TO TOUCH GRASS ]
+                                        </button>
+                                    </div>
+
+                                    <!-- Vitamin D Meter Pill -->
+                                    <div class="frosted-glass rounded-2xl p-3 text-left space-y-1.5">
+                                        <div class="flex justify-between font-mono text-[11px] font-bold text-forest">
+                                            <span>Vitamin D Meter</span>
+                                            <span id="story-vitd-pct" class="text-ocean tabular-nums">3%</span>
+                                        </div>
+                                        <div
+                                            class="w-full h-2.5 bg-white rounded-full overflow-hidden hairline-border p-0.5">
+                                            <div id="story-vitd-bar"
+                                                class="h-full rounded-full bg-gradient-to-r from-cerulean to-chlorophyll transition-all duration-300"
+                                                style="width: 3%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Unlocked RPG Achievement Sticker (Revealed at 100%) -->
+                                    <div id="story-achievement-badge"
+                                        class="hidden bg-white/95 backdrop-blur-md rounded-2xl p-3 hairline-border shadow-lg items-center gap-2.5 text-left animate-float-badge">
+                                        <div
+                                            class="w-9 h-9 rounded-xl bg-gradient-to-br from-sunbeam to-lime flex items-center justify-center text-base shrink-0">
+                                            🏆
+                                        </div>
+                                        <div>
+                                            <p
+                                                class="font-mono text-[9px] font-bold uppercase tracking-wider text-ocean">
+                                                ACHIEVEMENT UNLOCKED
+                                            </p>
+                                            <p class="font-sans text-xs font-bold text-forest">
+                                                Went outside voluntarily.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic Growing SVG Grass Blades & Daisies at Bottom of Phone -->
+                                <div id="story-meadow-growth"
+                                    class="absolute bottom-0 inset-x-0 pointer-events-none z-10 transition-all duration-500"
+                                    style="height: 52px;">
+                                    <svg class="w-full h-full block" viewBox="0 0 320 140" preserveAspectRatio="none"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M0 140 L0 65 Q25 15 48 70 Q72 20 96 68 Q124 8 152 72 Q180 18 208 66 Q238 10 268 70 Q295 22 320 62 L320 140 Z"
+                                            fill="#65D900" />
+                                        <path
+                                            d="M0 140 L0 85 Q30 35 60 88 Q90 40 120 85 Q155 30 190 90 Q225 38 260 85 Q290 42 320 82 L320 140 Z"
+                                            fill="#84FF00" />
+                                        <!-- Cute Daisies (Shown via opacity when grass grows) -->
+                                        <g id="story-daisies-group" opacity="0" class="transition-opacity duration-500">
+                                            <circle cx="58" cy="64" r="7" fill="#FFFFFF" />
+                                            <circle cx="58" cy="64" r="3" fill="#FDE047" />
+                                            <circle cx="164" cy="56" r="8" fill="#FFFFFF" />
+                                            <circle cx="164" cy="56" r="3.5" fill="#FDE047" />
+                                            <circle cx="262" cy="62" r="7" fill="#FFFFFF" />
+                                            <circle cx="262" cy="62" r="3" fill="#FDE047" />
+                                        </g>
+                                    </svg>
+                                </div>
+
+                                <!-- Bottom Swipe-Up Pill -->
+                                <div class="relative z-20 pt-2">
+                                    <button type="button"
+                                        onclick="showCampaignToast('Vertical Story Unit 01', 'TOUCH GRASS → swipe-up conversion triggered.')"
+                                        class="w-full bg-white/92 hover:bg-white text-forest font-sans text-xs font-bold py-2.5 rounded-full shadow-md flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+                                        <span>↑ TOUCH GRASS →</span>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================================================================
+               VERTICAL UNIT 02: INTERACTIVE STORY POLL & SUBPOENA
+               ================================================================ -->
+                    <div class="mx-auto w-full max-w-[360px]">
+                        <div
+                            class="rounded-[2.75rem] p-2.5 bg-gradient-to-b from-white to-slate-100 shadow-ambient-lg hairline-border">
+                            <div
+                                class="aspect-[9/16] rounded-[2.2rem] overflow-hidden relative flex flex-col justify-between p-5 bg-gradient-to-b from-[#F6F8F2] via-[#E0F2FE] to-[#BAE6FD]">
+
+                                <!-- Story Top Progress Bars & Profile Header -->
+                                <div class="space-y-3 relative z-20">
+                                    <div class="grid grid-cols-2 gap-1.5">
+                                        <div class="h-1 rounded-full bg-forest/25"></div>
+                                        <div class="h-1 rounded-full bg-ocean"></div>
+                                    </div>
+                                    <div class="flex items-center justify-between text-forest">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="w-7 h-7 rounded-full bg-gradient-to-tr from-chlorophyll to-cerulean text-white font-mono text-[10px] font-bold flex items-center justify-center">TG</span>
+                                            <span class="font-sans text-xs font-bold">touchgrass.irl</span>
+                                            <span class="text-[11px] text-forest/55">Sponsored</span>
+                                        </div>
+                                        <span class="text-forest/60 font-mono text-sm">×</span>
+                                    </div>
+                                </div>
+
+                                <!-- Retro ScreenTime_Subpoena.sys Notice + Interactive IG Poll Sticker -->
+                                <div class="my-auto space-y-4 relative z-20">
+                                    <!-- Retro Subpoena Dialog -->
+                                    <div class="xp-aqua-dialog">
+                                        <div
+                                            class="xp-titlebar px-3 py-1.5 flex items-center justify-between text-white font-mono text-[10px] font-semibold">
+                                            <span>ScreenTime_Subpoena.sys</span>
+                                            <span>×</span>
+                                        </div>
+                                        <div class="p-4 space-y-2">
+                                            <span
+                                                class="inline-block font-mono text-[10px] font-bold text-ocean bg-sky-50 px-2 py-0.5 rounded-full">
+                                                OFFICIAL NOTICE
+                                            </span>
+                                            <h3
+                                                class="font-serif text-2xl sm:text-[1.85rem] leading-[1.02] text-forest">
+                                                Your screen time report would like a word.
+                                            </h3>
+                                            <p class="font-mono text-[11px] text-forest/70">
+                                                Exhibit A: 47 consecutive reels watched without blinking.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Interactive Instagram Poll Sticker -->
+                                    <div
+                                        class="bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-lg hairline-border space-y-3">
+                                        <p class="font-sans text-xs font-extrabold text-center text-forest">
+                                            Be honest. How many hours today?
+                                        </p>
+
+                                        <div id="story-poll-buttons" class="grid grid-cols-2 gap-2">
+                                            <button type="button" onclick="castStoryPoll('denial')"
+                                                class="bg-cloud hover:bg-sky-50 text-forest font-sans text-xs font-bold py-3 px-2 rounded-xl hairline-border transition-all cursor-pointer">
+                                                4–6 hrs (Denial)
+                                            </button>
+                                            <button type="button" onclick="castStoryPoll('help')"
+                                                class="bg-lime/40 hover:bg-lime/70 text-forest font-sans text-xs font-bold py-3 px-2 rounded-xl hairline-border transition-all cursor-pointer">
+                                                7+ hrs (Send Help)
+                                            </button>
+                                        </div>
+
+                                        <!-- Animated Poll Results (Shown after click) -->
+                                        <div id="story-poll-outcome" class="hidden space-y-2 pt-1">
+                                            <div class="space-y-1">
+                                                <div
+                                                    class="flex justify-between font-mono text-[11px] font-semibold text-forest/75">
+                                                    <span>4–6 hrs (Denial)</span>
+                                                    <span id="poll-val-left">21%</span>
+                                                </div>
+                                                <div class="w-full h-2.5 bg-cloud rounded-full overflow-hidden">
+                                                    <div id="poll-fill-left"
+                                                        class="h-full bg-cerulean rounded-full transition-all duration-500"
+                                                        style="width: 21%;"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="space-y-1">
+                                                <div
+                                                    class="flex justify-between font-mono text-[11px] font-bold text-forest">
+                                                    <span>7+ hrs (Send Help)</span>
+                                                    <span id="poll-val-right" class="text-chlorophyll">79%</span>
+                                                </div>
+                                                <div class="w-full h-2.5 bg-cloud rounded-full overflow-hidden">
+                                                    <div id="poll-fill-right"
+                                                        class="h-full bg-chlorophyll rounded-full transition-all duration-500"
+                                                        style="width: 79%;"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="pt-1 text-center">
+                                                <button type="button" onclick="openShutdownScreensaver()"
+                                                    class="aqua-pill-sky font-sans text-[11px] font-bold px-4 py-1.5 rounded-full">
+                                                    LOG OFF →
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Swipe-Up Pill -->
+                                <div class="relative z-20 pt-2">
+                                    <button type="button" onclick="openShutdownScreensaver()"
+                                        class="w-full bg-forest text-white hover:bg-ocean font-sans text-xs font-bold py-2.5 rounded-full shadow-md flex items-center justify-center gap-1.5 transition-colors cursor-pointer">
+                                        <span>↑ LOG OFF →</span>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         5. SECTION 03: PROGRAMMATIC WEB DISPLAY BANNERS (EDITORIAL PORTAL)
+         ====================================================================== -->
+        <section id="display-youtube" class="py-20 sm:py-28 border-b border-forest/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header + Isolated IAB Specs Toggle -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                    <div class="space-y-2">
+                        <span class="font-mono text-xs font-semibold uppercase tracking-widest text-ocean">
+                            03 // PROGRAMMATIC IAB DISPLAY SUITE
+                        </span>
+                        <h2 class="font-serif text-4xl sm:text-6xl tracking-tight text-forest leading-none">
+                            Web Display Banners in the Wild
+                        </h2>
+                        <p class="text-sm sm:text-base text-forest/70 max-w-2xl">
+                            Contextual placements inside a late-night campus culture publication—featuring a playable
+                            notification-squishing MPU unit and scroll altitude tracker.
+                        </p>
+                    </div>
+
+                    <div
+                        class="inline-flex items-center bg-white p-1.5 rounded-full hairline-border shadow-xs self-start md:self-auto">
+                        <button id="portal-context-btn" type="button" onclick="setPortalDisplayMode('context')"
+                            class="font-sans text-xs font-bold px-4 py-2 rounded-full bg-forest text-white transition-all cursor-pointer">
+                            Editorial Portal View
+                        </button>
+                        <button id="portal-isolated-btn" type="button" onclick="setPortalDisplayMode('isolated')"
+                            class="font-sans text-xs font-semibold px-4 py-2 rounded-full text-forest/75 hover:text-forest transition-all cursor-pointer">
+                            Isolated IAB Specs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Realistic "The Daily Bandwidth" Browser Mockup -->
+                <div id="editorial-portal-wrapper"
+                    class="bg-white rounded-3xl shadow-ambient-lg hairline-border overflow-hidden">
+
+                    <!-- Clean macOS Aqua Browser Chrome -->
+                    <div
+                        class="portal-blog-chrome px-5 py-3.5 bg-cloud border-b border-forest/10 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-300"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                        </div>
+                        <div
+                            class="bg-white px-4 py-1 rounded-full hairline-border font-mono text-xs text-forest/65 flex-1 max-w-lg text-center truncate">
+                            dailybandwidth.edu/culture/why-finals-week-breaks-our-brains
+                        </div>
+                        <span class="font-mono text-[11px] font-semibold text-ocean">2:47 AM</span>
+                    </div>
+
+                    <!-- Publication Masthead -->
+                    <div
+                        class="portal-blog-chrome px-6 sm:px-10 py-5 border-b border-forest/10 flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl text-forest tracking-tight">The Daily Bandwidth
+                            </p>
+                            <p class="font-mono text-[10px] uppercase tracking-widest text-forest/50">CAMPUS &amp; TECH
+                                CULTURE JOURNAL</p>
+                        </div>
+                        <span
+                            class="font-mono text-[11px] bg-cloud px-3 py-1 rounded-full hairline-border text-forest/70">
+                            IAB Standard Placements Active
+                        </span>
+                    </div>
+
+                    <!-- Portal Body + 3 IAB Display Banners -->
+                    <div class="p-6 sm:p-10 space-y-10">
+
+                        <!-- 1. 728×90 LEADERBOARD BANNER -->
+                        <div class="flex flex-col items-center">
+                            <span class="font-mono text-[11px] font-medium text-forest/55 mb-2">
+                                IAB LEADERBOARD • 728 × 90 PX
+                            </span>
+                            <div
+                                class="w-full max-w-[728px] min-h-[90px] rounded-2xl bg-gradient-to-r from-[#E0F2FE] via-white to-[#ECFCCB] hairline-border shadow-md px-5 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <div class="space-y-1.5 flex-1 w-full">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <span class="font-vt text-lg leading-none text-ocean font-bold">404: VITAMIN D
+                                            NOT FOUND</span>
+                                        <span class="text-forest/35">•</span>
+                                        <span class="font-serif text-lg sm:text-xl text-forest leading-none">
+                                            THE SUN IS FREE <span class="italic text-forest/75">(No subscription
+                                                required)</span>
+                                        </span>
+                                    </div>
+                                    <!-- Progress bar stuck at 99% -->
+                                    <div class="flex items-center gap-2.5">
+                                        <div
+                                            class="flex-1 max-w-xs h-2 bg-white rounded-full overflow-hidden hairline-border">
+                                            <div class="h-full bg-gradient-to-r from-cerulean to-chlorophyll animate-pulse"
+                                                style="width: 99%;"></div>
+                                        </div>
+                                        <span class="font-mono text-[10px] font-semibold text-forest/65">Daylight Sync:
+                                            99%</span>
+                                    </div>
+                                </div>
+
+                                <button type="button"
+                                    onclick="showCampaignToast('728×90 Leaderboard', 'GO OUTSIDE → clicked from top leaderboard banner.')"
+                                    class="aqua-pill-lime font-sans text-xs font-bold px-4 py-2.5 rounded-full shrink-0">
+                                    GO OUTSIDE →
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Main Article + 300×250 MPU + 160×600 Wide Skyscraper -->
+                        <div class="portal-layout-grid grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+                            <!-- Editorial Blog Article (6 Cols) -->
+                            <article class="portal-blog-chrome lg:col-span-6 space-y-4">
+                                <span class="font-mono text-xs text-ocean font-semibold">DIGITAL CULTURE • 4 MIN
+                                    READ</span>
+                                <h3 class="font-serif text-3xl sm:text-4xl text-forest leading-[1.05]">
+                                    Why Finals Week Breaks Our Brains (And Why We Open 42 Tabs Anyway)
+                                </h3>
+                                <p class="text-sm sm:text-base text-forest/75 leading-relaxed">
+                                    Every semester around week fourteen, library study rooms transform into glowing
+                                    aquariums of half-finished Google Docs, iced coffee cups, and algorithmic rabbit
+                                    holes. Cognitive researchers note that decision fatigue makes closing a browser tab
+                                    feel weirdly harder than opening three new ones.
+                                </p>
+                                <div class="bg-cloud rounded-2xl p-4 hairline-border">
+                                    <p class="font-mono text-xs font-semibold text-forest">
+                                        “The average student checks their phone 96 times a day—roughly once every 10
+                                        waking minutes.”
+                                    </p>
+                                </div>
+                                <p class="text-sm sm:text-base text-forest/75 leading-relaxed">
+                                    Instead of lecturing students with another productivity timer, digital wellness
+                                    creatives are experimenting with playful, hyper-aware interruptions right inside the
+                                    feed. Try popping the floating notification badges in the sidebar unit to the right.
+                                </p>
+                            </article>
+
+                            <!-- 2. 300×250 INTERACTIVE PLAYABLE MPU BOX (4 Cols) -->
+                            <div class="lg:col-span-4 flex flex-col items-center">
+                                <span class="font-mono text-[11px] font-medium text-forest/55 mb-2">
+                                    IAB MEDIUM RECTANGLE • 300 × 250 PX (PLAYABLE)
+                                </span>
+                                <div
+                                    class="w-[300px] h-[250px] rounded-2xl bg-gradient-to-b from-[#BAE6FD] via-[#F6F8F2] to-[#DCFCE7] hairline-border shadow-md p-4 flex flex-col justify-between relative overflow-hidden shrink-0">
+                                    <div class="flex items-center justify-between">
+                                        <span
+                                            class="font-mono text-[9px] font-bold uppercase tracking-wider text-forest/65 bg-white/80 px-2 py-0.5 rounded-full">
+                                            TOUCH GRASS™ MINI-GAME
+                                        </span>
+                                        <span id="mpu-cleared-counter"
+                                            class="font-mono text-[10px] font-bold text-ocean">
+                                            0 / 3 POPPED
+                                        </span>
+                                    </div>
+
+                                    <!-- Center Interactive Notification Badges -> Turn into Flowers -->
+                                    <div id="mpu-playground"
+                                        class="my-auto flex flex-wrap items-center justify-center gap-2.5 py-2">
+                                        <button type="button" onclick="squishNotificationBadge(this, '14 unread')"
+                                            class="bg-rose-500 hover:bg-rose-600 text-white font-sans text-xs font-bold px-3 py-1.5 rounded-full shadow-md transition-all cursor-pointer animate-float-badge">
+                                            14 unread
+                                        </button>
+
+                                        <button type="button" onclick="squishNotificationBadge(this, 'New Reel')"
+                                            class="bg-rose-500 hover:bg-rose-600 text-white font-sans text-xs font-bold px-3 py-1.5 rounded-full shadow-md transition-all cursor-pointer animate-float-badge"
+                                            style="animation-delay: 0.4s;">
+                                            New Reel
+                                        </button>
+
+                                        <button type="button" onclick="squishNotificationBadge(this, '2:47 AM')"
+                                            class="bg-rose-500 hover:bg-rose-600 text-white font-sans text-xs font-bold px-3 py-1.5 rounded-full shadow-md transition-all cursor-pointer animate-float-badge"
+                                            style="animation-delay: 0.8s;">
+                                            2:47 AM
+                                        </button>
+                                    </div>
+
+                                    <!-- Unlocked State (Revealed when all 3 badges squished!) -->
+                                    <div id="mpu-unlocked-state"
+                                        class="hidden my-auto text-center space-y-1 bg-white/90 rounded-xl p-2.5 hairline-border">
+                                        <p class="font-mono text-[9px] font-bold text-ocean uppercase">ACHIEVEMENT
+                                            UNLOCKED</p>
+                                        <p class="font-serif text-lg leading-tight text-forest">Went outside
+                                            voluntarily.</p>
+                                    </div>
+
+                                    <button type="button"
+                                        onclick="showCampaignToast('300×250 Playable MPU', 'TOUCH GRASS → clicked from interactive banner unit.')"
+                                        class="w-full aqua-pill-lime font-sans text-xs font-bold py-2 rounded-full text-center">
+                                        TOUCH GRASS →
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 3. 160×600 WIDE SKYSCRAPER (2 Cols) -->
+                            <div class="lg:col-span-2 flex flex-col items-center">
+                                <span class="font-mono text-[11px] font-medium text-forest/55 mb-2 text-center">
+                                    IAB SKYSCRAPER • 160 × 600
+                                </span>
+                                <div
+                                    class="w-[160px] h-[540px] sm:h-[600px] rounded-2xl bg-gradient-to-b from-[#0284C7] via-[#38BDF8] to-[#ECFCCB] hairline-border shadow-md p-3.5 flex flex-col justify-between text-center relative overflow-hidden shrink-0">
+                                    <div class="space-y-1 relative z-10">
+                                        <span
+                                            class="inline-block font-mono text-[8px] font-bold uppercase tracking-wider bg-white/90 text-forest px-2 py-0.5 rounded-full">
+                                            SCROLL ALTITUDE
+                                        </span>
+                                        <p class="font-serif text-xl leading-tight text-white drop-shadow-xs">
+                                            Thumb vs. Feet
+                                        </p>
+                                    </div>
+
+                                    <!-- Altitude Comparison Bars -->
+                                    <div
+                                        class="my-auto space-y-4 relative z-10 bg-white/90 backdrop-blur-sm rounded-xl p-2.5 hairline-border">
+                                        <div class="space-y-1">
+                                            <p class="font-mono text-[9px] font-semibold text-forest/65 uppercase">Thumb
+                                                Scrolled</p>
+                                            <p class="font-mono text-sm font-extrabold text-ocean">1,420 ft</p>
+                                            <div
+                                                class="w-full h-24 bg-cloud rounded-lg flex items-end p-1 hairline-border">
+                                                <div
+                                                    class="w-full h-full rounded bg-gradient-to-t from-ocean to-cerulean">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-1">
+                                            <p class="font-mono text-[9px] font-semibold text-forest/65 uppercase">
+                                                Walked Outside</p>
+                                            <p class="font-mono text-sm font-extrabold text-chlorophyll">14 ft</p>
+                                            <div
+                                                class="w-full h-8 bg-cloud rounded-lg flex items-end p-1 hairline-border">
+                                                <div class="w-full h-1.5 rounded bg-chlorophyll"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="relative z-10 pb-2">
+                                        <button type="button" onclick="openShutdownScreensaver()"
+                                            class="w-full aqua-pill-sky font-sans text-[11px] font-bold py-2 rounded-full">
+                                            LOG OFF →
+                                        </button>
+                                    </div>
+
+                                    <!-- Distorted Grass Texture Wave at Bottom -->
+                                    <svg class="w-full h-14 absolute bottom-0 inset-x-0 pointer-events-none"
+                                        viewBox="0 0 160 55" preserveAspectRatio="none" aria-hidden="true">
+                                        <path
+                                            d="M0 55 L0 22 Q20 4 40 25 Q60 6 80 22 Q100 4 120 26 Q140 8 160 20 L160 55 Z"
+                                            fill="#84FF00" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ====================================================================
+             6. SECTION 04: YOUTUBE PRE-ROLL VIDEO AD FRAME (16:9 PLAYER)
+             ==================================================================== -->
+                <div class="mt-20 sm:mt-24 max-w-5xl mx-auto">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+                        <div>
+                            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-ocean">
+                                04 // 15-SECOND IN-STREAM VIDEO PRE-ROLL
+                            </span>
+                            <h3 class="font-serif text-3xl sm:text-5xl tracking-tight text-forest leading-none mt-1">
+                                YouTube Pre-Roll Kinetic Storyboard
+                            </h3>
+                        </div>
+                        <span class="font-mono text-xs text-forest/60">
+                            16:9 WIDESCREEN • AUTO-ADVANCING 4-SCENE CUT
+                        </span>
+                    </div>
+
+                    <div class="gallery-card rounded-3xl overflow-hidden">
+                        <!-- 16:9 Widescreen Video Viewport -->
+                        <div id="yt-player-viewport"
+                            class="aspect-video relative overflow-hidden flex flex-col justify-between p-6 sm:p-10 select-none transition-all duration-500 bg-forest text-white">
+
+                            <!-- Top Scene Scrub Pills + Play/Pause Control -->
+                            <div class="flex flex-wrap items-center justify-between gap-2 relative z-20">
+                                <div class="flex items-center gap-1.5">
+                                    <button type="button" onclick="jumpYtScene(0)"
+                                        class="yt-scene-pill font-mono text-[10px] font-semibold px-2.5 py-1 rounded-full bg-white text-forest cursor-pointer">0:00–0:03</button>
+                                    <button type="button" onclick="jumpYtScene(1)"
+                                        class="yt-scene-pill font-mono text-[10px] font-semibold px-2.5 py-1 rounded-full bg-white/15 text-white cursor-pointer">0:03–0:07</button>
+                                    <button type="button" onclick="jumpYtScene(2)"
+                                        class="yt-scene-pill font-mono text-[10px] font-semibold px-2.5 py-1 rounded-full bg-white/15 text-white cursor-pointer">0:07–0:11</button>
+                                    <button type="button" onclick="jumpYtScene(3)"
+                                        class="yt-scene-pill font-mono text-[10px] font-semibold px-2.5 py-1 rounded-full bg-white/15 text-white cursor-pointer">0:11–0:15</button>
+                                </div>
+
+                                <button id="yt-playpause-btn" type="button" onclick="toggleYtPlayback()"
+                                    class="font-mono text-[11px] font-semibold px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md text-white transition-colors cursor-pointer">
+                                    ❚❚ Pause Cut
+                                </button>
+                            </div>
+
+                            <!-- Center Kinetic Storyboard Stage -->
+                            <div id="yt-storyboard-stage"
+                                class="my-auto text-center max-w-3xl mx-auto relative z-20 px-2">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+
+                            <!-- Bottom Overlay: Sponsored Chip & Authentic Skip Ad Countdown Button -->
+                            <div class="flex flex-wrap items-end justify-between gap-3 relative z-20">
+                                <div
+                                    class="bg-black/45 backdrop-blur-md text-white px-3.5 py-2 rounded-full flex items-center gap-2.5 border border-white/15">
+                                    <span
+                                        class="w-6 h-6 rounded-full bg-lime text-forest font-mono text-[10px] font-bold flex items-center justify-center">TG</span>
+                                    <span class="font-sans text-xs font-semibold">Sponsored • touchgrass.irl</span>
+                                </div>
+
+                                <!-- Interactive "Skip Ad in 5..." -> "Skip Ad ⏭" Button -->
+                                <button id="yt-skip-control" type="button" onclick="triggerYtMetaSkip()"
+                                    class="bg-black/70 backdrop-blur-md text-white font-sans text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full border border-white/25 shadow-lg transition-all cursor-pointer">
+                                    Skip Ad in 5...
+                                </button>
+                            </div>
+
+                            <!-- Clever Meta-Overlay Triggered When User Clicks "Skip Ad ⏭" -->
+                            <div id="yt-meta-skip-screen"
+                                class="hidden absolute inset-0 z-30 bg-gradient-to-br from-forest via-[#0F3926] to-ocean text-white p-6 sm:p-10 flex-col items-center justify-center text-center space-y-5">
+                                <span
+                                    class="font-mono text-xs uppercase tracking-widest text-lime bg-white/10 px-3 py-1 rounded-full">
+                                    AD SKIPPED • REFLEX CONFIRMED
+                                </span>
+                                <h4 class="font-serif text-3xl sm:text-5xl max-w-2xl leading-[1.02]">
+                                    Nice reflex. Now skip the next 3 hours of autoplay.
+                                </h4>
+                                <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                                    <button type="button" onclick="openShutdownScreensaver()"
+                                        class="aqua-pill-lime font-sans text-xs sm:text-sm font-bold px-6 py-3 rounded-full">
+                                        LOG OFF →
+                                    </button>
+                                    <button type="button" onclick="resetYtPreroll()"
+                                        class="font-sans text-xs sm:text-sm font-semibold px-5 py-3 rounded-full bg-white/15 hover:bg-white/25 text-white transition-colors cursor-pointer">
+                                        ↻ Replay Pre-Roll
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- YouTube Video Player Context Footer -->
+                        <div
+                            class="p-4 sm:px-6 bg-white border-t border-forest/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div>
+                                <p class="font-sans text-sm sm:text-base font-bold text-forest">
+                                    Lo-Fi Beats to Study / Doomscroll To — 10 Hour Loop
+                                </p>
+                                <p class="font-mono text-xs text-forest/55">
+                                    CampusAmbient • 2.4M views • Autoplay ON
+                                </p>
+                            </div>
+                            <button type="button" onclick="resetYtPreroll()"
+                                class="self-start sm:self-auto font-mono text-xs font-semibold text-ocean hover:underline cursor-pointer">
+                                ↻ Restart 15s Pre-Roll
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         7. SECTION 05: SEQUENTIAL BEHAVIORAL RETARGETING FUNNEL
+         ====================================================================== -->
+        <section id="retargeting" class="py-20 sm:py-28 bg-white/60 border-b border-forest/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                    <div class="space-y-2">
+                        <span class="font-mono text-xs font-semibold uppercase tracking-widest text-ocean">
+                            05 // SEQUENTIAL PIXEL MESSAGING
+                        </span>
+                        <h2 class="font-serif text-4xl sm:text-6xl tracking-tight text-forest leading-none">
+                            Behavioral Retargeting Funnel
+                        </h2>
+                        <p class="text-sm sm:text-base text-forest/70 max-w-xl">
+                            As a student continues scrolling late into the night, dynamic retargeting creative escalates
+                            from a gentle nudge to a full operating-system intervention.
+                        </p>
+                    </div>
+                    <span class="font-mono text-xs font-semibold text-forest/60">
+                        FREQUENCY CAP: 3 TOUCHPOINTS / 24 HRS
+                    </span>
+                </div>
+
+                <!-- 3 Interactive Touchpoint Timeline Selector Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <button type="button" onclick="selectRetargetStep(0)"
+                        class="retarg-step-btn text-left p-5 rounded-2xl bg-white shadow-ambient hairline-border ring-2 ring-cerulean transition-all cursor-pointer">
+                        <div class="flex items-center justify-between font-mono text-xs font-bold text-ocean mb-1">
+                            <span>TOUCHPOINT 01</span>
+                            <span>11:15 PM</span>
+                        </div>
+                        <p class="font-sans text-sm font-bold text-forest">Gentle Nudge</p>
+                        <p class="text-xs text-forest/65 mt-0.5">Trigger: 2 hrs active social session</p>
+                    </button>
+
+                    <button type="button" onclick="selectRetargetStep(1)"
+                        class="retarg-step-btn text-left p-5 rounded-2xl bg-white/75 hover:bg-white hairline-border transition-all cursor-pointer">
+                        <div class="flex items-center justify-between font-mono text-xs font-bold text-forest/60 mb-1">
+                            <span>TOUCHPOINT 02</span>
+                            <span>1:40 AM</span>
+                        </div>
+                        <p class="font-sans text-sm font-bold text-forest">Self-Aware Ad</p>
+                        <p class="text-xs text-forest/65 mt-0.5">Trigger: Ignored Touchpoint 01 + 30 tabs</p>
+                    </button>
+
+                    <button type="button" onclick="selectRetargetStep(2)"
+                        class="retarg-step-btn text-left p-5 rounded-2xl bg-white/75 hover:bg-white hairline-border transition-all cursor-pointer">
+                        <div class="flex items-center justify-between font-mono text-xs font-bold text-forest/60 mb-1">
+                            <span>TOUCHPOINT 03</span>
+                            <span>3:05 AM</span>
+                        </div>
+                        <p class="font-sans text-sm font-bold text-forest">Full OS Takeover</p>
+                        <p class="text-xs text-forest/65 mt-0.5">Trigger: Post-midnight autoplay loop</p>
+                    </button>
+                </div>
+
+                <!-- Dynamic Retargeting Creative & Media Ops Preview Card -->
+                <div id="retarg-preview-panel"
+                    class="gallery-card rounded-3xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <div
+                            class="inline-flex items-center gap-2 bg-cloud px-3 py-1 rounded-full hairline-border font-mono text-xs font-semibold text-ocean">
+                            <span id="retarg-time-tag">TOUCHPOINT 01 • 11:15 PM</span>
+                        </div>
+                        <h3 id="retarg-editorial-headline"
+                            class="font-serif text-3xl sm:text-5xl text-forest leading-[1.02]">
+                            The sun is free. See you tomorrow?
+                        </h3>
+                        <p id="retarg-editorial-body" class="text-sm sm:text-base text-forest/75 leading-relaxed">
+                            Served softly between organic stories after two continuous hours of evening scrolling. Warm
+                            sunlit sky visuals paired with a low-friction reminder to plug in the charger and rest.
+                        </p>
+                        <div class="pt-1">
+                            <button type="button" onclick="openShutdownScreensaver()"
+                                class="aqua-pill-lime font-sans text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full">
+                                <span id="retarg-cta-label">GO OUTSIDE →</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Audience Trigger, Frequency Cap & Estimated CTR Lift Metrics -->
+                    <div class="lg:col-span-5 bg-cloud rounded-2xl p-5 sm:p-6 hairline-border space-y-3.5">
+                        <p class="font-mono text-xs font-bold uppercase tracking-wider text-forest/60">
+                            AD OPS &amp; PERFORMANCE TELEMETRY
+                        </p>
+                        <div class="space-y-2.5 text-xs">
+                            <div class="bg-white p-3 rounded-xl hairline-border flex justify-between gap-2">
+                                <span class="text-forest/65 font-medium">Audience Trigger</span>
+                                <span id="retarg-metric-trigger" class="font-mono font-bold text-forest text-right">120m
+                                    Evening Session</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl hairline-border flex justify-between gap-2">
+                                <span class="text-forest/65 font-medium">Frequency Cap</span>
+                                <span id="retarg-metric-cap" class="font-mono font-bold text-forest text-right">1
+                                    impression / night</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl hairline-border flex justify-between gap-2">
+                                <span class="text-forest/65 font-medium">Estimated CTR Lift</span>
+                                <span id="retarg-metric-ctr" class="font-mono font-bold text-ocean text-right">+3.4% vs.
+                                    Baseline</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         8. SECTION 06: CAMPAIGN RATIONALE & HIGHER-ED IT MARKETING STRATEGY BOARD
+         ====================================================================== -->
+        <section id="strategy-brief" class="py-20 sm:py-28">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+                <!-- Executive Strategy Board Header -->
+                <div class="max-w-3xl space-y-3">
+                    <span class="font-mono text-xs font-semibold uppercase tracking-widest text-ocean">
+                        06 // EXECUTIVE STRATEGY &amp; ART DIRECTION RATIONALE
+                    </span>
+                    <h2 class="font-serif text-4xl sm:text-6xl tracking-tight text-forest leading-none">
+                        Campaign Rationale &amp; Higher-Ed IT Marketing Brief
+                    </h2>
+                    <p class="text-sm sm:text-base text-forest/75 leading-relaxed">
+                        How self-aware anti-advertising, nostalgic OS iconography, and sunlit Frutiger Aero optimism
+                        work together to earn student attention—and how this framework translates directly to campus IT
+                        communication.
+                    </p>
+                </div>
+
+                <!-- Top 2-Column Strategic Foundation -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Card 1: Strategic Insight & Anti-Ad Positioning -->
+                    <div class="gallery-card rounded-3xl p-7 sm:p-8 space-y-4">
+                        <span
+                            class="inline-block font-mono text-xs font-semibold text-ocean bg-sky-50 px-3 py-1 rounded-full">
+                            01 • STRATEGIC INSIGHT &amp; POSITIONING
+                        </span>
+                        <h3 class="font-serif text-3xl text-forest leading-tight">
+                            Flipping “Engagement Maximization” into Log-Off Advocacy
+                        </h3>
+                        <p class="text-sm sm:text-base text-forest/75 leading-relaxed">
+                            College students spend an average of <strong>7+ hours daily</strong> on screens and have
+                            developed automatic banner blindness toward institutional flyers and preachy wellness apps.
+                            By adopting the visual language of <strong>Windows XP dialogs, SaaS pricing parodies, and
+                                live Screen Time alerts</strong>, TOUCH GRASS™ disarms skepticism with humor—earning
+                            organic shares because it respects student intelligence.
+                        </p>
+                    </div>
+
+                    <!-- Card 2: Campus & Higher-Ed IT Adaptation Note -->
+                    <div
+                        class="rounded-3xl p-7 sm:p-8 bg-gradient-to-br from-[#E0F2FE] via-white to-[#ECFCCB] hairline-border shadow-ambient space-y-4">
+                        <span
+                            class="inline-block font-mono text-xs font-bold text-forest bg-lime/75 px-3 py-1 rounded-full">
+                            02 • HIGHER-ED IT &amp; CAMPUS ADAPTATION
+                        </span>
+                        <h3 class="font-serif text-3xl text-forest leading-tight">
+                            Applying This Framework to University IT Customer Relationships
+                        </h3>
+                        <p class="text-sm sm:text-base text-forest/80 leading-relaxed">
+                            University IT departments often struggle to get students to read cybersecurity alerts,
+                            software availability updates, or digital detox initiatives because emails feel overly
+                            bureaucratic. This campaign proves how <strong>relatable OS humor + crisp editorial
+                                design</strong> can turn routine campus tech messaging (e.g., <em>“Digital Detox Week,”
+                                “2FA Checkups,”</em> or <em>“Free Campus Software vs. Paid Subscriptions”</em>) into
+                            high-engagement student touchpoints.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Visual System & Art Direction Tokens (Click-to-Copy Swatches + Typography) -->
+                <div class="gallery-card rounded-3xl p-7 sm:p-9 space-y-7">
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-forest/10">
+                        <div>
+                            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-ocean">
+                                03 • VISUAL SYSTEM &amp; ART DIRECTION TOKENS
+                            </span>
+                            <h3 class="font-serif text-3xl text-forest mt-1">
+                                Y2K Frutiger Aero × Modern Editorial Palette
+                            </h3>
+                        </div>
+                        <span class="font-mono text-xs text-forest/55">
+                            Click any swatch to copy HEX token
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <!-- 4 Interactive Color Swatches (7 Cols) -->
+                        <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <button type="button" onclick="copySwatchHex('#84FF00', this)"
+                                class="rounded-2xl p-4 bg-lime text-forest hairline-border shadow-sm hover:shadow-md transition-all text-left cursor-pointer">
+                                <div class="h-12 flex items-start justify-between">
+                                    <span class="font-mono text-[10px] font-bold uppercase opacity-75">Accent 01</span>
+                                </div>
+                                <p class="font-sans text-xs font-extrabold">Chlorophyll Lime</p>
+                                <p class="font-mono text-[11px] font-semibold mt-0.5">#84FF00</p>
+                            </button>
+
+                            <button type="button" onclick="copySwatchHex('#38BDF8', this)"
+                                class="rounded-2xl p-4 bg-gradient-to-b from-cerulean to-ocean text-white hairline-border shadow-sm hover:shadow-md transition-all text-left cursor-pointer">
+                                <div class="h-12 flex items-start justify-between">
+                                    <span class="font-mono text-[10px] font-bold uppercase opacity-85">Accent 02</span>
+                                </div>
+                                <p class="font-sans text-xs font-extrabold">Cerulean Sky</p>
+                                <p class="font-mono text-[11px] font-semibold mt-0.5">#38BDF8</p>
+                            </button>
+
+                            <button type="button" onclick="copySwatchHex('#F6F8F2', this)"
+                                class="rounded-2xl p-4 bg-cloud text-forest hairline-border shadow-sm hover:shadow-md transition-all text-left cursor-pointer">
+                                <div class="h-12 flex items-start justify-between">
+                                    <span class="font-mono text-[10px] font-bold uppercase opacity-65">Canvas</span>
+                                </div>
+                                <p class="font-sans text-xs font-extrabold">Sunlit Cream</p>
+                                <p class="font-mono text-[11px] font-semibold mt-0.5">#F6F8F2</p>
+                            </button>
+
+                            <button type="button" onclick="copySwatchHex('#0D2B1D', this)"
+                                class="rounded-2xl p-4 bg-forest text-white hairline-border shadow-sm hover:shadow-md transition-all text-left cursor-pointer">
+                                <div class="h-12 flex items-start justify-between">
+                                    <span class="font-mono text-[10px] font-bold uppercase opacity-75">Editorial
+                                        Ink</span>
+                                </div>
+                                <p class="font-sans text-xs font-extrabold">Forest Ink</p>
+                                <p class="font-mono text-[11px] font-semibold mt-0.5">#0D2B1D</p>
+                            </button>
+                        </div>
+
+                        <!-- Typography & Motion Specimens (5 Cols) -->
+                        <div class="lg:col-span-5 bg-cloud rounded-2xl p-5 hairline-border space-y-3">
+                            <div>
+                                <p class="font-serif text-2xl text-forest leading-none">
+                                    Instrument Serif <span class="italic text-ocean">&amp; Italic</span>
+                                </p>
+                                <p class="font-mono text-[11px] text-forest/60 mt-1">
+                                    High-fashion editorial headlines &amp; ironic wellness authority
+                                </p>
+                            </div>
+                            <div class="pt-2 border-t border-forest/10">
+                                <p class="font-sans text-sm font-bold text-forest">
+                                    Plus Jakarta Sans + IBM Plex Mono
+                                </p>
+                                <p class="font-mono text-[11px] text-forest/60 mt-0.5">
+                                    Clean UI hierarchy paired with retro Windows XP / Aqua telemetry
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media Mix & Target KPI Benchmarks Table -->
+                <div class="gallery-card rounded-3xl p-7 sm:p-9 space-y-6">
+                    <div>
+                        <span class="font-mono text-xs font-semibold uppercase tracking-widest text-ocean">
+                            04 • CHANNEL MEDIA MIX &amp; TARGET KPI BENCHMARKS
+                        </span>
+                        <h3 class="font-serif text-3xl text-forest mt-1">
+                            Omnichannel Rollout &amp; Performance Targets
+                        </h3>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                            <thead>
+                                <tr class="border-b border-forest/15 font-mono text-[11px] uppercase text-forest/60">
+                                    <th class="py-3 pr-4">Channel &amp; Format</th>
+                                    <th class="py-3 px-4">Creative Role</th>
+                                    <th class="py-3 px-4">Primary KPI</th>
+                                    <th class="py-3 pl-4 text-right">Target Benchmark</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-forest/10">
+                                <tr>
+                                    <td class="py-3.5 pr-4 font-bold text-forest">Meta Feed (4:5 Carousel &amp; Static)
+                                    </td>
+                                    <td class="py-3.5 px-4 text-forest/75">Thumb-stop pattern interrupt &amp; organic
+                                        shares</td>
+                                    <td class="py-3.5 px-4 font-mono text-xs text-forest/80">Outbound CTR &amp; Share
+                                        Rate</td>
+                                    <td class="py-3.5 pl-4 text-right font-mono font-bold text-ocean">2.8% CTR</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3.5 pr-4 font-bold text-forest">IG Stories &amp; Reels (9:16
+                                        Interactive)</td>
+                                    <td class="py-3.5 px-4 text-forest/75">Gamified sticker tap &amp; poll participation
+                                    </td>
+                                    <td class="py-3.5 px-4 font-mono text-xs text-forest/80">Story Sticker Tap Rate</td>
+                                    <td class="py-3.5 pl-4 text-right font-mono font-bold text-chlorophyll">14.5% Tap
+                                        Rate</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3.5 pr-4 font-bold text-forest">Programmatic Display (728×90 /
+                                        300×250)</td>
+                                    <td class="py-3.5 px-4 text-forest/75">Contextual late-night study portal
+                                        interruption</td>
+                                    <td class="py-3.5 px-4 font-mono text-xs text-forest/80">Playable Engagement Rate
+                                    </td>
+                                    <td class="py-3.5 pl-4 text-right font-mono font-bold text-ocean">4.1% Interaction
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3.5 pr-4 font-bold text-forest">YouTube Pre-Roll (15s Skippable)</td>
+                                    <td class="py-3.5 px-4 text-forest/75">Autoplay loop interruption + meta-skip hook
+                                    </td>
+                                    <td class="py-3.5 px-4 font-mono text-xs text-forest/80">15s View-Through Rate (VTR)
+                                    </td>
+                                    <td class="py-3.5 pl-4 text-right font-mono font-bold text-chlorophyll">46% VTR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+    <footer class="bg-white border-t border-forest/10 py-10">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="font-sans font-extrabold text-base text-forest">TOUCH GRASS™</p>
+                <p class="font-mono text-xs text-forest/60 mt-0.5">
+                    CAMPAIGN CASE STUDY 05 // DIGITAL ADVERTISING &amp; HIGHER-ED STRATEGY
+                </p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button type="button" onclick="openShutdownScreensaver()"
+                    class="aqua-pill-sky font-sans text-xs font-bold px-4 py-2 rounded-full">
+                    LOG OFF →
+                </button>
+                <a href="#overview"
+                    class="font-mono text-xs font-semibold text-forest/70 hover:text-forest px-3 py-2 rounded-full hairline-border">
+                    Top ↑
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================================================
+       SUBTLE INTERACTIVE CAMPAIGN TOAST (Replaces any browser alert)
+       ======================================================================== -->
+    <div id="campaign-toast"
+        class="fixed bottom-5 right-5 z-50 hidden max-w-sm frosted-glass rounded-2xl p-4 shadow-ambient-lg space-y-2"
+        role="status">
+        <div class="flex items-center justify-between gap-2">
+            <span id="campaign-toast-badge"
+                class="font-mono text-[10px] font-bold uppercase tracking-wider text-ocean bg-sky-50 px-2.5 py-0.5 rounded-full">
+                AD INTERACTION
+            </span>
+            <button type="button" onclick="hideCampaignToast()"
+                class="text-forest/50 hover:text-forest font-mono text-xs cursor-pointer">×</button>
+        </div>
+        <p id="campaign-toast-msg" class="font-sans text-xs sm:text-sm font-semibold text-forest leading-snug">
+            Conversion event logged.
+        </p>
+    </div>
+
+    <!-- ========================================================================
+       SERENE FULL-SCREEN "OUTSIDE MODE / WINDOWS XP SHUTDOWN" SCREENSAVER MODAL
+       ======================================================================== -->
+    <div id="shutdown-screensaver-modal"
+        class="fixed inset-0 z-50 hidden flex-col justify-between overflow-y-auto bliss-sky-gradient" role="dialog"
+        aria-modal="true" aria-labelledby="screensaver-title">
+        <!-- Top Aqua OS Shutdown Bar -->
+        <div
+            class="frosted-glass border-b border-forest/10 px-5 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 font-mono text-xs font-semibold text-ocean">
+                <span class="w-2.5 h-2.5 rounded-full bg-chlorophyll animate-ping"></span>
+                <span>WINDOWS XP SHUTDOWN // OUTSIDE MODE ACTIVE</span>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+                <button id="birdsong-toggle-btn" type="button" onclick="toggleMeadowBirdsong()"
+                    class="font-mono text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-white text-forest hairline-border transition-colors cursor-pointer">
+                    🐦 Meadow Birdsong: OFF
+                </button>
+                <button type="button" onclick="closeShutdownScreensaver()"
+                    class="font-sans text-xs font-bold px-4 py-1.5 rounded-full bg-forest text-white hover:bg-ocean transition-colors cursor-pointer">
+                    Return to Portfolio
+                </button>
+            </div>
+        </div>
+
+        <!-- Center Serene Sunlit Meadow Message -->
+        <div class="max-w-2xl mx-auto px-6 py-12 text-center space-y-6 my-auto relative z-10">
+            <!-- Radiant Sun Orb -->
+            <div
+                class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-sunbeam via-amber-200 to-lime shadow-[0_0_80px_rgba(253,224,71,0.95)] border-2 border-white">
+            </div>
+
+            <div
+                class="inline-block bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full hairline-border font-mono text-xs font-semibold text-ocean shadow-xs">
+                It is now safe to step away from your screen.
+            </div>
+
+            <h2 id="screensaver-title"
+                class="font-serif text-5xl sm:text-7xl tracking-tight text-forest leading-[0.95]">
+                You logged off.
+                <span class="block italic text-ocean mt-1">The grass is thrilled.</span>
+            </h2>
+
+            <p class="text-base sm:text-lg text-forest/75 max-w-lg mx-auto leading-relaxed">
+                No infinite scroll. No push notifications. Just unrendered high-definition sunlight and fresh air.
+            </p>
+
+            <div class="pt-2">
+                <button type="button" onclick="closeShutdownScreensaver()"
+                    class="aqua-pill-sky font-sans text-sm font-bold px-7 py-3.5 rounded-full">
+                    ← Return to Portfolio
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Sunlit Bliss Rolling Meadow SVG -->
+        <svg class="w-full h-36 sm:h-48 block shrink-0" viewBox="0 0 1440 200" preserveAspectRatio="none"
+            aria-hidden="true">
+            <path d="M0 100 C360 20, 720 170, 1080 65 C1260 15, 1380 75, 1440 90 L1440 200 L0 200 Z" fill="#A3FF33"
+                opacity="0.75" />
+            <path d="M0 140 C300 85, 620 35, 960 120 C1180 170, 1340 105, 1440 115 L1440 200 L0 200 Z" fill="#65D900" />
+        </svg>
+    </div>
+
+    <!-- ========================================================================
+       JAVASCRIPT: INTERACTIVE REALITY SLIDER, CAROUSELS, MINI-GAME, SCREENSAVER
+       ======================================================================== -->
+    <script>
+        // ========================================================================
+        // 1. LIVE NAV SESSION TIMER ("Session Time: 00:00:01")
+        // ========================================================================
+        let activeSessionSeconds = 1;
+
+        function formatSessionClock(totalSec) {
+            const h = String(Math.floor(totalSec / 3600)).padStart(2, '0');
+            const m = String(Math.floor((totalSec % 3600) / 60)).padStart(2, '0');
+            const s = String(totalSec % 60).padStart(2, '0');
+            return `${h}:${m}:${s}`;
+        }
+
+        setInterval(() => {
+            activeSessionSeconds++;
+            const el = document.getElementById('nav-session-timer');
+            if (el) {
+                el.textContent = `Session Time: ${formatSessionClock(activeSessionSeconds)}`;
+            }
+        }, 1000);
+
+        // ========================================================================
+        // 2. HERO: HOURS ONLINE REALITY SLIDER + GRASS BURST + NESTED LIE ALERTS
+        // ========================================================================
+        function updateHoursReality(rawVal) {
+            const hrs = parseInt(rawVal, 10);
+            document.getElementById('slider-hours-readout').textContent = `${hrs} ${hrs === 1 ? 'hr' : 'hrs'}`;
+
+            const statusPill = document.getElementById('slider-status-pill');
+            const deficitPct = Math.min(99, Math.max(18, Math.round((hrs / 12) * 100)));
+            document.getElementById('deficit-pct-label').textContent = `${deficitPct}%`;
+            document.getElementById('deficit-progress-fill').style.width = `${deficitPct}%`;
+
+            const nestedStack = document.getElementById('hero-nested-alerts');
+
+            if (hrs <= 3) {
+                statusPill.textContent = 'Mildly Glazed';
+                statusPill.className = 'font-mono text-xs font-semibold px-3 py-0.5 rounded-full bg-sky-100 text-ocean';
+                nestedStack.innerHTML = '';
+            } else if (hrs <= 7) {
+                statusPill.textContent = '404: Vitamin D Not Found';
+                statusPill.className = 'font-mono text-xs font-semibold px-3 py-0.5 rounded-full bg-sunbeam/85 text-forest';
+                nestedStack.innerHTML = '';
+            } else {
+                statusPill.textContent = 'Terminal Doomscroll';
+                statusPill.className = 'font-mono text-xs font-semibold px-3 py-0.5 rounded-full bg-lime text-forest';
+                const extraCount = hrs - 7;
+                nestedStack.innerHTML = Array.from({ length: Math.min(extraCount, 3) })
+                    .map(
+                        (_, idx) => `
+            <div class="xp-aqua-dialog px-3.5 py-2.5 flex items-center justify-between text-xs animate-float-badge">
+              <span class="font-mono font-semibold text-forest">
+                ⚠️ Warning #0${idx + 2}: ${hrs} hours detected. Blink twice.
+              </span>
+              <button type="button" onclick="this.parentElement.remove()" class="font-mono text-ocean font-bold hover:underline cursor-pointer">
+                Dismiss
+              </button>
+            </div>`
+                    )
+                    .join('');
+            }
+        }
+
+        function triggerHeroGrassBurst() {
+            const hills = document.getElementById('hero-meadow-hills');
+            hills.classList.remove('animate-grass-burst');
+            void hills.offsetWidth;
+            hills.classList.add('animate-grass-burst');
+            showCampaignToast('Hero Reality Check', 'Meadow chlorophyll boosted! Now scroll down to inspect the ad suite.');
+        }
+
+        let lieClicks = 0;
+        function spawnLieMiniAlert() {
+            lieClicks++;
+            const stack = document.getElementById('hero-nested-alerts');
+            const quips = [
+                'System detected a lie. You said “5 more minutes” 45 minutes ago.',
+                'Snooze rejected by ScreenTime_Alert.exe. Go hydrate.',
+                'Nice try. Your algorithm has already queued 19 more videos.'
+            ];
+            const msg = quips[(lieClicks - 1) % quips.length];
+            const card = document.createElement('div');
+            card.className = 'xp-aqua-dialog px-3.5 py-2.5 flex items-center justify-between gap-2 text-xs';
+            card.innerHTML = `
+        <span class="font-mono font-semibold text-forest">${msg}</span>
+        <button type="button" onclick="this.parentElement.remove()" class="font-mono text-ocean font-bold shrink-0 cursor-pointer">×</button>
+      `;
+            stack.prepend(card);
+            if (stack.children.length > 3) {
+                stack.lastElementChild.remove();
+            }
+        }
+
+        // ========================================================================
+        // 3. SECTION 01: META FEED GALLERY VIEW TOGGLE & INTERACTIVE CARDS
+        // ========================================================================
+        function setMetaGalleryMode(mode) {
+            const container = document.getElementById('meta-gallery-container');
+            const ctxBtn = document.getElementById('meta-view-context-btn');
+            const cleanBtn = document.getElementById('meta-view-clean-btn');
+
+            if (mode === 'clean') {
+                container.classList.add('meta-gallery-clean');
+                cleanBtn.className = 'font-sans text-xs font-bold px-4 py-2 rounded-full bg-forest text-white transition-all cursor-pointer';
+                ctxBtn.className = 'font-sans text-xs font-semibold px-4 py-2 rounded-full text-forest/75 hover:text-forest transition-all cursor-pointer';
+            } else {
+                container.classList.remove('meta-gallery-clean');
+                ctxBtn.className = 'font-sans text-xs font-bold px-4 py-2 rounded-full bg-forest text-white transition-all cursor-pointer';
+                cleanBtn.className = 'font-sans text-xs font-semibold px-4 py-2 rounded-full text-forest/75 hover:text-forest transition-all cursor-pointer';
+            }
+        }
+
+        function toggleHeart(btn) {
+            if (btn.textContent === '♡') {
+                btn.textContent = '♥';
+                btn.classList.add('text-rose-500');
+            } else {
+                btn.textContent = '♡';
+                btn.classList.remove('text-rose-500');
+            }
+        }
+
+        // Ad Unit B: Interactive [ Close Ad & Log Off ] Flip
+        function terminateAdUnitB() {
+            const body = document.getElementById('ad-b-dialog-body');
+            body.innerHTML = `
+        <div class="w-9 h-9 mx-auto rounded-full bg-lime/40 flex items-center justify-center text-base">💧</div>
+        <p class="font-serif text-2xl leading-tight text-forest">
+          Ad Terminated. Go Drink Water.
+        </p>
+        <button
+          type="button"
+          onclick="restoreAdUnitB()"
+          class="font-mono text-[10px] font-semibold text-ocean underline cursor-pointer"
+        >
+          Restore Ad Preview
+        </button>
+      `;
+        }
+
+        function restoreAdUnitB() {
+            const body = document.getElementById('ad-b-dialog-body');
+            body.innerHTML = `
+        <p class="font-sans font-extrabold text-sm sm:text-base leading-tight text-forest">
+          THIS AD IS ASKING YOU TO STOP LOOKING AT ADS.
+        </p>
+        <button
+          type="button"
+          onclick="terminateAdUnitB()"
+          class="aqua-pill-sky font-mono text-[11px] font-semibold px-3.5 py-1.5 rounded-full"
+        >
+          [ Close Ad &amp; Log Off ]
+        </button>
+      `;
+        }
+
+        // Ad Unit C: Interactive 3-Slide Meta Carousel
+        const metaCarouselSlides = [
+            {
+                bg: 'bg-gradient-to-b from-[#E0F2FE] via-white to-[#F6F8F2]',
+                tag: 'SLIDE 01 • DIAGNOSTIC',
+                visual: `
+          <div class="mx-auto w-20 h-20 rounded-3xl bg-gradient-to-br from-sunbeam to-amber-300 flex items-center justify-center shadow-md border border-white">
+            <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="9" width="18" height="2" fill="#0D2B1D" />
+              <rect x="4" y="11" width="6" height="4" fill="#0D2B1D" />
+              <rect x="14" y="11" width="6" height="4" fill="#0D2B1D" />
+              <rect x="5" y="11" width="2" height="1" fill="#FFFFFF" />
+              <rect x="15" y="11" width="2" height="1" fill="#FFFFFF" />
+            </svg>
+          </div>
+          <div class="w-44 mx-auto bg-white rounded-full h-2.5 p-0.5 hairline-border mt-3">
+            <div class="h-full bg-rose-400 rounded-full" style="width: 8%;"></div>
+          </div>
+          <p class="font-mono text-[10px] text-forest/60 mt-1">Solar Battery: 8% Remaining</p>
+        `,
+                headline: '404: VITAMIN D NOT FOUND.',
+                sub: 'Your phone is at 84%. Your daylight exposure is at 8%.'
+            },
+            {
+                bg: 'bg-gradient-to-b from-[#F6F8F2] via-white to-[#E0F2FE]',
+                tag: 'SLIDE 02 • RECEIPTS',
+                visual: `
+          <div class="bg-white rounded-2xl p-4 hairline-border shadow-xs max-w-[230px] mx-auto">
+            <div class="flex items-end justify-between gap-2 h-20 pt-2">
+              <div class="w-full bg-sky-200 rounded-t-md h-6"></div>
+              <div class="w-full bg-sky-300 rounded-t-md h-9"></div>
+              <div class="w-full bg-cerulean rounded-t-md h-12"></div>
+              <div class="w-full bg-ocean rounded-t-md h-16"></div>
+              <div class="w-full bg-lime rounded-t-md h-full relative">
+                <span class="absolute -top-4 left-1/2 -translate-x-1/2 font-mono text-[9px] font-bold text-forest">2AM</span>
+              </div>
+            </div>
+          </div>
+        `,
+                headline: 'YOUR SCREEN TIME REPORT WOULD LIKE A WORD.',
+                sub: 'Peak screen activity occurred between 1:00 AM and 2:45 AM.'
+            },
+            {
+                bg: 'bg-gradient-to-b from-[#ECFCCB] via-[#F6F8F2] to-[#BAE6FD]',
+                tag: 'SLIDE 03 • SIDE QUEST',
+                visual: `
+          <div class="mx-auto w-20 h-20 rounded-3xl bg-gradient-to-br from-lime to-chlorophyll flex items-center justify-center text-4xl shadow-md border border-white">
+            🏆
+          </div>
+        `,
+                headline: 'ACHIEVEMENT UNLOCKED: Went outside voluntarily.',
+                sub: '+1,000 XP • Zero notifications required.'
+            }
+        ];
+
+        let metaSlideIndex = 0;
+
+        function renderMetaCarousel() {
+            const slide = metaCarouselSlides[metaSlideIndex];
+            const stage = document.getElementById('meta-carousel-stage');
+            stage.className = `w-full h-full p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 ${slide.bg}`;
+            stage.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[10px] font-bold text-ocean bg-white/90 px-2.5 py-1 rounded-full hairline-border">
+            ${slide.tag}
+          </span>
+          <span class="font-mono text-[10px] font-semibold text-forest/65">TOUCH GRASS™</span>
+        </div>
+        <div class="my-auto text-center">
+          ${slide.visual}
+        </div>
+        <div class="space-y-1.5 text-center">
+          <h3 class="font-serif text-3xl sm:text-[2.15rem] leading-[0.98] text-forest">
+            ${slide.headline}
+          </h3>
+          <p class="font-sans text-xs text-forest/75 font-medium">
+            ${slide.sub}
+          </p>
+        </div>
+      `;
+
+            document.getElementById('carousel-counter-pill').textContent = `${metaSlideIndex + 1} / ${metaCarouselSlides.length}`;
+            document.querySelectorAll('.meta-dot').forEach((dot, idx) => {
+                dot.className = idx === metaSlideIndex
+                    ? 'meta-dot w-4 h-2 rounded-full bg-ocean transition-all cursor-pointer'
+                    : 'meta-dot w-2 h-2 rounded-full bg-forest/20 transition-all cursor-pointer';
+            });
+        }
+
+        function stepMetaCarousel(delta) {
+            metaSlideIndex = (metaSlideIndex + delta + metaCarouselSlides.length) % metaCarouselSlides.length;
+            renderMetaCarousel();
+        }
+
+        function setMetaCarousel(idx) {
+            metaSlideIndex = idx;
+            renderMetaCarousel();
+        }
+
+        renderMetaCarousel();
+
+        // ========================================================================
+        // 4. SECTION 02: STORY & REEL INTERACTIVE STICKERS (HOLD GRASS + POLL)
+        // ========================================================================
+        let storyVitaminD = 3;
+        let holdGrassInterval = null;
+
+        function growStoryGrassStep() {
+            storyVitaminD = Math.min(100, storyVitaminD + 25);
+            updateStoryGrassUI();
+        }
+
+        function startHoldingGrass() {
+            clearInterval(holdGrassInterval);
+            holdGrassInterval = setInterval(() => {
+                if (storyVitaminD < 100) {
+                    storyVitaminD = Math.min(100, storyVitaminD + 12);
+                    updateStoryGrassUI();
+                } else {
+                    clearInterval(holdGrassInterval);
+                }
+            }, 160);
+        }
+
+        function stopHoldingGrass() {
+            clearInterval(holdGrassInterval);
+        }
+
+        function updateStoryGrassUI() {
+            document.getElementById('story-vitd-pct').textContent = `${storyVitaminD}%`;
+            document.getElementById('story-vitd-bar').style.width = `${storyVitaminD}%`;
+            document.getElementById('story1-progress-bar').style.width = `${Math.max(35, storyVitaminD)}%`;
+
+            // Grow meadow SVG height from 52px up to 150px
+            const heightPx = 52 + Math.round((storyVitaminD / 100) * 98);
+            document.getElementById('story-meadow-growth').style.height = `${heightPx}px`;
+
+            if (storyVitaminD >= 65) {
+                document.getElementById('story-daisies-group').setAttribute('opacity', '1');
+            }
+
+            if (storyVitaminD >= 100) {
+                const badge = document.getElementById('story-achievement-badge');
+                badge.classList.remove('hidden');
+                badge.classList.add('flex');
+                document.getElementById('story-grass-sticker').textContent = '[ MEADOW RESTORED ✓ ]';
+            }
+        }
+
+        function castStoryPoll(option) {
+            const outcome = document.getElementById('story-poll-outcome');
+            outcome.classList.remove('hidden');
+            if (option === 'denial') {
+                document.getElementById('poll-val-left').textContent = '24%';
+                document.getElementById('poll-fill-left').style.width = '24%';
+                document.getElementById('poll-val-right').textContent = '76%';
+                document.getElementById('poll-fill-right').style.width = '76%';
+            } else {
+                document.getElementById('poll-val-left').textContent = '19%';
+                document.getElementById('poll-fill-left').style.width = '19%';
+                document.getElementById('poll-val-right').textContent = '81%';
+                document.getElementById('poll-fill-right').style.width = '81%';
+            }
+        }
+
+        // ========================================================================
+        // 5. SECTION 03: DISPLAY PORTAL MODE TOGGLE & PLAYABLE 300×250 MPU MINI-GAME
+        // ========================================================================
+        function setPortalDisplayMode(mode) {
+            const wrapper = document.getElementById('editorial-portal-wrapper');
+            const ctxBtn = document.getElementById('portal-context-btn');
+            const isoBtn = document.getElementById('portal-isolated-btn');
+
+            if (mode === 'isolated') {
+                wrapper.classList.add('portal-isolated-mode');
+                isoBtn.className = 'font-sans text-xs font-bold px-4 py-2 rounded-full bg-forest text-white transition-all cursor-pointer';
+                ctxBtn.className = 'font-sans text-xs font-semibold px-4 py-2 rounded-full text-forest/75 hover:text-forest transition-all cursor-pointer';
+            } else {
+                wrapper.classList.remove('portal-isolated-mode');
+                ctxBtn.className = 'font-sans text-xs font-bold px-4 py-2 rounded-full bg-forest text-white transition-all cursor-pointer';
+                isoBtn.className = 'font-sans text-xs font-semibold px-4 py-2 rounded-full text-forest/75 hover:text-forest transition-all cursor-pointer';
+            }
+        }
+
+        let squishedCount = 0;
+        function squishNotificationBadge(btn) {
+            if (btn.dataset.squished === '1') return;
+            btn.dataset.squished = '1';
+            squishedCount++;
+
+            // Transform annoying red notification badge into a serene flower
+            btn.textContent = '🌼';
+            btn.className = 'w-10 h-10 rounded-full bg-white shadow-sm hairline-border flex items-center justify-center text-lg transition-transform scale-110';
+            document.getElementById('mpu-cleared-counter').textContent = `${squishedCount} / 3 POPPED`;
+
+            if (squishedCount >= 3) {
+                setTimeout(() => {
+                    document.getElementById('mpu-playground').classList.add('hidden');
+                    document.getElementById('mpu-unlocked-state').classList.remove('hidden');
+                }, 350);
+            }
+        }
+
+        // ========================================================================
+        // 6. SECTION 04: YOUTUBE PRE-ROLL 4-SCENE KINETIC STORYBOARD & SKIP AD
+        // ========================================================================
+        const ytStoryboardScenes = [
+            {
+                bg: 'bg-[#091510] text-white',
+                html: `
+          <div class="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/15 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-lime animate-ping"></span>
+            <span class="font-mono text-xs text-white/80">0:00 – 0:03 • PATTERN INTERRUPT</span>
+          </div>
+          <h4 class="font-serif text-4xl sm:text-6xl tracking-tight text-white">
+            Still watching?
+          </h4>
+        `
+            },
+            {
+                bg: 'bg-gradient-to-br from-[#0284C7] to-[#38BDF8] text-white',
+                html: `
+          <div class="xp-aqua-dialog max-w-md mx-auto text-left text-forest">
+            <div class="xp-titlebar px-3.5 py-1.5 text-white font-mono text-[11px] font-semibold flex justify-between">
+              <span>ScreenTime_Alert.exe</span>
+              <span>0:03 – 0:07</span>
+            </div>
+            <div class="p-5 space-y-1.5">
+              <p class="font-vt text-2xl text-ocean leading-none">404: VITAMIN D NOT FOUND.</p>
+              <p class="font-serif text-2xl sm:text-3xl text-forest leading-tight">
+                You’ve been online for 7 hours.
+              </p>
+            </div>
+          </div>
+        `
+            },
+            {
+                bg: 'bg-gradient-to-r from-[#84FF00] via-[#A3FF33] to-[#65D900] text-forest',
+                html: `
+          <span class="font-mono text-xs font-bold uppercase tracking-widest bg-white/85 px-3 py-1 rounded-full">
+            0:07 – 0:11 • ANTI-AD WIPE
+          </span>
+          <h4 class="font-serif text-4xl sm:text-6xl leading-[0.96] tracking-tight text-forest mt-3">
+            THIS AD IS ASKING YOU TO <span class="italic">STOP LOOKING</span> AT ADS.
+          </h4>
+        `
+            },
+            {
+                bg: 'bg-gradient-to-b from-[#BAE6FD] via-[#F6F8F2] to-[#ECFCCB] text-forest',
+                html: `
+          <span class="font-mono text-xs font-bold uppercase tracking-widest text-ocean">
+            0:11 – 0:15 • CALL TO ACTION
+          </span>
+          <h4 class="font-serif text-4xl sm:text-6xl leading-[0.96] tracking-tight text-forest mt-2">
+            THE SUN IS FREE. <span class="italic text-ocean">No subscription required.</span>
+          </h4>
+          <div class="pt-4">
+            <button type="button" onclick="openShutdownScreensaver()" class="aqua-pill-lime font-sans text-xs sm:text-sm font-bold px-6 py-2.5 rounded-full">
+              TOUCH GRASS →
+            </button>
+          </div>
+        `
+            }
+        ];
+
+        let ytSceneIdx = 0;
+        let ytPlaying = true;
+        let ytSkipCountdown = 5;
+        let ytMetaSkipped = false;
+
+        function renderYtScene(index) {
+            ytSceneIdx = index % ytStoryboardScenes.length;
+            const scene = ytStoryboardScenes[ytSceneIdx];
+            const viewport = document.getElementById('yt-player-viewport');
+            viewport.className = `aspect-video relative overflow-hidden flex flex-col justify-between p-6 sm:p-10 select-none transition-all duration-500 ${scene.bg}`;
+            document.getElementById('yt-storyboard-stage').innerHTML = scene.html;
+
+            document.querySelectorAll('.yt-scene-pill').forEach((pill, i) => {
+                pill.className = i === ytSceneIdx
+                    ? 'yt-scene-pill font-mono text-[10px] font-bold px-2.5 py-1 rounded-full bg-white text-forest shadow-xs cursor-pointer'
+                    : 'yt-scene-pill font-mono text-[10px] font-semibold px-2.5 py-1 rounded-full bg-black/25 text-white/90 hover:bg-black/40 cursor-pointer';
+            });
+        }
+
+        function jumpYtScene(idx) {
+            renderYtScene(idx);
+        }
+
+        function toggleYtPlayback() {
+            ytPlaying = !ytPlaying;
+            document.getElementById('yt-playpause-btn').textContent = ytPlaying ? '❚❚ Pause Cut' : '▶ Play Cut';
+        }
+
+        function triggerYtMetaSkip() {
+            if (ytSkipCountdown > 0) return;
+            ytMetaSkipped = true;
+            const overlay = document.getElementById('yt-meta-skip-screen');
+            overlay.classList.remove('hidden');
+            overlay.classList.add('flex');
+        }
+
+        function resetYtPreroll() {
+            ytMetaSkipped = false;
+            ytPlaying = true;
+            ytSkipCountdown = 5;
+            document.getElementById('yt-playpause-btn').textContent = '❚❚ Pause Cut';
+
+            const overlay = document.getElementById('yt-meta-skip-screen');
+            overlay.classList.add('hidden');
+            overlay.classList.remove('flex');
+
+            const skipBtn = document.getElementById('yt-skip-control');
+            skipBtn.textContent = 'Skip Ad in 5...';
+            skipBtn.className = 'bg-black/70 backdrop-blur-md text-white font-sans text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full border border-white/25 shadow-lg transition-all cursor-pointer';
+            renderYtScene(0);
+        }
+
+        // Auto-advance storyboard scenes every 3.5s
+        setInterval(() => {
+            if (ytPlaying && !ytMetaSkipped) {
+                renderYtScene(ytSceneIdx + 1);
+            }
+        }, 3500);
+
+        // Count down Skip Ad button every 1s
+        setInterval(() => {
+            if (ytPlaying && !ytMetaSkipped && ytSkipCountdown > 0) {
+                ytSkipCountdown--;
+                const btn = document.getElementById('yt-skip-control');
+                if (ytSkipCountdown > 0) {
+                    btn.textContent = `Skip Ad in ${ytSkipCountdown}...`;
+                } else {
+                    btn.textContent = 'Skip Ad ⏭';
+                    btn.className = 'aqua-pill-lime font-sans text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full';
+                }
+            }
+        }, 1000);
+
+        renderYtScene(0);
+
+        // ========================================================================
+        // 7. SECTION 05: SEQUENTIAL BEHAVIORAL RETARGETING FUNNEL
+        // ========================================================================
+        const retargetStepsData = [
+            {
+                tag: 'TOUCHPOINT 01 • 11:15 PM',
+                headline: 'The sun is free. See you tomorrow?',
+                body: 'Served softly between organic stories after two continuous hours of evening scrolling. Warm sunlit sky visuals paired with a low-friction reminder to plug in the charger and rest.',
+                cta: 'GO OUTSIDE →',
+                trigger: '120m Evening Session',
+                cap: '1 impression / night',
+                ctr: '+3.4% vs. Baseline'
+            },
+            {
+                tag: 'TOUCHPOINT 02 • 1:40 AM',
+                headline: 'This ad is asking you to stop looking at ads.',
+                body: 'Triggered when the user bypasses Touchpoint 01 and continues rapid feed refreshes past 1:30 AM. Self-aware humor breaks autopilot scrolling without lecturing.',
+                cta: 'LOG OFF →',
+                trigger: 'Ignored TP-01 + 30 Tabs',
+                cap: '1 impression / 12 hrs',
+                ctr: '+5.1% vs. Baseline'
+            },
+            {
+                tag: 'TOUCHPOINT 03 • 3:05 AM',
+                headline: 'Your screen time report would like a word. Achievement unlocked if you close this tab.',
+                body: 'Final escalation delivered as a retro Windows XP shutdown dialog on desktop display and YouTube pre-roll—rewarding voluntary log-off with a shareable RPG badge.',
+                cta: 'TOUCH GRASS →',
+                trigger: 'Post-Midnight Autoplay',
+                cap: 'Hard stop at 1 click',
+                ctr: '+6.8% vs. Baseline'
+            }
+        ];
+
+        function selectRetargetStep(idx) {
+            const data = retargetStepsData[idx];
+            document.getElementById('retarg-time-tag').textContent = data.tag;
+            document.getElementById('retarg-editorial-headline').textContent = data.headline;
+            document.getElementById('retarg-editorial-body').textContent = data.body;
+            document.getElementById('retarg-cta-label').textContent = data.cta;
+            document.getElementById('retarg-metric-trigger').textContent = data.trigger;
+            document.getElementById('retarg-metric-cap').textContent = data.cap;
+            document.getElementById('retarg-metric-ctr').textContent = data.ctr;
+
+            document.querySelectorAll('.retarg-step-btn').forEach((btn, i) => {
+                if (i === idx) {
+                    btn.className = 'retarg-step-btn text-left p-5 rounded-2xl bg-white shadow-ambient hairline-border ring-2 ring-cerulean transition-all cursor-pointer';
+                    btn.querySelector('div').classList.replace('text-forest/60', 'text-ocean');
+                } else {
+                    btn.className = 'retarg-step-btn text-left p-5 rounded-2xl bg-white/75 hover:bg-white hairline-border transition-all cursor-pointer';
+                    btn.querySelector('div').classList.replace('text-ocean', 'text-forest/60');
+                }
+            });
+        }
+
+        // ========================================================================
+        // 8. SECTION 06: CLICK-TO-COPY BRAND SWATCHES & TOAST NOTIFICATIONS
+        // ========================================================================
+        function copySwatchHex(hex, btnEl) {
+            const temp = document.createElement('textarea');
+            temp.value = hex;
+            temp.style.position = 'fixed';
+            temp.style.opacity = '0';
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand('copy');
+            } catch (e) { }
+            document.body.removeChild(temp);
+
+            const codeEl = btnEl.querySelector('p:last-child');
+            const prev = codeEl.textContent;
+            codeEl.textContent = 'Copied ✓';
+            showCampaignToast('Brand Token Copied', `HEX color ${hex} copied to your clipboard.`);
+            setTimeout(() => {
+                codeEl.textContent = prev;
+            }, 1400);
+        }
+
+        let toastTimer = null;
+        function showCampaignToast(badge, message) {
+            const toast = document.getElementById('campaign-toast');
+            document.getElementById('campaign-toast-badge').textContent = badge;
+            document.getElementById('campaign-toast-msg').textContent = message;
+            toast.classList.remove('hidden');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(hideCampaignToast, 4000);
+        }
+
+        function hideCampaignToast() {
+            document.getElementById('campaign-toast').classList.add('hidden');
+        }
+
+        // ========================================================================
+        // 9. SERENE FULL-SCREEN "OUTSIDE MODE / XP SHUTDOWN" SCREENSAVER + BIRDSONG
+        // ========================================================================
+        let birdsongCtx = null;
+        let birdsongInterval = null;
+        let birdsongActive = false;
+
+        function playGentleChirp() {
+            try {
+                if (!birdsongCtx) {
+                    birdsongCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (birdsongCtx.state === 'suspended') birdsongCtx.resume();
+                const now = birdsongCtx.currentTime;
+                const osc = birdsongCtx.createOscillator();
+                const gain = birdsongCtx.createGain();
+                const baseFreq = 1650 + Math.random() * 650;
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(baseFreq, now);
+                osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.28, now + 0.08);
+                osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.92, now + 0.18);
+
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.linearRampToValueAtTime(0.03, now + 0.03);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+
+                osc.connect(gain);
+                gain.connect(birdsongCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.23);
+            } catch (e) { }
+        }
+
+        function toggleMeadowBirdsong() {
+            birdsongActive = !birdsongActive;
+            const btn = document.getElementById('birdsong-toggle-btn');
+            if (birdsongActive) {
+                btn.textContent = '🐦 Meadow Birdsong: ON';
+                playGentleChirp();
+                birdsongInterval = setInterval(() => {
+                    playGentleChirp();
+                    setTimeout(playGentleChirp, 260);
+                }, 2800);
+            } else {
+                btn.textContent = '🐦 Meadow Birdsong: OFF';
+                clearInterval(birdsongInterval);
+            }
+        }
+
+        function openShutdownScreensaver() {
+            const modal = document.getElementById('shutdown-screensaver-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeShutdownScreensaver() {
+            if (birdsongActive) {
+                toggleMeadowBirdsong();
+            }
+            const modal = document.getElementById('shutdown-screensaver-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeShutdownScreensaver();
+                hideCampaignToast();
+            }
+        });
+    </script>
+</body>
+
+</html>

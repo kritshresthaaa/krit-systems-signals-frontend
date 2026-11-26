@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PANIC BUTTON® — Last-Minute Academic Survival OS</title>
+    <meta name="description"
+        content="A last-minute productivity app for people who suddenly become academic weapons at 11:48 PM." />
+
+    <!-- Google Fonts: Anton & Syne (Display), Space Grotesk (Editorial UI), JetBrains Mono (Timers/Tickets), Caveat (Sticky Notes) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@700&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Custom Design Tokens -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F6F2E9',
+                        surface: '#FFFDF9',
+                        ink: '#0D0D0D',
+                        emergency: '#FF2A2A',
+                        acid: '#E8FF00',
+                        electric: '#1E40FF',
+                        terminal: '#121214',
+                    },
+                    fontFamily: {
+                        display: ['"Anton"', '"Syne"', 'sans-serif'],
+                        syne: ['"Syne"', 'sans-serif'],
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        hand: ['"Caveat"', 'cursive'],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        /* ==========================================================================
+       SWISS EDITORIAL BRUTALISM × INTERNET PANIC SYSTEM
+       ========================================================================== */
+        :root {
+            --bg-cream: #F6F2E9;
+            --surface-white: #FFFDF9;
+            --ink-black: #0D0D0D;
+            --emergency-red: #FF2A2A;
+            --acid-yellow: #E8FF00;
+            --electric-blue: #1E40FF;
+            --terminal-dark: #121214;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--ink-black);
+            font-family: 'Space Grotesk', sans-serif;
+            /* Newsprint Graph + Halftone Micro-Texture */
+            background-image:
+                radial-gradient(rgba(13, 13, 13, 0.085) 1px, transparent 1px),
+                linear-gradient(to right, rgba(13, 13, 13, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(13, 13, 13, 0.04) 1px, transparent 1px);
+            background-size: 20px 20px, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+        }
+
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Crisp 2.5px Brutalist Borders & Hard Offset Shadows */
+        .brutal-border {
+            border: 2.5px solid var(--ink-black);
+        }
+
+        .brutal-border-thick {
+            border: 3px solid var(--ink-black);
+        }
+
+        .brutal-shadow {
+            box-shadow: 5px 5px 0px var(--ink-black);
+        }
+
+        .brutal-shadow-lg {
+            box-shadow: 8px 8px 0px var(--ink-black);
+        }
+
+        .brutal-shadow-red {
+            box-shadow: 6px 6px 0px var(--emergency-red);
+        }
+
+        .brutal-shadow-acid {
+            box-shadow: 6px 6px 0px var(--acid-yellow);
+        }
+
+        /* Halftone Pattern Utility */
+        .halftone-bg {
+            background-image: radial-gradient(#0D0D0D 1.25px, transparent 1.25px);
+            background-size: 10px 10px;
+        }
+
+        /* Tactile Brutalist Buttons */
+        .brutal-btn {
+            border: 2.5px solid var(--ink-black);
+            box-shadow: 5px 5px 0px var(--ink-black);
+            transition: transform 0.12s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.12s cubic-bezier(0.2, 0, 0, 1), background-color 0.15s ease, color 0.15s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .brutal-btn:hover {
+            transform: translate(-1.5px, -1.5px);
+            box-shadow: 6.5px 6.5px 0px var(--ink-black);
+        }
+
+        .brutal-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 2px 2px 0px var(--ink-black);
+        }
+
+        /* Big Tactile 3D Red Physical PANIC BUTTON */
+        .physical-panic-housing {
+            background: repeating-linear-gradient(-45deg,
+                    #0D0D0D,
+                    #0D0D0D 10px,
+                    #E8FF00 10px,
+                    #E8FF00 20px);
+            border: 3px solid #0D0D0D;
+            box-shadow: 7px 7px 0px #0D0D0D;
+        }
+
+        .physical-panic-cap {
+            background: radial-gradient(circle at 35% 30%, #FF6B6B 0%, #FF2A2A 48%, #C80000 100%);
+            border: 3.5px solid #0D0D0D;
+            box-shadow:
+                0 9px 0 #7A0000,
+                0 12px 0 #0D0D0D,
+                inset 0 4px 10px rgba(255, 255, 255, 0.45);
+            transition: transform 0.08s ease, box-shadow 0.08s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .physical-panic-cap:hover {
+            filter: brightness(1.05);
+        }
+
+        .physical-panic-cap:active,
+        .physical-panic-cap.is-pressed {
+            transform: translateY(8px);
+            box-shadow:
+                0 1px 0 #7A0000,
+                0 4px 0 #0D0D0D,
+                inset 0 2px 6px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Infinite Hazard Marquee Ticker */
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 26s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Industrial Hazard Stripes */
+        .hazard-stripes {
+            background: repeating-linear-gradient(-45deg,
+                    #0D0D0D,
+                    #0D0D0D 12px,
+                    #E8FF00 12px,
+                    #E8FF00 24px);
+        }
+
+        /* Jagged Thermal Receipt Edges */
+        .receipt-jagged-top {
+            background: linear-gradient(-45deg, #FFFDF9 8px, transparent 0), linear-gradient(45deg, #FFFDF9 8px, transparent 0);
+            background-repeat: repeat-x;
+            background-position: left bottom;
+            background-size: 16px 16px;
+            height: 12px;
+        }
+
+        .receipt-jagged-bottom {
+            background: linear-gradient(-135deg, #FFFDF9 8px, transparent 0), linear-gradient(135deg, #FFFDF9 8px, transparent 0);
+            background-repeat: repeat-x;
+            background-position: left top;
+            background-size: 16px 16px;
+            height: 12px;
+        }
+
+        /* Sticky Note Masking Tape */
+        .sticky-tape {
+            background-color: rgba(255, 255, 255, 0.78);
+            border-left: 1.5px dashed rgba(13, 13, 13, 0.3);
+            border-right: 1.5px dashed rgba(13, 13, 13, 0.3);
+            box-shadow: 0 2px 4px rgba(13, 13, 13, 0.14);
+        }
+
+        /* Custom Brutalist Checkbox */
+        .panic-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 2.5px solid #0D0D0D;
+            border-radius: 6px;
+            background-color: #FFFDF9;
+            cursor: pointer;
+            display: inline-grid;
+            place-content: center;
+            flex-shrink: 0;
+            transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+
+        .panic-checkbox:checked {
+            background-color: #E8FF00;
+        }
+
+        .panic-checkbox:checked::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+            background-color: #0D0D0D;
+        }
+
+        /* Custom Range Slider for Minutes Until Deadline */
+        input[type="range"].panic-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 14px;
+            background: #FFFDF9;
+            border: 2.5px solid #0D0D0D;
+            border-radius: 999px;
+            outline: none;
+        }
+
+        input[type="range"].panic-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #FF2A2A;
+            border: 2.5px solid #0D0D0D;
+            box-shadow: 3px 3px 0px #0D0D0D;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        input[type="range"].panic-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.08);
+        }
+
+        input[type="range"].panic-slider::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #FF2A2A;
+            border: 2.5px solid #0D0D0D;
+            box-shadow: 3px 3px 0px #0D0D0D;
+            cursor: pointer;
+        }
+
+        /* Screen Micro-Shake & Element Shake Animations */
+        @keyframes panicShake {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            20% {
+                transform: translate(-6px, 2px) rotate(-1.5deg);
+            }
+
+            40% {
+                transform: translate(6px, -2px) rotate(1.5deg);
+            }
+
+            60% {
+                transform: translate(-4px, -1px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(4px, 1px) rotate(1deg);
+            }
+        }
+
+        .animate-panic-shake {
+            animation: panicShake 0.36s cubic-bezier(.36, .07, .19, .97) both;
+        }
+
+        /* Flying Chaos Particle Animation */
+        @keyframes particleFly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0.8) rotate(0deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(var(--dx), var(--dy)) scale(1.35) rotate(var(--rot));
+            }
+        }
+
+        .chaos-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 1.5rem;
+            animation: particleFly 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Paper Shredder Animation */
+        @keyframes shredSlice {
+            0% {
+                transform: translateY(0) scaleY(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(10px) scaleY(0.85);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(0) scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        .animate-shred {
+            animation: shredSlice 0.35s ease-out;
+        }
+
+        /* Urgent Blink */
+        @keyframes blinkUrgent {
+
+            0%,
+            49% {
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0.25;
+            }
+        }
+
+        .animate-blink-urgent {
+            animation: blinkUrgent 1s infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F6F2E9;
+            border-left: 2.5px solid #0D0D0D;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0D0D0D;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF2A2A;
+        }
+    </style>
+</head>
+
+<body id="app-body" class="antialiased selection:bg-acid selection:text-ink">
+
+    <!-- ========================================================================
+       1. TOP INFINITE HAZARD MARQUEE TICKER & STICKY NAVIGATION
+       ======================================================================== -->
+    <div class="bg-ink text-acid border-b-[2.5px] border-ink overflow-hidden py-2 relative z-50 select-none">
+        <div class="marquee-track font-mono text-xs sm:text-sm font-extrabold tracking-wider uppercase">
+            <div class="flex items-center gap-8 px-4">
+                <span>⚠️ DEADLINE IMMINENT</span>
+                <span class="text-white">//</span>
+                <span>YOU HAD THREE WEEKS</span>
+                <span class="text-emergency">//</span>
+                <span>400MG CAFFEINE DETECTED</span>
+                <span class="text-white">//</span>
+                <span>CANVAS CLOSES AT 11:59 PM</span>
+                <span class="text-emergency">//</span>
+                <span>ACADEMIC WEAPON MODE READY ⚠️</span>
+                <span class="text-white">//</span>
+            </div>
+            <!-- Duplicate track for seamless loop -->
+            <div class="flex items-center gap-8 px-4" aria-hidden="true">
+                <span>⚠️ DEADLINE IMMINENT</span>
+                <span class="text-white">//</span>
+                <span>YOU HAD THREE WEEKS</span>
+                <span class="text-emergency">//</span>
+                <span>400MG CAFFEINE DETECTED</span>
+                <span class="text-white">//</span>
+                <span>CANVAS CLOSES AT 11:59 PM</span>
+                <span class="text-emergency">//</span>
+                <span>ACADEMIC WEAPON MODE READY ⚠️</span>
+                <span class="text-white">//</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Editorial Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b-[2.5px] border-ink">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+            <!-- Custom SVG PANIC BUTTON Logo Badge -->
+            <a href="#" class="flex items-center gap-2.5 group focus:outline-none shrink-0">
+                <div
+                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-emergency brutal-border flex items-center justify-center shadow-[3px_3px_0px_#0D0D0D] group-hover:bg-acid transition-colors">
+                    <svg class="w-6 h-6 text-white group-hover:text-ink transition-colors" viewBox="0 0 28 28"
+                        fill="none">
+                        <circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="2.5" />
+                        <circle cx="14" cy="14" r="4.5" fill="currentColor" />
+                        <path d="M14 1V4M14 24V27M1 14H4M24 14H27" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" />
+                    </svg>
+                </div>
+                <div class="flex items-baseline gap-1.5">
+                    <span class="font-display text-2xl sm:text-3xl tracking-tight text-ink uppercase">PANIC
+                        BUTTON®</span>
+                    <span
+                        class="hidden xl:inline-block font-mono text-[10px] font-extrabold bg-ink text-acid px-1.5 py-0.5 rounded">11:58</span>
+                </div>
+            </a>
+
+            <!-- Live Ticking Countdown Pill (Visible on md+) -->
+            <div
+                class="hidden md:flex items-center gap-2 bg-ink text-white px-3.5 py-1.5 rounded-lg border-2 border-ink shadow-[3px_3px_0px_#FF2A2A]">
+                <span class="w-2 h-2 rounded-full bg-emergency animate-blink-urgent"></span>
+                <span class="font-mono text-[11px] text-cream/75 uppercase">PORTAL LOCK:</span>
+                <span id="nav-countdown" class="font-mono text-sm font-extrabold text-acid tabular-nums">00:47:19</span>
+            </div>
+
+            <!-- Right Controls: SFX Toggle + Campaign Brief Drawer + Primary CTA -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <!-- Web Audio SFX Toggle -->
+                <button id="sfx-toggle" type="button" title="Toggle Synthesized Retro UI Sound Effects"
+                    class="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-2 rounded-lg bg-surface brutal-border hover:bg-acid transition-colors cursor-pointer">
+                    <span id="sfx-dot" class="w-2 h-2 rounded-full bg-neutral-400"></span>
+                    <span id="sfx-label">SFX: OFF</span>
+                </button>
+
+                <!-- Portfolio Case Study / Campaign Strategy Drawer Button -->
+                <button type="button" onclick="openCampaignDrawer()"
+                    class="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs font-extrabold px-3 py-2 rounded-lg bg-surface brutal-border hover:bg-electric hover:text-white transition-colors cursor-pointer">
+                    <span>📁 CAMPAIGN BRIEF</span>
+                </button>
+
+                <!-- Primary CTA -->
+                <button type="button" onclick="openPanicModal('ACADEMIC WEAPON MODE')"
+                    class="brutal-btn bg-acid text-ink font-mono font-extrabold text-xs sm:text-sm px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg uppercase tracking-tight">
+                    SAVE MY GPA →
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======================================================================
+         2. ASYMMETRIC 12-COLUMN HERO SECTION + INTERACTIVE CHAOS COLLAGE
+         ====================================================================== -->
+        <section class="relative pt-10 pb-16 sm:pt-14 sm:pb-24 border-b-[2.5px] border-ink overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+
+                    <!-- LEFT COLUMN (7 Cols): Giant Editorial Headline & Action Stack -->
+                    <div class="lg:col-span-7 space-y-6 sm:space-y-7">
+                        <!-- Pill Badge -->
+                        <div
+                            class="inline-flex items-center gap-2.5 bg-surface brutal-border px-3.5 py-1.5 rounded-lg shadow-[3px_3px_0px_#0D0D0D]">
+                            <span class="text-sm">🚨</span>
+                            <span
+                                class="font-mono text-[11px] sm:text-xs font-extrabold tracking-wider uppercase text-ink">
+                                VERSION 11.58 PM // STUDENT SURVIVAL OS
+                            </span>
+                        </div>
+
+                        <!-- Giant Stacked Headline -->
+                        <h1
+                            class="font-display text-[3.5rem] sm:text-[5.2rem] xl:text-[6.35rem] leading-[0.91] tracking-tight uppercase text-ink">
+                            <span class="block">YOU HAD THREE WEEKS.</span>
+                            <span class="block mt-1.5 sm:mt-2">
+                                YOU CHOSE
+                                <span
+                                    class="relative inline-block bg-acid px-2.5 sm:px-3.5 py-0.5 rounded-xl brutal-border text-emergency transform -rotate-1">
+                                    VIOLENCE.
+                                    <!-- Hand-drawn SVG Marker Underline -->
+                                    <svg class="absolute -bottom-3.5 left-0 w-full h-4 pointer-events-none"
+                                        viewBox="0 0 320 20" fill="none" preserveAspectRatio="none">
+                                        <path d="M4 13C82 4 210 3 315 11" stroke="#0D0D0D" stroke-width="4.5"
+                                            stroke-linecap="round" />
+                                        <path d="M22 18C105 11 225 11 298 16" stroke="#FF2A2A" stroke-width="3.5"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </span>
+                            </span>
+                        </h1>
+
+                        <!-- Subline -->
+                        <p class="text-lg sm:text-xl md:text-2xl font-medium text-ink/90 max-w-2xl leading-snug">
+                            A last-minute productivity app for people who suddenly become
+                            <span class="underline decoration-4 decoration-electric font-bold">academic weapons at 11:48
+                                PM.</span>
+                        </p>
+
+                        <!-- Primary + Secondary CTA Cluster -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-1">
+                            <button type="button" onclick="openPanicModal('ACADEMIC WEAPON MODE')"
+                                class="brutal-btn bg-acid text-ink font-display text-2xl sm:text-3xl tracking-wide px-8 py-4 rounded-xl uppercase flex items-center justify-center gap-3">
+                                <span>SAVE MY GPA</span>
+                                <span class="font-sans font-black">→</span>
+                            </button>
+
+                            <a href="#diagnostic"
+                                class="brutal-btn bg-surface text-ink font-mono font-extrabold text-xs sm:text-sm px-6 py-4 rounded-xl uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-electric hover:text-white">
+                                <span>TAKE THE COOKED TEST</span>
+                                <span>↓</span>
+                            </a>
+                        </div>
+
+                        <!-- Social Proof Strip -->
+                        <div
+                            class="pt-1 flex flex-wrap items-center gap-2.5 font-mono text-xs sm:text-sm font-bold text-ink/85">
+                            <span class="inline-flex -space-x-1.5">
+                                <span
+                                    class="w-6 h-6 rounded-full bg-emergency text-white border-2 border-ink flex items-center justify-center text-[10px]">😵</span>
+                                <span
+                                    class="w-6 h-6 rounded-full bg-acid text-ink border-2 border-ink flex items-center justify-center text-[10px]">☕</span>
+                                <span
+                                    class="w-6 h-6 rounded-full bg-electric text-white border-2 border-ink flex items-center justify-center text-[10px]">🔥</span>
+                            </span>
+                            <span>Trusted by <strong class="underline decoration-2 decoration-emergency">42,819
+                                    students</strong> currently staring at a blinking cursor.</span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN (5 Cols): Interactive Chaos Collage -->
+                    <div class="lg:col-span-5 space-y-5 relative">
+
+                        <!-- 1. BIG TACTILE 3D RED PHYSICAL PANIC BUTTON -->
+                        <div class="physical-panic-housing rounded-2xl p-4 sm:p-5">
+                            <div
+                                class="bg-ink text-white rounded-xl p-4 sm:p-5 border-2 border-ink flex flex-col sm:flex-row items-center justify-between gap-4">
+                                <div class="space-y-1.5 text-center sm:text-left">
+                                    <div
+                                        class="inline-flex items-center gap-1.5 font-mono text-[10px] font-extrabold text-acid uppercase tracking-wider">
+                                        <span class="w-2 h-2 rounded-full bg-emergency animate-ping"></span>
+                                        <span>HARDWARE OVERRIDE</span>
+                                    </div>
+                                    <p
+                                        class="font-display text-xl sm:text-2xl uppercase tracking-wide text-white leading-none">
+                                        PRESS IN CASE OF 11:58 PM
+                                    </p>
+                                    <div class="pt-1">
+                                        <span id="panic-escalation-badge"
+                                            class="inline-block font-mono text-[11px] font-extrabold px-2.5 py-1 rounded bg-white/15 text-acid border border-white/25">
+                                            LVL 1: MILD DENIAL (0 PRESSES)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Physical Red Dome Switch -->
+                                <button id="big-red-panic-btn" type="button" onclick="smashPhysicalPanicButton(event)"
+                                    aria-label="Smash Physical Panic Button"
+                                    class="physical-panic-cap w-24 h-24 sm:w-28 sm:h-28 rounded-full flex flex-col items-center justify-center text-white shrink-0 focus:outline-none">
+                                    <span
+                                        class="font-display text-2xl sm:text-3xl tracking-wider leading-none drop-shadow-[1px_2px_0px_#0D0D0D]">PANIC</span>
+                                    <span
+                                        class="font-mono text-[9px] font-extrabold uppercase tracking-widest mt-0.5 text-acid">SMASH
+                                        ME</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 2. INTERACTIVE RETRO OS ERROR WINDOW (FATAL_PROCRASTINATION.exe) -->
+                        <div id="hero-os-window"
+                            class="bg-surface brutal-border brutal-shadow-lg rounded-xl overflow-hidden transition-transform duration-200">
+                            <!-- Electric Blue OS Title Bar -->
+                            <div
+                                class="bg-electric text-white px-4 py-2.5 border-b-[2.5px] border-ink flex items-center justify-between">
+                                <div class="flex items-center gap-2 font-mono text-xs font-extrabold tracking-tight">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-acid border border-ink"></span>
+                                    <span>FATAL_PROCRASTINATION.exe</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <span
+                                        class="w-5 h-5 rounded bg-surface text-ink border border-ink flex items-center justify-center font-mono text-xs font-bold">_</span>
+                                    <span
+                                        class="w-5 h-5 rounded bg-emergency text-white border border-ink flex items-center justify-center font-mono text-xs font-bold">×</span>
+                                </div>
+                            </div>
+
+                            <!-- Error Body -->
+                            <div class="p-4 sm:p-5 space-y-4">
+                                <div class="flex items-start gap-3.5">
+                                    <div
+                                        class="w-11 h-11 rounded-lg bg-emergency text-white brutal-border flex items-center justify-center font-display text-2xl shrink-0">
+                                        !
+                                    </div>
+                                    <div class="space-y-1">
+                                        <p id="os-error-code"
+                                            class="font-mono text-[11px] font-extrabold uppercase text-emergency">
+                                            RUNTIME EXCEPTION // CODE 11:58
+                                        </p>
+                                        <p id="os-error-text"
+                                            class="text-sm sm:text-base font-bold text-ink leading-snug">
+                                            Warning: Assignment due in 47 minutes. 0 words written.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Dodging [DENIAL] vs [ACCEPT FATE] -->
+                                <div class="flex flex-wrap items-center justify-end gap-2.5 pt-1 relative">
+                                    <button id="denial-btn" type="button"
+                                        class="brutal-btn bg-cream text-ink font-mono text-xs font-extrabold px-3.5 py-2 rounded-lg uppercase transition-transform duration-150">
+                                        [DENIAL]
+                                    </button>
+                                    <button type="button" onclick="openPanicModal('ACCEPTED FATE // SPRINT MODE')"
+                                        class="brutal-btn bg-emergency text-white font-mono text-xs font-extrabold px-4 py-2 rounded-lg uppercase">
+                                        [ACCEPT FATE]
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. PEELABLE / ROTATED ACID YELLOW STICKY NOTE -->
+                        <div id="hero-sticky-note" onclick="flipStickyNote()" title="Click to peel sticky note"
+                            class="bg-acid brutal-border brutal-shadow rounded-xl p-5 pt-6 relative transform -rotate-2 hover:rotate-0 transition-all duration-200 cursor-pointer">
+                            <div class="sticky-tape w-24 h-5 absolute -top-2.5 left-1/2 -translate-x-1/2 rotate-1">
+                            </div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span
+                                    class="font-mono text-[10px] font-extrabold uppercase tracking-wider bg-ink text-acid px-2 py-0.5 rounded">
+                                    STICKY NOTE // CLICK TO PEEL ↻
+                                </span>
+                                <span class="font-mono text-xs font-extrabold text-ink">9:15 PM</span>
+                            </div>
+                            <p id="sticky-note-copy"
+                                class="font-hand text-2xl sm:text-[1.65rem] leading-[1.12] font-bold text-ink">
+                                "Note to self: Do NOT open TikTok 'for two minutes' again. That was a lie at 9:15 PM."
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         3. INTERACTIVE "HOW COOKED ARE YOU?" DIAGNOSTIC & THERMAL RECEIPT
+         ====================================================================== -->
+        <section id="diagnostic" class="py-16 sm:py-24 border-b-[2.5px] border-ink bg-surface/65">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                    <div>
+                        <div
+                            class="inline-flex items-center gap-2 bg-ink text-acid font-mono text-xs font-extrabold px-3 py-1 rounded-md mb-3 uppercase">
+                            <span>🌡️ REAL-TIME TRIAGE</span>
+                            <span>//</span>
+                            <span>SLIDER + PRESETS</span>
+                        </div>
+                        <h2 class="font-display text-4xl sm:text-6xl uppercase tracking-tight text-ink leading-none">
+                            HOW COOKED ARE YOU?
+                        </h2>
+                    </div>
+                    <p class="font-hand text-2xl sm:text-3xl font-bold text-ink rotate-1">
+                        pick a preset or drag the panic slider ↓
+                    </p>
+                </div>
+
+                <!-- 3 Quick-Select Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-7">
+                    <button type="button" data-preset="mild" onclick="applyCookedPreset(180)"
+                        class="cooked-preset-card text-left p-5 rounded-xl brutal-border brutal-shadow bg-cream hover:bg-electric/10 transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span
+                                class="font-mono text-xs font-extrabold px-2.5 py-0.5 rounded bg-electric text-white border border-ink">180
+                                MIN LEFT</span>
+                            <span class="font-mono text-xs font-bold opacity-60">PRESET 01</span>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl uppercase tracking-tight">01. MILDLY CONCERNED</h3>
+                        <p class="font-mono text-xs opacity-80 mt-1">Due tomorrow at 5 PM</p>
+                    </button>
+
+                    <button type="button" data-preset="sweating" onclick="applyCookedPreset(95)"
+                        class="cooked-preset-card text-left p-5 rounded-xl brutal-border brutal-shadow bg-cream hover:bg-acid/40 transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span
+                                class="font-mono text-xs font-extrabold px-2.5 py-0.5 rounded bg-acid text-ink border border-ink">95
+                                MIN LEFT</span>
+                            <span class="font-mono text-xs font-bold opacity-60">PRESET 02</span>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl uppercase tracking-tight">02. ACTUALLY SWEATING
+                        </h3>
+                        <p class="font-mono text-xs opacity-80 mt-1">Due tonight at 11:59 PM</p>
+                    </button>
+
+                    <button type="button" data-preset="cooked" onclick="applyCookedPreset(47)"
+                        class="cooked-preset-card text-left p-5 rounded-xl brutal-border brutal-shadow bg-emergency text-white transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span
+                                class="font-mono text-xs font-extrabold px-2.5 py-0.5 rounded bg-ink text-acid border border-white/30">47
+                                MIN LEFT</span>
+                            <span class="font-mono text-xs font-bold opacity-90">PRESET 03</span>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl uppercase tracking-tight">03. DUE IN 47 MINUTES
+                        </h3>
+                        <p class="font-mono text-xs opacity-90 mt-1">Godspeed.</p>
+                    </button>
+                </div>
+
+                <!-- Diagnostic Engine + Live Jagged Thermal Receipt -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Left 7 Cols: Interactive Range Slider & Meter -->
+                    <div class="lg:col-span-7 bg-cream brutal-border brutal-shadow-lg rounded-2xl p-6 sm:p-8 space-y-6">
+                        <!-- Range Slider Control -->
+                        <div class="bg-surface brutal-border rounded-xl p-5 space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <label for="minutes-slider"
+                                    class="font-mono text-xs sm:text-sm font-extrabold uppercase text-ink">
+                                    MINUTES UNTIL DEADLINE:
+                                </label>
+                                <span id="slider-minutes-badge"
+                                    class="font-mono text-lg sm:text-xl font-extrabold bg-ink text-acid px-3 py-1 rounded-lg tabular-nums">
+                                    47 MIN
+                                </span>
+                            </div>
+                            <input id="minutes-slider" type="range" min="3" max="180" value="47"
+                                oninput="updateCookedFromSlider(this.value)" class="panic-slider" />
+                            <div class="flex justify-between font-mono text-[11px] font-bold text-ink/60">
+                                <span>3 MIN (PRAY)</span>
+                                <span>60 MIN (SWEATING)</span>
+                                <span>180 MIN (DENIAL)</span>
+                            </div>
+                        </div>
+
+                        <!-- Segmented Cooked Meter -->
+                        <div class="space-y-2.5">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span id="diag-threat-badge"
+                                    class="font-mono text-xs font-extrabold px-3 py-1 rounded-lg bg-emergency text-white brutal-border uppercase">
+                                    THREAT: CRITICAL // WELL DONE
+                                </span>
+                                <span id="diag-cooked-pct"
+                                    class="font-mono text-sm sm:text-base font-extrabold text-ink tabular-nums">
+                                    89.4% COOKED
+                                </span>
+                            </div>
+
+                            <!-- 10-Segment Meter Bar -->
+                            <div id="cooked-segments"
+                                class="grid grid-cols-10 gap-1.5 bg-surface p-2 rounded-xl brutal-border h-11">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- System Diagnosis Quote -->
+                        <div class="bg-surface brutal-border rounded-xl p-5 space-y-2">
+                            <p class="font-mono text-[11px] font-extrabold text-ink/60 uppercase">SYSTEM DIAGNOSIS:</p>
+                            <p id="diag-quote-text" class="text-xl sm:text-2xl font-bold text-ink leading-snug">
+                                "Abandon perfection. Embrace word count. May God have mercy on your bibliography."
+                            </p>
+                        </div>
+
+                        <button type="button" onclick="openPanicModal('DIAGNOSTIC OVERRIDE PROTOCOL')"
+                            class="w-full brutal-btn bg-acid text-ink font-display text-2xl tracking-wide py-4 px-6 rounded-xl uppercase flex items-center justify-center gap-2">
+                            <span>DEPLOY SURVIVAL PROTOCOL</span>
+                            <span class="font-sans font-black">→</span>
+                        </button>
+                    </div>
+
+                    <!-- Right 5 Cols: Live Jagged-Edge Thermal Survival Receipt -->
+                    <div class="lg:col-span-5 drop-shadow-[6px_6px_0px_#0D0D0D]">
+                        <div class="receipt-jagged-top"></div>
+                        <div
+                            class="bg-surface border-x-[2.5px] border-ink px-6 py-5 font-mono text-xs sm:text-sm space-y-4">
+                            <div class="text-center border-b-2 border-dashed border-ink pb-3 space-y-1">
+                                <p class="font-extrabold text-base sm:text-lg tracking-tight">PANIC BUTTON® PHARMACY</p>
+                                <p class="text-[11px] text-ink/70">FILE: SURVIVAL_RECEIPT.txt // TERMINAL #04</p>
+                                <p id="receipt-timestamp" class="text-[11px] font-bold text-emergency">URGENCY: 47
+                                    MINUTES REMAINING</p>
+                            </div>
+
+                            <!-- Dynamic Itemized Survival Prescriptions -->
+                            <div id="receipt-items-list" class="space-y-2.5 py-1">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+
+                            <div class="border-t-2 border-dashed border-ink pt-3 space-y-1.5">
+                                <div class="flex justify-between font-extrabold text-sm">
+                                    <span>TOTAL ADRENALINE REQ:</span>
+                                    <span id="receipt-total-adrenaline" class="text-emergency">400 MG</span>
+                                </div>
+                                <div class="flex justify-between text-[11px] text-ink/75">
+                                    <span>SLEEP SCHEDULE IMPACT:</span>
+                                    <span id="receipt-sleep-impact">DESTROYED</span>
+                                </div>
+                            </div>
+
+                            <!-- Barcode Visual -->
+                            <div class="pt-2 text-center">
+                                <div class="h-10 w-full flex items-stretch justify-center gap-[2px] opacity-90"
+                                    aria-hidden="true">
+                                    <span class="w-1 bg-ink"></span><span class="w-0.5 bg-ink"></span><span
+                                        class="w-1.5 bg-ink"></span>
+                                    <span class="w-0.5 bg-ink"></span><span class="w-1 bg-ink"></span><span
+                                        class="w-2 bg-ink"></span>
+                                    <span class="w-0.5 bg-ink"></span><span class="w-1 bg-ink"></span><span
+                                        class="w-1.5 bg-ink"></span>
+                                    <span class="w-0.5 bg-ink"></span><span class="w-2 bg-ink"></span><span
+                                        class="w-1 bg-ink"></span>
+                                    <span class="w-0.5 bg-ink"></span><span class="w-1.5 bg-ink"></span><span
+                                        class="w-1 bg-ink"></span>
+                                    <span class="w-2 bg-ink"></span><span class="w-0.5 bg-ink"></span><span
+                                        class="w-1 bg-ink"></span>
+                                    <span class="w-1.5 bg-ink"></span><span class="w-0.5 bg-ink"></span><span
+                                        class="w-1 bg-ink"></span>
+                                </div>
+                                <p class="text-[10px] tracking-[0.25em] text-ink/70 mt-1">GPA-RESCUE-1159PM</p>
+                            </div>
+                        </div>
+                        <div class="receipt-jagged-bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         4. 3-COLUMN INTERACTIVE PRODUCT FEATURE BENTO GRID
+         ====================================================================== -->
+        <section id="features" class="py-16 sm:py-24 border-b-[2.5px] border-ink">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="max-w-3xl mb-12">
+                    <div
+                        class="inline-flex items-center gap-2 bg-electric text-white font-mono text-xs font-extrabold px-3 py-1 rounded-md brutal-border mb-3 uppercase">
+                        <span>⚡ INTERACTIVE PRODUCT SUITE</span>
+                    </div>
+                    <h2 class="font-display text-4xl sm:text-6xl uppercase tracking-tight text-ink leading-none">
+                        THREE WEAPONS FOR 11:48 PM.
+                    </h2>
+                    <p class="text-lg sm:text-xl text-ink/80 font-medium mt-3">
+                        Test every core module live below. Shred an essay, lock your phone behind bars, or generate a
+                        backward-scheduled sprint plan.
+                    </p>
+                </div>
+
+                <!-- 3-Column Bento Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch">
+
+                    <!-- ================================================================
+               CARD 1: EMERGENCY FOCUS MODE (THE TASK SHREDDER)
+               ================================================================ -->
+                    <article
+                        class="bg-surface brutal-border brutal-shadow-lg rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between gap-2">
+                                <span
+                                    class="font-mono text-[11px] font-extrabold bg-acid text-ink px-2.5 py-1 rounded border border-ink uppercase">
+                                    01 // THE TASK SHREDDER
+                                </span>
+                                <span id="dopamine-xp-badge"
+                                    class="hidden font-mono text-[11px] font-extrabold bg-electric text-white px-2 py-0.5 rounded border border-ink animate-bounce">
+                                    DOPAMINE UNLOCKED +25 XP
+                                </span>
+                            </div>
+
+                            <h3 class="font-display text-3xl uppercase tracking-tight text-ink leading-none">
+                                EMERGENCY FOCUS MODE
+                            </h3>
+                            <p class="text-sm sm:text-base text-ink/85 font-medium">
+                                Turns one terrifying assignment into tiny tasks your brain can survive.
+                            </p>
+
+                            <!-- Terrifying Monolith Task Banner + Shred Button -->
+                            <div id="monolith-task-box"
+                                class="bg-ink text-white rounded-xl p-3.5 border-2 border-ink space-y-2.5">
+                                <div
+                                    class="flex items-center justify-between font-mono text-[10px] text-emergency font-bold">
+                                    <span>TERRIFYING MONOLITH</span>
+                                    <span>8 MIN / STEP</span>
+                                </div>
+                                <p class="font-mono text-xs sm:text-sm font-extrabold text-acid">
+                                    "WRITE 2,500-WORD RESEARCH PAPER"
+                                </p>
+                                <button type="button" onclick="shredBigTask()"
+                                    class="w-full brutal-btn bg-emergency text-white font-mono text-xs font-extrabold py-2 px-3 rounded-lg uppercase hover:bg-acid hover:text-ink">
+                                    ✂️ SHRED BIG TASK
+                                </button>
+                            </div>
+
+                            <!-- Dopamine Progress Bar -->
+                            <div class="bg-cream brutal-border rounded-xl p-3">
+                                <div class="flex justify-between font-mono text-[11px] font-extrabold mb-1.5">
+                                    <span>DOPAMINE METER</span>
+                                    <span id="shred-progress-label" class="text-electric">0 / 4 STEPS (0%)</span>
+                                </div>
+                                <div class="w-full h-4 bg-surface brutal-border rounded-md overflow-hidden p-0.5">
+                                    <div id="shred-progress-bar"
+                                        class="h-full bg-electric transition-all duration-300 rounded-xs"
+                                        style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <!-- 4 Bite-Sized Micro-Steps -->
+                            <div id="shredded-tasks-list" class="space-y-2.5">
+                                <label
+                                    class="flex items-center gap-2.5 p-2.5 rounded-xl bg-cream/80 hover:bg-acid/30 brutal-border cursor-pointer transition-colors">
+                                    <input type="checkbox" class="panic-checkbox shred-cb"
+                                        onchange="updateShredProgress()" />
+                                    <span class="text-xs sm:text-sm font-bold text-ink">1. Open doc & name it literally
+                                        anything (8m)</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2.5 p-2.5 rounded-xl bg-cream/80 hover:bg-acid/30 brutal-border cursor-pointer transition-colors">
+                                    <input type="checkbox" class="panic-checkbox shred-cb"
+                                        onchange="updateShredProgress()" />
+                                    <span class="text-xs sm:text-sm font-bold text-ink">2. Paste 4 quotes so page 1
+                                        looks busy (8m)</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2.5 p-2.5 rounded-xl bg-cream/80 hover:bg-acid/30 brutal-border cursor-pointer transition-colors">
+                                    <input type="checkbox" class="panic-checkbox shred-cb"
+                                        onchange="updateShredProgress()" />
+                                    <span class="text-xs sm:text-sm font-bold text-ink">3. Speed-type 400 messy words,
+                                        no backspace (8m)</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2.5 p-2.5 rounded-xl bg-cream/80 hover:bg-acid/30 brutal-border cursor-pointer transition-colors">
+                                    <input type="checkbox" class="panic-checkbox shred-cb"
+                                        onchange="updateShredProgress()" />
+                                    <span class="text-xs sm:text-sm font-bold text-ink">4. Copy-paste intro as
+                                        conclusion & export (8m)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-4 pt-3 border-t-2 border-ink/15 flex items-center justify-between font-mono text-[11px] font-bold">
+                            <span id="shred-status-footer" class="text-ink/70">STATUS: READY TO SHRED</span>
+                            <button type="button" onclick="resetShredTasks()"
+                                class="underline hover:text-emergency cursor-pointer">RESET</button>
+                        </div>
+                    </article>
+
+                    <!-- ================================================================
+               CARD 2: HIDE MY PHONE (APP JAIL SIMULATOR)
+               ================================================================ -->
+                    <article
+                        class="bg-surface brutal-border brutal-shadow-lg rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between gap-2">
+                                <span
+                                    class="font-mono text-[11px] font-extrabold bg-emergency text-white px-2.5 py-1 rounded border border-ink uppercase">
+                                    02 // APP JAIL SIMULATOR
+                                </span>
+                                <span id="phone-jail-status"
+                                    class="font-mono text-[11px] font-extrabold text-emergency">
+                                    ● UNLOCKED
+                                </span>
+                            </div>
+
+                            <h3 class="font-display text-3xl uppercase tracking-tight text-ink leading-none">
+                                HIDE MY PHONE
+                            </h3>
+                            <p class="text-sm sm:text-base text-ink/85 font-medium">
+                                Because checking TikTok "for two minutes" was apparently a lie.
+                            </p>
+
+                            <!-- Chunky Lockdown Switch -->
+                            <div
+                                class="bg-cream brutal-border rounded-xl p-3.5 flex items-center justify-between gap-3">
+                                <div>
+                                    <p class="font-mono text-xs font-extrabold uppercase text-ink">LOCKDOWN SWITCH</p>
+                                    <p class="font-mono text-[10px] text-ink/70">Drop steel bars on doomscroll apps</p>
+                                </div>
+                                <button id="jail-switch-btn" type="button" role="switch" aria-checked="false"
+                                    onclick="toggleAppJail()"
+                                    class="w-16 h-9 rounded-full bg-surface brutal-border p-1 flex items-center transition-colors duration-200 cursor-pointer shrink-0">
+                                    <span id="jail-switch-knob"
+                                        class="w-6 h-6 rounded-full bg-ink transition-transform duration-200 translate-x-0"></span>
+                                </button>
+                            </div>
+
+                            <!-- Interactive Smartphone Mockup with Animated Steel Prison Bars -->
+                            <div id="smartphone-mockup"
+                                class="relative rounded-2xl brutal-border brutal-shadow bg-terminal text-white overflow-hidden">
+                                <!-- Phone Status Bar -->
+                                <div
+                                    class="px-4 py-2 bg-black/60 flex items-center justify-between font-mono text-[10px] border-b border-white/15">
+                                    <span>11:51 PM</span>
+                                    <span class="w-12 h-2.5 rounded-full bg-neutral-800 border border-white/15"></span>
+                                    <span class="text-emergency font-bold">9% BAT</span>
+                                </div>
+
+                                <!-- App Icon Grid -->
+                                <div class="p-4 grid grid-cols-2 gap-3 relative z-10">
+                                    <button type="button" onclick="tapDistractingApp('TikTok')"
+                                        class="p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex flex-col items-center gap-1.5 transition-transform active:scale-95 cursor-pointer">
+                                        <span
+                                            class="w-10 h-10 rounded-xl bg-ink border border-acid text-acid font-mono font-extrabold text-sm flex items-center justify-center">TT</span>
+                                        <span class="font-mono text-xs font-bold">TikTok</span>
+                                    </button>
+
+                                    <button type="button" onclick="tapDistractingApp('Instagram')"
+                                        class="p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex flex-col items-center gap-1.5 transition-transform active:scale-95 cursor-pointer">
+                                        <span
+                                            class="w-10 h-10 rounded-xl bg-emergency border border-white text-white font-mono font-extrabold text-sm flex items-center justify-center">IG</span>
+                                        <span class="font-mono text-xs font-bold">Instagram</span>
+                                    </button>
+
+                                    <button type="button" onclick="tapDistractingApp('YouTube')"
+                                        class="p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex flex-col items-center gap-1.5 transition-transform active:scale-95 cursor-pointer">
+                                        <span
+                                            class="w-10 h-10 rounded-xl bg-electric border border-white text-white font-mono font-extrabold text-sm flex items-center justify-center">YT</span>
+                                        <span class="font-mono text-xs font-bold">YouTube</span>
+                                    </button>
+
+                                    <button type="button" onclick="tapDistractingApp('Messages')"
+                                        class="p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex flex-col items-center gap-1.5 transition-transform active:scale-95 cursor-pointer">
+                                        <span
+                                            class="w-10 h-10 rounded-xl bg-acid border border-ink text-ink font-mono font-extrabold text-sm flex items-center justify-center">💬</span>
+                                        <span class="font-mono text-xs font-bold">Messages</span>
+                                    </button>
+                                </div>
+
+                                <!-- Animated Steel Prison Bars Overlay -->
+                                <div id="prison-bars-overlay"
+                                    class="absolute inset-0 top-7 pointer-events-none z-20 flex justify-around px-3 -translate-y-full transition-transform duration-300 ease-out">
+                                    <span
+                                        class="w-2.5 h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-500 border-x border-ink"></span>
+                                    <span
+                                        class="w-2.5 h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-500 border-x border-ink"></span>
+                                    <span
+                                        class="w-2.5 h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-500 border-x border-ink"></span>
+                                    <span
+                                        class="w-2.5 h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-500 border-x border-ink"></span>
+                                    <span
+                                        class="w-2.5 h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-500 border-x border-ink"></span>
+                                    <span
+                                        class="w-2.5 h-full bg-gradient-to-r from-neutral-400 via-white to-neutral-500 border-x border-ink"></span>
+                                </div>
+
+                                <!-- Phone Roast Alert Bar -->
+                                <div
+                                    class="px-3.5 py-2.5 bg-black/80 border-t border-white/15 font-mono text-[11px] text-center">
+                                    <span id="phone-roast-message" class="text-cream/85 font-bold">
+                                        Tap any app above to test temptation.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-4 pt-3 border-t-2 border-ink/15 flex items-center justify-between font-mono text-[11px] font-bold">
+                            <span class="text-ink/70">REELS BLOCKED: <strong id="blocked-taps-count"
+                                    class="text-emergency">0</strong></span>
+                            <span class="text-electric">JAIL MODE READY</span>
+                        </div>
+                    </article>
+
+                    <!-- ================================================================
+               CARD 3: BREAK IT DOWN FOR ME (BACKWARD SURVIVAL PLANNER)
+               ================================================================ -->
+                    <article
+                        class="bg-acid brutal-border brutal-shadow-lg rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between gap-2">
+                                <span
+                                    class="font-mono text-[11px] font-extrabold bg-ink text-acid px-2.5 py-1 rounded uppercase">
+                                    03 // BACKWARD SCHEDULER
+                                </span>
+                                <span class="font-mono text-[11px] font-extrabold text-ink">11:58:30 PM</span>
+                            </div>
+
+                            <h3 class="font-display text-3xl uppercase tracking-tight text-ink leading-none">
+                                BREAK IT DOWN FOR ME
+                            </h3>
+                            <p class="text-sm sm:text-base text-ink/90 font-semibold">
+                                Paste the assignment. Get a step-by-step survival plan.
+                            </p>
+
+                            <!-- 3 One-Click Preset Pills -->
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="selectPlanPreset('essay')"
+                                    class="brutal-btn bg-surface text-ink font-mono text-[11px] font-extrabold px-2.5 py-1 rounded-lg">
+                                    10-Page Essay
+                                </button>
+                                <button type="button" onclick="selectPlanPreset('lab')"
+                                    class="brutal-btn bg-surface text-ink font-mono text-[11px] font-extrabold px-2.5 py-1 rounded-lg">
+                                    3AM Lab Report
+                                </button>
+                                <button type="button" onclick="selectPlanPreset('slides')"
+                                    class="brutal-btn bg-surface text-ink font-mono text-[11px] font-extrabold px-2.5 py-1 rounded-lg">
+                                    Group Slides (Solo Carry)
+                                </button>
+                            </div>
+
+                            <!-- Editable Prompt Input -->
+                            <textarea id="planner-prompt-input" rows="2" aria-label="Assignment prompt input"
+                                class="w-full p-3 rounded-xl bg-surface brutal-border font-sans text-xs sm:text-sm font-semibold text-ink focus:outline-none">10-Page Argumentative Research Essay due on Canvas at 11:59 PM</textarea>
+
+                            <button type="button" onclick="buildBackwardPlan()"
+                                class="w-full brutal-btn bg-ink text-acid font-mono text-xs sm:text-sm font-extrabold py-2.5 px-4 rounded-xl uppercase hover:bg-electric hover:text-white">
+                                ⚡ GENERATE SURVIVAL PLAN
+                            </button>
+
+                            <!-- Backward-Scheduled Timeline (11:12 PM -> 11:58:30 PM) -->
+                            <div id="backward-plan-timeline"
+                                class="bg-surface brutal-border rounded-xl p-3.5 space-y-2">
+                                <!-- Populated dynamically on load & click -->
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-4 pt-3 border-t-2 border-ink/20 flex items-center justify-between font-mono text-[11px] font-extrabold text-ink">
+                            <span>BUFFER BEFORE LOCKOUT:</span>
+                            <span class="bg-emergency text-white px-2 py-0.5 rounded">90 SECONDS</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         5. BONUS INTERACTIVE WIDGET: "PLAN B: LAST-MINUTE EXCUSE ROULETTE"
+         ====================================================================== -->
+        <section class="py-16 sm:py-20 border-b-[2.5px] border-ink bg-cream">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-surface brutal-border brutal-shadow-lg rounded-3xl overflow-hidden">
+                    <!-- Top Bar -->
+                    <div
+                        class="bg-ink text-white px-6 py-4 border-b-[2.5px] border-ink flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-xl">🎰</span>
+                            <div>
+                                <h2
+                                    class="font-display text-2xl sm:text-3xl uppercase tracking-wide text-acid leading-none">
+                                    PLAN B: LAST-MINUTE EXCUSE ROULETTE
+                                </h2>
+                                <p class="font-mono text-[11px] text-cream/75 mt-0.5">
+                                    FOR WHEN THE CLOCK HITS 00:02:00 AND HOPE HAS LEFT THE CHAT
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Mode Toggle Pills -->
+                        <div class="flex items-center gap-2 bg-white/10 p-1 rounded-xl border border-white/20">
+                            <button id="excuse-mode-pro" type="button" onclick="setExcuseMode('pro')"
+                                class="font-mono text-[11px] sm:text-xs font-extrabold px-3 py-1.5 rounded-lg bg-acid text-ink transition-colors cursor-pointer">
+                                PROFESSIONAL EXTENSION EMAIL
+                            </button>
+                            <button id="excuse-mode-chaos" type="button" onclick="setExcuseMode('chaos')"
+                                class="font-mono text-[11px] sm:text-xs font-extrabold px-3 py-1.5 rounded-lg text-white hover:bg-white/15 transition-colors cursor-pointer">
+                                CHAOTIC DESPERATION
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Roulette Display Body -->
+                    <div class="p-6 sm:p-8 space-y-5">
+                        <div class="flex items-center justify-between font-mono text-xs font-extrabold">
+                            <span id="excuse-tag-badge"
+                                class="px-2.5 py-1 rounded bg-electric text-white border border-ink uppercase">
+                                TEMPLATE // POLITE & CREDIBLE
+                            </span>
+                            <span id="excuse-counter" class="text-ink/60">OPTION 1 OF 4</span>
+                        </div>
+
+                        <!-- Generated Text Box -->
+                        <div class="bg-cream brutal-border rounded-2xl p-5 sm:p-6 relative">
+                            <pre id="excuse-output-text"
+                                class="whitespace-pre-wrap font-sans text-sm sm:text-base font-semibold text-ink leading-relaxed"></pre>
+                        </div>
+
+                        <!-- Spin + Copy Buttons -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-1">
+                            <button type="button" onclick="spinExcuseRoulette()"
+                                class="brutal-btn bg-acid text-ink font-display text-xl sm:text-2xl tracking-wide px-6 py-3 rounded-xl uppercase flex items-center justify-center gap-2">
+                                <span>🎲 SPIN FOR NEW EXCUSE</span>
+                            </button>
+
+                            <button id="copy-excuse-btn" type="button" onclick="copyExcuseToClipboard()"
+                                class="brutal-btn bg-ink text-white font-mono text-xs sm:text-sm font-extrabold px-6 py-3.5 rounded-xl uppercase hover:bg-electric">
+                                📋 COPY TO CLIPBOARD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         6. RIDICULOUS FAKE STATS BANNER & "INCIDENT REPORT" TESTIMONIALS
+         ====================================================================== -->
+        <section class="bg-ink text-white border-b-[2.5px] border-ink">
+            <div class="h-3 hazard-stripes border-b-[2.5px] border-ink"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-white/20 border-[2.5px] border-white/20 rounded-2xl overflow-hidden bg-white/[0.03]">
+                    <div class="p-6 sm:p-8">
+                        <div class="font-display text-5xl sm:text-6xl text-acid tracking-tight">11:48 PM</div>
+                        <p class="text-sm sm:text-base text-cream/90 font-medium mt-2">Peak Daily Active Users</p>
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <div class="font-display text-5xl sm:text-6xl text-emergency tracking-tight">99.4%</div>
+                        <p class="text-sm sm:text-base text-cream/90 font-medium mt-2">Submitted at 11:58:59 PM</p>
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <div class="font-display text-5xl sm:text-6xl text-white tracking-tight">0</div>
+                        <p class="text-sm sm:text-base text-cream/90 font-medium mt-2">Healthy Sleep Schedules
+                            Maintained</p>
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <div class="font-display text-5xl sm:text-6xl text-acid tracking-tight">4.9★</div>
+                        <p class="text-sm sm:text-base text-cream/90 font-medium mt-2">Rating From Crying Library
+                            Regulars</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Campus IT / Helpdesk Incident Report Testimonials -->
+        <section id="logs" class="py-16 sm:py-24 border-b-[2.5px] border-ink">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+                    <div>
+                        <div
+                            class="inline-flex items-center gap-2 bg-electric text-white font-mono text-xs font-extrabold px-3 py-1 rounded-md brutal-border mb-3 uppercase">
+                            <span>🎫 CAMPUS IT / HELPDESK LOGS</span>
+                        </div>
+                        <h2 class="font-display text-4xl sm:text-6xl uppercase tracking-tight text-ink leading-none">
+                            VERIFIED SURVIVOR INCIDENT REPORTS
+                        </h2>
+                    </div>
+                    <p class="font-mono text-xs sm:text-sm font-extrabold text-ink/70 uppercase">
+                        TICKET STATUS: RESOLVED BEFORE MIDNIGHT
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
+                    <!-- INCIDENT #4092 -->
+                    <article
+                        class="bg-surface brutal-border brutal-shadow-lg rounded-2xl overflow-hidden flex flex-col justify-between relative">
+                        <div>
+                            <div
+                                class="bg-cream px-5 py-3 border-b-[2.5px] border-ink flex items-center justify-between font-mono text-xs font-extrabold">
+                                <span>INCIDENT #4092</span>
+                                <span
+                                    class="px-2 py-0.5 rounded bg-acid text-ink border border-ink transform -rotate-2">SURVIVED</span>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <p class="font-mono text-[11px] text-ink/60 uppercase">SUBMISSION TIME: 11:58:14 PM</p>
+                                <blockquote class="text-base sm:text-lg font-bold text-ink leading-snug">
+                                    "Started a 12-page paper at 9:15 PM. Submitted at 11:57 PM. Got a B+. I learned
+                                    nothing and will do this again next Tuesday."
+                                </blockquote>
+                            </div>
+                        </div>
+                        <div
+                            class="px-6 py-4 bg-cream/70 border-t-2 border-ink flex items-center justify-between font-mono text-xs">
+                            <span class="font-extrabold text-ink">MAYA K. // POLI-SCI</span>
+                            <span class="text-electric font-bold">CLOSED ✓</span>
+                        </div>
+                    </article>
+
+                    <!-- INCIDENT #8814 -->
+                    <article
+                        class="bg-surface brutal-border brutal-shadow-lg rounded-2xl overflow-hidden flex flex-col justify-between relative">
+                        <div>
+                            <div
+                                class="bg-cream px-5 py-3 border-b-[2.5px] border-ink flex items-center justify-between font-mono text-xs font-extrabold">
+                                <span>INCIDENT #8814</span>
+                                <span
+                                    class="px-2 py-0.5 rounded bg-emergency text-white border border-ink transform rotate-2">ACADEMIC
+                                    WEAPON</span>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <p class="font-mono text-[11px] text-ink/60 uppercase">SUBMISSION TIME: 11:58:49 PM</p>
+                                <blockquote class="text-base sm:text-lg font-bold text-ink leading-snug">
+                                    "Hide My Phone literally pried my thumbs off Instagram Reels so I could finish my
+                                    Organic Chemistry lab report."
+                                </blockquote>
+                            </div>
+                        </div>
+                        <div
+                            class="px-6 py-4 bg-cream/70 border-t-2 border-ink flex items-center justify-between font-mono text-xs">
+                            <span class="font-extrabold text-ink">DEVON R. // PRE-MED</span>
+                            <span class="text-electric font-bold">CLOSED ✓</span>
+                        </div>
+                    </article>
+
+                    <!-- INCIDENT #1109 -->
+                    <article
+                        class="bg-surface brutal-border brutal-shadow-lg rounded-2xl overflow-hidden flex flex-col justify-between relative">
+                        <div>
+                            <div
+                                class="bg-cream px-5 py-3 border-b-[2.5px] border-ink flex items-center justify-between font-mono text-xs font-extrabold">
+                                <span>INCIDENT #1109</span>
+                                <span
+                                    class="px-2 py-0.5 rounded bg-electric text-white border border-ink transform -rotate-1">BARELY
+                                    MADE IT</span>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <p class="font-mono text-[11px] text-ink/60 uppercase">SUBMISSION TIME: 11:58:58 PM</p>
+                                <blockquote class="text-base sm:text-lg font-bold text-ink leading-snug">
+                                    "Turned a 4-paragraph professor rubric into 5 tiny steps I could complete while
+                                    actively sweating in the 24-hour library."
+                                </blockquote>
+                            </div>
+                        </div>
+                        <div
+                            class="px-6 py-4 bg-cream/70 border-t-2 border-ink flex items-center justify-between font-mono text-xs">
+                            <span class="font-extrabold text-ink">SAMIRA T. // DESIGN</span>
+                            <span class="text-electric font-bold">CLOSED ✓</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         7. FINAL HAZARD CTA POSTER SECTION
+         ====================================================================== -->
+        <section class="py-16 sm:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-emergency brutal-border-thick brutal-shadow-lg rounded-3xl overflow-hidden">
+                    <div class="h-4 hazard-stripes border-b-[3px] border-ink"></div>
+
+                    <div class="p-8 sm:p-14 lg:p-16 text-center space-y-6 sm:space-y-8 relative">
+                        <div
+                            class="inline-flex items-center gap-2 bg-ink text-acid font-mono text-xs font-extrabold px-4 py-1.5 rounded-lg uppercase">
+                            <span class="w-2 h-2 rounded-full bg-emergency animate-ping"></span>
+                            <span>FINAL SYSTEM ALERT // CANVAS SUBMISSION WINDOW CLOSING</span>
+                        </div>
+
+                        <h2
+                            class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-white leading-[0.94] max-w-4xl mx-auto drop-shadow-[4px_4px_0px_#0D0D0D]">
+                            STOP REFRESHING CANVAS.<br />
+                            <span class="text-acid">START TYPING.</span>
+                        </h2>
+
+                        <p class="text-lg sm:text-xl font-bold text-white/95 max-w-xl mx-auto">
+                            Every second you spend admiring this layout is another sentence you aren't writing.
+                        </p>
+
+                        <div class="pt-2">
+                            <button type="button" onclick="openPanicModal('ACADEMIC WEAPON COCKPIT')"
+                                class="brutal-btn bg-acid text-ink font-display text-2xl sm:text-3xl tracking-wide px-10 py-5 rounded-xl uppercase hover:bg-surface inline-flex items-center gap-3">
+                                <span>SAVE MY GPA</span>
+                                <span class="font-sans font-black">→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="h-4 hazard-stripes border-t-[3px] border-ink"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+    <footer class="bg-cream border-t-[2.5px] border-ink py-10">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="space-y-1">
+                <p class="font-mono text-xs sm:text-sm font-extrabold uppercase tracking-tight text-ink">
+                    PANIC BUTTON® // PRODUCT LAUNCH & INTERACTIVE CAMPAIGN CASE STUDY
+                </p>
+                <p class="font-mono text-xs text-ink/70">
+                    Built with Swiss Editorial Brutalism, Web Audio API synthesis, and zero external dependencies.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3 font-mono text-xs font-extrabold">
+                <button type="button" onclick="openCampaignDrawer()"
+                    class="px-3.5 py-2 rounded-lg bg-acid brutal-border hover:bg-electric hover:text-white transition-colors cursor-pointer">
+                    📁 CAMPAIGN BRIEF
+                </button>
+                <a href="#"
+                    class="px-3.5 py-2 rounded-lg bg-surface brutal-border hover:bg-ink hover:text-acid transition-colors">
+                    TOP ↑
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================================================
+       8. INTERACTIVE EMERGENCY SESSION MODAL ("ACADEMIC WEAPON COCKPIT")
+       ======================================================================== -->
+    <div id="panic-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-ink/80 backdrop-blur-xs"
+        role="dialog" aria-modal="true" aria-labelledby="cockpit-title">
+        <div class="w-full max-w-2xl bg-cream brutal-border-thick brutal-shadow-lg rounded-2xl overflow-hidden">
+            <!-- Cockpit Header -->
+            <div class="bg-ink text-white px-5 py-3.5 border-b-[2.5px] border-ink flex items-center justify-between">
+                <div class="flex items-center gap-2.5 font-mono text-xs sm:text-sm font-extrabold uppercase">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emergency animate-ping"></span>
+                    <span id="cockpit-mode-label" class="text-acid">ACADEMIC WEAPON COCKPIT // LIVE</span>
+                </div>
+                <button type="button" onclick="closePanicModal()"
+                    class="w-8 h-8 rounded-lg bg-emergency text-white font-mono font-extrabold text-base flex items-center justify-center hover:bg-acid hover:text-ink transition-colors cursor-pointer"
+                    aria-label="Close cockpit">
+                    ×
+                </button>
+            </div>
+
+            <!-- Cockpit Body -->
+            <div class="p-6 sm:p-7 space-y-5 max-h-[88vh] overflow-y-auto">
+                <div>
+                    <h3 id="cockpit-title"
+                        class="font-display text-3xl sm:text-4xl uppercase tracking-tight text-ink leading-none">
+                        ACADEMIC WEAPON COCKPIT
+                    </h3>
+                    <p class="text-sm sm:text-base text-ink/80 font-medium mt-1">
+                        Distraction-free sprint timer + synthesized focus audio. Lock in now.
+                    </p>
+                </div>
+
+                <!-- Working Countdown Sprint Timer (25:00 / 15:00 / 45:00) -->
+                <div class="bg-terminal text-white brutal-border rounded-2xl p-5 text-center space-y-4">
+                    <div
+                        class="flex items-center justify-center gap-2 font-mono text-xs font-extrabold text-acid uppercase">
+                        <span>SPRINT CLOCK</span>
+                        <span>•</span>
+                        <span id="sprint-status-text">READY TO COOK</span>
+                    </div>
+
+                    <div id="sprint-clock-display"
+                        class="font-mono text-5xl sm:text-6xl font-extrabold text-white tabular-nums tracking-tight">
+                        25:00
+                    </div>
+
+                    <!-- Preset Buttons: 25:00 / 15:00 / 45:00 -->
+                    <div class="flex items-center justify-center gap-2">
+                        <button type="button" onclick="setSprintDuration(25)"
+                            class="sprint-preset-btn font-mono text-xs font-extrabold px-3.5 py-1.5 rounded-lg bg-acid text-ink border border-ink cursor-pointer">25:00</button>
+                        <button type="button" onclick="setSprintDuration(15)"
+                            class="sprint-preset-btn font-mono text-xs font-extrabold px-3.5 py-1.5 rounded-lg bg-white/10 text-white border border-white/25 hover:bg-white/20 cursor-pointer">15:00</button>
+                        <button type="button" onclick="setSprintDuration(45)"
+                            class="sprint-preset-btn font-mono text-xs font-extrabold px-3.5 py-1.5 rounded-lg bg-white/10 text-white border border-white/25 hover:bg-white/20 cursor-pointer">45:00</button>
+                    </div>
+
+                    <!-- Start / Pause / Reset Controls -->
+                    <div class="flex items-center justify-center gap-3 pt-1">
+                        <button id="sprint-toggle-btn" type="button" onclick="toggleSprintTimer()"
+                            class="brutal-btn bg-acid text-ink font-mono font-extrabold text-xs sm:text-sm px-6 py-2.5 rounded-xl uppercase">
+                            START SPRINT ▶
+                        </button>
+                        <button type="button" onclick="resetSprintTimer()"
+                            class="brutal-btn bg-surface text-ink font-mono font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-xl uppercase">
+                            RESET
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Editable Current Target Objective -->
+                <div class="space-y-1.5">
+                    <label for="cockpit-objective-input"
+                        class="font-mono text-xs font-extrabold uppercase text-ink block">
+                        CURRENT TARGET OBJECTIVE:
+                    </label>
+                    <div class="flex items-center gap-2.5 bg-surface brutal-border rounded-xl p-3">
+                        <input id="cockpit-objective-cb" type="checkbox" class="panic-checkbox"
+                            onchange="toggleCockpitObjective()" />
+                        <input id="cockpit-objective-input" type="text"
+                            value="Draft 500 words + format bibliography before 11:58 PM"
+                            class="w-full font-sans text-sm sm:text-base font-bold text-ink focus:outline-none bg-transparent" />
+                    </div>
+                </div>
+
+                <!-- Built-in Web Audio Focus Soundscape Generator -->
+                <div class="bg-surface brutal-border rounded-xl p-4 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-mono text-xs font-extrabold uppercase text-ink">
+                            🎧 WEB AUDIO FOCUS SOUNDSCAPE
+                        </span>
+                        <span id="soundscape-status" class="font-mono text-[11px] font-bold text-electric uppercase">
+                            MUTED
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button type="button" data-scape="off" onclick="setFocusSoundscape('off')"
+                            class="scape-btn font-mono text-xs font-extrabold py-2 px-3 rounded-lg brutal-border bg-ink text-acid cursor-pointer">
+                            OFF
+                        </button>
+                        <button type="button" data-scape="brown" onclick="setFocusSoundscape('brown')"
+                            class="scape-btn font-mono text-xs font-extrabold py-2 px-3 rounded-lg brutal-border bg-cream text-ink hover:bg-acid cursor-pointer">
+                            BROWN NOISE
+                        </button>
+                        <button type="button" data-scape="rain" onclick="setFocusSoundscape('rain')"
+                            class="scape-btn font-mono text-xs font-extrabold py-2 px-3 rounded-lg brutal-border bg-cream text-ink hover:bg-acid cursor-pointer">
+                            RAIN STATIC
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rotating Panic Coach Hype Banner -->
+                <div class="bg-acid brutal-border rounded-xl p-4 flex items-center justify-between gap-3">
+                    <p id="cockpit-coach-quote"
+                        class="font-mono text-xs sm:text-sm font-extrabold text-ink leading-snug">
+                        "Drink water. Unclench your jaw. Nobody reads the third body paragraph carefully."
+                    </p>
+                    <button type="button" onclick="rotateCockpitQuote()"
+                        class="shrink-0 bg-surface brutal-border font-mono text-xs font-extrabold px-3 py-1.5 rounded-lg hover:bg-ink hover:text-acid transition-colors cursor-pointer">
+                        ↻ HYPE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================
+       9. PORTFOLIO CASE STUDY / CAMPAIGN STRATEGY DRAWER (📁 CAMPAIGN BRIEF)
+       ======================================================================== -->
+    <div id="campaign-drawer-backdrop" class="fixed inset-0 z-50 hidden bg-ink/75 backdrop-blur-xs justify-end"
+        role="dialog" aria-modal="true" aria-labelledby="brief-drawer-title">
+        <div
+            class="w-full max-w-xl bg-cream border-l-[3px] border-ink h-full overflow-y-auto p-6 sm:p-8 flex flex-col justify-between space-y-8">
+            <div class="space-y-6">
+                <!-- Drawer Top Header -->
+                <div class="flex items-start justify-between gap-4 pb-4 border-b-[2.5px] border-ink">
+                    <div>
+                        <span
+                            class="inline-block font-mono text-[11px] font-extrabold bg-electric text-white px-2.5 py-0.5 rounded border border-ink uppercase mb-2">
+                            PORTFOLIO CASE STUDY // MARKETING STRATEGY
+                        </span>
+                        <h2 id="brief-drawer-title"
+                            class="font-display text-3xl sm:text-4xl uppercase tracking-tight text-ink leading-none">
+                            PANIC BUTTON® CAMPAIGN BRIEF
+                        </h2>
+                    </div>
+                    <button type="button" onclick="closeCampaignDrawer()"
+                        class="w-9 h-9 rounded-lg bg-ink text-acid font-mono font-extrabold text-lg flex items-center justify-center hover:bg-emergency hover:text-white transition-colors cursor-pointer shrink-0"
+                        aria-label="Close Campaign Brief Drawer">
+                        ×
+                    </button>
+                </div>
+
+                <!-- Strategy Card 1: Campaign Objective & Format -->
+                <div class="bg-surface brutal-border brutal-shadow rounded-xl p-5 space-y-2">
+                    <div class="font-mono text-xs font-extrabold text-emergency uppercase">
+                        01 // CAMPAIGN OBJECTIVE & FORMAT
+                    </div>
+                    <p class="text-sm sm:text-base font-semibold text-ink leading-relaxed">
+                        Product launch landing page engineered to demonstrate <strong>high-converting
+                            copywriting</strong>, <strong>interactive UX storytelling</strong>, and a cohesive visual
+                        identity—shifting from static campus posters to a full-funnel digital product experience.
+                    </p>
+                </div>
+
+                <!-- Strategy Card 2: Target Audience Insight -->
+                <div class="bg-surface brutal-border brutal-shadow rounded-xl p-5 space-y-2">
+                    <div class="font-mono text-xs font-extrabold text-electric uppercase">
+                        02 // TARGET AUDIENCE INSIGHT
+                    </div>
+                    <p class="text-sm sm:text-base font-semibold text-ink leading-relaxed">
+                        College students experiencing acute <strong>deadline paralysis at 11:48 PM</strong>—the exact
+                        emotional inflection point where guilt turns into hyper-focused "academic weapon" energy, yet
+                        traditional rigid planners feel overwhelming.
+                    </p>
+                </div>
+
+                <!-- Strategy Card 3: Conversion Architecture -->
+                <div class="bg-acid brutal-border brutal-shadow rounded-xl p-5 space-y-3">
+                    <div class="font-mono text-xs font-extrabold text-ink uppercase">
+                        03 // CONVERSION ARCHITECTURE (FUNNEL FLOW)
+                    </div>
+                    <ol class="space-y-2 font-mono text-xs font-bold text-ink">
+                        <li class="bg-surface p-2.5 rounded-lg border border-ink">
+                            <span class="text-emergency">HOOK:</span> Relatable emotional callout ("You Had Three Weeks.
+                            You Chose Violence.")
+                        </li>
+                        <li class="bg-surface p-2.5 rounded-lg border border-ink">
+                            <span class="text-electric">SELF-DIAGNOSIS:</span> Interactive "How Cooked Are You?" slider
+                            + personalized survival receipt
+                        </li>
+                        <li class="bg-surface p-2.5 rounded-lg border border-ink">
+                            <span class="text-emergency">PRODUCT PROOF:</span> Hands-on micro-demos (Task Shredder, App
+                            Jail, Backward Planner)
+                        </li>
+                        <li class="bg-surface p-2.5 rounded-lg border border-ink">
+                            <span class="text-electric">SOCIAL PROOF & ACTION:</span> Campus IT Incident Logs → 1-click
+                            Emergency Cockpit launch
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Strategy Card 4: Brand Voice & Visual System -->
+                <div class="bg-surface brutal-border brutal-shadow rounded-xl p-5 space-y-2">
+                    <div class="font-mono text-xs font-extrabold text-ink uppercase">
+                        04 // BRAND VOICE & VISUAL SYSTEM
+                    </div>
+                    <p class="text-sm sm:text-base font-semibold text-ink leading-relaxed">
+                        High-contrast warning system palette (<strong>Emergency Red #FF2A2A</strong>, <strong>Acid
+                            Yellow #E8FF00</strong>, <strong>Electric Blue #1E40FF</strong> on warm newsprint
+                        <strong>#F6F2E9</strong>) paired with Swiss editorial typography to immediately break through
+                        digital banner blindness.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Drawer Footer CTA -->
+            <div class="pt-4 border-t-[2.5px] border-ink flex items-center justify-between gap-3">
+                <span class="font-mono text-[11px] font-bold text-ink/70">PORTFOLIO ARTIFACT // 2026</span>
+                <button type="button" onclick="closeCampaignDrawer()"
+                    class="brutal-btn bg-ink text-acid font-mono text-xs font-extrabold px-5 py-2.5 rounded-xl uppercase">
+                    BACK TO LANDING PAGE →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================
+       JAVASCRIPT: WEB AUDIO SYNTH, PARTICLE PHYSICS, INTERACTIVE MODULES
+       ======================================================================== -->
+    <script>
+        // ========================================================================
+        // 1. WEB AUDIO API SYNTHESIZER (Clicks, Alarms, Jail-Bar Clanks, Fanfare)
+        // ========================================================================
+        let sfxEnabled = false;
+        let audioCtx = null;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSynthEffect(kind = 'click') {
+            if (!sfxEnabled) return;
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+
+                if (kind === 'click') {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(620, now);
+                    osc.frequency.exponentialRampToValueAtTime(280, now + 0.055);
+                    gain.gain.setValueAtTime(0.06, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.06);
+                } else if (kind === 'alarm') {
+                    // Two-tone emergency klaxon chord
+                    [440, 587.33].forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+                        gain.gain.setValueAtTime(0.055, now + idx * 0.07);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.07 + 0.16);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + idx * 0.07);
+                        osc.stop(now + idx * 0.07 + 0.17);
+                    });
+                } else if (kind === 'clank') {
+                    // Metallic prison-bar slam
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(190, now);
+                    osc.frequency.exponentialRampToValueAtTime(72, now + 0.14);
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                } else if (kind === 'fanfare') {
+                    // Dopamine unlocked arpeggio
+                    [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now + i * 0.065);
+                        gain.gain.setValueAtTime(0.06, now + i * 0.065);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.065 + 0.18);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + i * 0.065);
+                        osc.stop(now + i * 0.065 + 0.19);
+                    });
+                }
+            } catch (e) {
+                // Safe fallback if browser blocks audio
+            }
+        }
+
+        document.getElementById('sfx-toggle').addEventListener('click', () => {
+            sfxEnabled = !sfxEnabled;
+            const dot = document.getElementById('sfx-dot');
+            const label = document.getElementById('sfx-label');
+            if (sfxEnabled) {
+                dot.classList.remove('bg-neutral-400');
+                dot.classList.add('bg-emergency');
+                label.textContent = 'SFX: ON';
+                playSynthEffect('fanfare');
+            } else {
+                dot.classList.remove('bg-emergency');
+                dot.classList.add('bg-neutral-400');
+                label.textContent = 'SFX: OFF';
+            }
+        });
+
+        // ========================================================================
+        // 2. LIVE COUNTDOWN CLOCK (00:47:19 ticking every second)
+        // ========================================================================
+        let globalDeadlineSeconds = 47 * 60 + 19;
+
+        function formatClock(sec) {
+            const h = Math.floor(sec / 3600);
+            const m = Math.floor((sec % 3600) / 60);
+            const s = sec % 60;
+            return [h, m, s].map((v) => String(v).padStart(2, '0')).join(':');
+        }
+
+        setInterval(() => {
+            const navClock = document.getElementById('nav-countdown');
+            if (navClock) navClock.textContent = formatClock(globalDeadlineSeconds);
+            globalDeadlineSeconds = globalDeadlineSeconds > 0 ? globalDeadlineSeconds - 1 : 47 * 60 + 19;
+        }, 1000);
+
+        // ========================================================================
+        // 3. HERO CHAOS COLLAGE: PHYSICAL 3D PANIC BUTTON + PARTICLES + OS WINDOW
+        // ========================================================================
+        let panicPressCount = 0;
+        const escalationLevels = [
+            'LVL 1: MILD DENIAL',
+            'LVL 2: SWEATING THROUGH HOODIE',
+            'LVL 3: ACADEMIC WEAPON UNLOCKED',
+            'LVL 4: TIME HAS LOST ALL MEANING'
+        ];
+
+        function spawnChaosParticles(originX, originY) {
+            const emojis = ['📄', '🔥', '☕', '⚡', '🚨', '💀'];
+            for (let i = 0; i < 12; i++) {
+                const el = document.createElement('span');
+                el.className = 'chaos-particle';
+                el.textContent = emojis[i % emojis.length];
+                el.style.left = `${originX}px`;
+                el.style.top = `${originY}px`;
+                const angle = (Math.PI * 2 * i) / 12 + (Math.random() - 0.5) * 0.4;
+                const dist = 75 + Math.random() * 110;
+                el.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
+                el.style.setProperty('--dy', `${Math.sin(angle) * dist - 40}px`);
+                el.style.setProperty('--rot', `${(Math.random() - 0.5) * 360}deg`);
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 900);
+            }
+        }
+
+        function smashPhysicalPanicButton(event) {
+            panicPressCount++;
+            playSynthEffect('alarm');
+
+            const btn = document.getElementById('big-red-panic-btn');
+            btn.classList.add('is-pressed');
+            setTimeout(() => btn.classList.remove('is-pressed'), 130);
+
+            // Screen micro-shake
+            const body = document.getElementById('app-body');
+            body.classList.remove('animate-panic-shake');
+            void body.offsetWidth;
+            body.classList.add('animate-panic-shake');
+
+            // Particle burst from button center
+            const rect = btn.getBoundingClientRect();
+            const cx = event.clientX || rect.left + rect.width / 2;
+            const cy = event.clientY || rect.top + rect.height / 2;
+            spawnChaosParticles(cx, cy);
+
+            // Escalate Panic Counter Badge
+            const levelIdx = Math.min(panicPressCount - 1, escalationLevels.length - 1);
+            const badge = document.getElementById('panic-escalation-badge');
+            badge.textContent = `${escalationLevels[levelIdx]} (${panicPressCount}x)`;
+            if (levelIdx >= 2) {
+                badge.classList.remove('bg-white/15', 'text-acid');
+                badge.classList.add('bg-emergency', 'text-white');
+            }
+        }
+
+        // Retro OS Error Window: Playful [DENIAL] Dodge & Error Cycle
+        const denialMessages = [
+            { code: 'ERROR 404 // WILLPOWER', text: 'Error 404: Willpower not found.' },
+            { code: 'CANVAS_DAEMON // LOCKED', text: "Nice try, closing this won't pause Canvas." },
+            { code: 'TIKTOK_TRAP // DETECTED', text: "You opened TikTok 'for 2 mins' 51 mins ago." },
+            { code: 'FINAL_WARNING // 11:58 PM', text: 'Denial threshold exceeded. Click [ACCEPT FATE] immediately.' }
+        ];
+        let denialStep = 0;
+
+        const denialBtn = document.getElementById('denial-btn');
+        const heroOsWindow = document.getElementById('hero-os-window');
+
+        denialBtn.addEventListener('click', () => {
+            playSynthEffect('clank');
+            const msg = denialMessages[denialStep % denialMessages.length];
+            document.getElementById('os-error-code').textContent = msg.code;
+            document.getElementById('os-error-text').textContent = msg.text;
+            denialStep++;
+
+            // Playful dodge translation on the button & shake on the window
+            const offsets = [
+                'translate(-18px, -4px) rotate(-3deg)',
+                'translate(14px, 3px) rotate(3deg)',
+                'translate(-10px, 4px) rotate(-2deg)',
+                'translate(0px, 0px) rotate(0deg)'
+            ];
+            denialBtn.style.transform = offsets[denialStep % offsets.length];
+
+            heroOsWindow.classList.remove('animate-panic-shake');
+            void heroOsWindow.offsetWidth;
+            heroOsWindow.classList.add('animate-panic-shake');
+        });
+
+        // Peelable Acid Yellow Sticky Note
+        let stickyFlipped = false;
+        function flipStickyNote() {
+            playSynthEffect('click');
+            stickyFlipped = !stickyFlipped;
+            const note = document.getElementById('hero-sticky-note');
+            const copy = document.getElementById('sticky-note-copy');
+            if (stickyFlipped) {
+                note.classList.remove('-rotate-2', 'bg-acid');
+                note.classList.add('rotate-2', 'bg-surface');
+                copy.textContent = '"Update 11:48 PM: Okay we are locking in. Coffee acquired. Zero mercy."';
+            } else {
+                note.classList.remove('rotate-2', 'bg-surface');
+                note.classList.add('-rotate-2', 'bg-acid');
+                copy.textContent = '"Note to self: Do NOT open TikTok \'for two minutes\' again. That was a lie at 9:15 PM."';
+            }
+        }
+
+        // ========================================================================
+        // 4. "HOW COOKED ARE YOU?" SLIDER + PRESETS + THERMAL SURVIVAL RECEIPT
+        // ========================================================================
+        function applyCookedPreset(mins) {
+            playSynthEffect('click');
+            const slider = document.getElementById('minutes-slider');
+            slider.value = mins;
+            updateCookedFromSlider(mins);
+        }
+
+        function updateCookedFromSlider(rawVal) {
+            const mins = parseInt(rawVal, 10);
+            document.getElementById('slider-minutes-badge').textContent = `${mins} MIN`;
+            document.getElementById('receipt-timestamp').textContent = `URGENCY: ${mins} MINUTES REMAINING`;
+
+            // Calculate cooked percentage (180 min -> 18%, 3 min -> 99.9%)
+            const ratio = (180 - mins) / (180 - 3);
+            const cookedPct = Math.min(99.9, Math.max(18, 18 + ratio * 81.9)).toFixed(1);
+            document.getElementById('diag-cooked-pct').textContent = `${cookedPct}% COOKED`;
+
+            // Determine severity tier
+            let tier = 'mild';
+            let barColor = 'bg-electric';
+            let badgeText = 'THREAT: LOW // DELUSIONAL OPTIMISM';
+            let badgeClass = 'bg-electric text-white';
+            let quote = '"You still have time to make an outline, drink water, and pretend this was scheduled."';
+            let adrenaline = '120 MG';
+            let sleepImpact = 'SURVIVABLE (6 HRS)';
+            let receiptItems = [
+                { item: '1x Iced Matcha / Light Coffee', status: 'OPTIONAL' },
+                { item: '1x 15-Min Outline Warmup', status: 'RECOMMENDED' },
+                { item: '1x Social Media Mute', status: '30 MIN' }
+            ];
+
+            if (mins <= 120 && mins > 60) {
+                tier = 'sweating';
+                barColor = 'bg-acid';
+                badgeText = 'THREAT: ELEVATED // SWEATING';
+                badgeClass = 'bg-acid text-ink';
+                quote = '"47 open browser tabs. Dignity fading. Time to activate Phone Jail and speed-draft."';
+                adrenaline = '250 MG';
+                sleepImpact = 'COMPROMISED';
+                receiptItems = [
+                    { item: '1x Double Espresso Shot', status: 'REQUIRED' },
+                    { item: '1x Phone Jail Lockdown', status: '60 MIN' },
+                    { item: '1x 500-Word Speed Sprint', status: 'ACTIVE' }
+                ];
+            } else if (mins <= 60) {
+                tier = 'cooked';
+                barColor = 'bg-emergency';
+                badgeText = mins <= 15 ? 'THREAT: CODE BLACK // WELL DONE' : 'THREAT: CRITICAL // WELL DONE';
+                badgeClass = 'bg-emergency text-white';
+                quote = mins <= 15
+                    ? '"Drop every adjective. Bullet points are now paragraphs. Hit submit before Canvas locks!"'
+                    : '"Abandon perfection. Embrace word count. May God have mercy on your bibliography."';
+                adrenaline = '400 MG';
+                sleepImpact = 'DESTROYED';
+                receiptItems = [
+                    { item: '1x Iced Espresso (Triple)', status: 'MANDATORY' },
+                    { item: '1x Phone Jail Lockdown', status: `${mins} MIN` },
+                    { item: '1x 800-Word Speedrun', status: 'GODSPEED' }
+                ];
+            }
+
+            // Highlight active preset card if matching
+            document.querySelectorAll('.cooked-preset-card').forEach((card) => {
+                const p = card.getAttribute('data-preset');
+                card.classList.remove('bg-electric', 'bg-acid', 'bg-emergency', 'text-white', 'text-ink', 'bg-cream');
+                if ((p === 'mild' && mins > 120) || (p === 'sweating' && mins <= 120 && mins > 60) || (p === 'cooked' && mins <= 60)) {
+                    if (p === 'mild') card.classList.add('bg-electric', 'text-white');
+                    if (p === 'sweating') card.classList.add('bg-acid', 'text-ink');
+                    if (p === 'cooked') card.classList.add('bg-emergency', 'text-white');
+                } else {
+                    card.classList.add('bg-cream', 'text-ink');
+                }
+            });
+
+            // Update Threat Badge & Quote
+            const threatEl = document.getElementById('diag-threat-badge');
+            threatEl.textContent = badgeText;
+            threatEl.className = `font-mono text-xs font-extrabold px-3 py-1 rounded-lg brutal-border uppercase ${badgeClass}`;
+            document.getElementById('diag-quote-text').textContent = quote;
+
+            // Render 10 Segmented Blocks
+            const activeSegments = Math.max(2, Math.round((parseFloat(cookedPct) / 100) * 10));
+            const segContainer = document.getElementById('cooked-segments');
+            segContainer.innerHTML = Array.from({ length: 10 })
+                .map((_, idx) => {
+                    const filled = idx < activeSegments;
+                    return `<div class="h-full rounded-sm border border-ink transition-colors duration-200 ${filled ? barColor : 'bg-cream'}"></div>`;
+                })
+                .join('');
+
+            // Render Jagged Thermal Receipt Items
+            document.getElementById('receipt-items-list').innerHTML = receiptItems
+                .map(
+                    (row) => `
+          <div class="flex items-baseline justify-between gap-2 border-b border-ink/10 pb-1.5">
+            <span class="font-bold text-ink">${row.item}</span>
+            <span class="font-extrabold text-electric shrink-0">... ${row.status}</span>
+          </div>`
+                )
+                .join('');
+
+            document.getElementById('receipt-total-adrenaline').textContent = adrenaline;
+            document.getElementById('receipt-sleep-impact').textContent = sleepImpact;
+        }
+
+        // Initialize slider state at 47 min on load
+        updateCookedFromSlider(47);
+
+        // ========================================================================
+        // 5. BENTO CARD 1: EMERGENCY FOCUS MODE (THE TASK SHREDDER)
+        // ========================================================================
+        function shredBigTask() {
+            playSynthEffect('fanfare');
+            const list = document.getElementById('shredded-tasks-list');
+            list.classList.remove('animate-shred');
+            void list.offsetWidth;
+            list.classList.add('animate-shred');
+            document.getElementById('shred-status-footer').textContent = 'SHREDDED INTO 4 SURVIVABLE STEPS!';
+        }
+
+        function updateShredProgress() {
+            const cbs = document.querySelectorAll('.shred-cb');
+            let done = 0;
+            cbs.forEach((cb) => {
+                const span = cb.nextElementSibling;
+                if (cb.checked) {
+                    done++;
+                    span.classList.add('line-through', 'opacity-50');
+                } else {
+                    span.classList.remove('line-through', 'opacity-50');
+                }
+            });
+
+            const pct = Math.round((done / cbs.length) * 100);
+            document.getElementById('shred-progress-label').textContent = `${done} / ${cbs.length} STEPS (${pct}%)`;
+            document.getElementById('shred-progress-bar').style.width = `${pct}%`;
+
+            const xpBadge = document.getElementById('dopamine-xp-badge');
+            if (pct === 100) {
+                playSynthEffect('fanfare');
+                xpBadge.classList.remove('hidden');
+                document.getElementById('shred-status-footer').textContent = '100% COMPLETE // YOU ARE COOKING!';
+            } else {
+                playSynthEffect('click');
+                xpBadge.classList.add('hidden');
+                document.getElementById('shred-status-footer').textContent = `${4 - done} MICRO-STEPS REMAINING`;
+            }
+        }
+
+        function resetShredTasks() {
+            document.querySelectorAll('.shred-cb').forEach((cb) => (cb.checked = false));
+            updateShredProgress();
+        }
+
+        // ========================================================================
+        // 6. BENTO CARD 2: HIDE MY PHONE (APP JAIL SIMULATOR)
+        // ========================================================================
+        let phoneJailActive = false;
+        let blockedTaps = 0;
+
+        function toggleAppJail() {
+            phoneJailActive = !phoneJailActive;
+            const btn = document.getElementById('jail-switch-btn');
+            const knob = document.getElementById('jail-switch-knob');
+            const bars = document.getElementById('prison-bars-overlay');
+            const status = document.getElementById('phone-jail-status');
+            const roast = document.getElementById('phone-roast-message');
+
+            btn.setAttribute('aria-checked', String(phoneJailActive));
+
+            if (phoneJailActive) {
+                playSynthEffect('clank');
+                btn.classList.remove('bg-surface');
+                btn.classList.add('bg-emergency');
+                knob.classList.remove('translate-x-0', 'bg-ink');
+                knob.classList.add('translate-x-7', 'bg-white');
+                bars.classList.remove('-translate-y-full');
+                bars.classList.add('translate-y-0');
+                status.textContent = '🔒 PHONE JAIL ACTIVE';
+                status.classList.remove('text-emergency');
+                status.classList.add('text-electric');
+                roast.textContent = 'LOCKED DOWN. Try tapping an app icon now.';
+                roast.className = 'text-acid font-extrabold';
+            } else {
+                playSynthEffect('click');
+                btn.classList.remove('bg-emergency');
+                btn.classList.add('bg-surface');
+                knob.classList.remove('translate-x-7', 'bg-white');
+                knob.classList.add('translate-x-0', 'bg-ink');
+                bars.classList.remove('translate-y-0');
+                bars.classList.add('-translate-y-full');
+                status.textContent = '● UNLOCKED';
+                status.classList.remove('text-electric');
+                status.classList.add('text-emergency');
+                roast.textContent = 'Jail lifted. Danger of 45-minute scroll spiral.';
+                roast.className = 'text-cream/85 font-bold';
+            }
+        }
+
+        function tapDistractingApp(appName) {
+            const phone = document.getElementById('smartphone-mockup');
+            const roast = document.getElementById('phone-roast-message');
+
+            if (phoneJailActive) {
+                playSynthEffect('clank');
+                blockedTaps++;
+                document.getElementById('blocked-taps-count').textContent = blockedTaps;
+                phone.classList.remove('animate-panic-shake');
+                void phone.offsetWidth;
+                phone.classList.add('animate-panic-shake');
+                roast.textContent = `🚫 ${appName} blocked. Go write paragraph 2.`;
+                roast.className = 'text-emergency font-extrabold';
+            } else {
+                playSynthEffect('click');
+                roast.textContent = `⚠️ ${appName} opened! Flip LOCKDOWN SWITCH before you lose 40 mins!`;
+                roast.className = 'text-acid font-bold';
+            }
+        }
+
+        // ========================================================================
+        // 7. BENTO CARD 3: BREAK IT DOWN FOR ME (BACKWARD SURVIVAL PLANNER)
+        // ========================================================================
+        const planPresets = {
+            essay: {
+                prompt: '10-Page Argumentative Research Essay due on Canvas at 11:59 PM',
+                steps: [
+                    { time: '11:12 PM', label: 'Thesis + 5 bold section headings' },
+                    { time: '11:24 PM', label: 'Drop 6 Google Scholar quotes in' },
+                    { time: '11:46 PM', label: 'Speed-type 1,800 messy words' },
+                    { time: '11:54 PM', label: 'Auto-citations + export PDF' },
+                    { time: '11:58:30 PM', label: 'SUBMIT TO CANVAS ✓' }
+                ]
+            },
+            lab: {
+                prompt: '3AM Organic Chemistry Lab Report + Error Analysis & Abstract',
+                steps: [
+                    { time: '11:12 PM', label: 'Paste raw data tables & graphs' },
+                    { time: '11:22 PM', label: 'Convert procedure to passive voice' },
+                    { time: '11:42 PM', label: 'Write yield error analysis section' },
+                    { time: '11:53 PM', label: '4-sentence Abstract & units check' },
+                    { time: '11:58:30 PM', label: 'SUBMIT TO CANVAS ✓' }
+                ]
+            },
+            slides: {
+                prompt: '12-Slide Group Presentation Deck (Group members vanished)',
+                steps: [
+                    { time: '11:12 PM', label: 'Duplicate 12 high-contrast slides' },
+                    { time: '11:23 PM', label: 'Write bold takeaway titles only' },
+                    { time: '11:41 PM', label: 'Add 3 short bullets + icons/slide' },
+                    { time: '11:53 PM', label: 'Add quick speaker cues on Slide 1' },
+                    { time: '11:58:30 PM', label: 'SUBMIT SHARE LINK ✓' }
+                ]
+            }
+        };
+
+        function renderBackwardTimeline(steps) {
+            const box = document.getElementById('backward-plan-timeline');
+            box.innerHTML = steps
+                .map((s, idx) => {
+                    const isFinal = idx === steps.length - 1;
+                    return `
+            <div class="flex items-center justify-between gap-2 text-xs py-1 ${!isFinal ? 'border-b border-ink/10' : ''}">
+              <span class="font-mono font-extrabold px-2 py-0.5 rounded shrink-0 ${isFinal ? 'bg-emergency text-white' : 'bg-ink text-acid'}">
+                ${s.time}
+              </span>
+              <span class="font-bold text-right ${isFinal ? 'text-emergency font-extrabold' : 'text-ink'}">
+                ${s.label}
+              </span>
+            </div>`;
+                })
+                .join('');
+        }
+
+        function selectPlanPreset(key) {
+            playSynthEffect('click');
+            const preset = planPresets[key];
+            document.getElementById('planner-prompt-input').value = preset.prompt;
+            renderBackwardTimeline(preset.steps);
+        }
+
+        function buildBackwardPlan() {
+            playSynthEffect('fanfare');
+            const val = document.getElementById('planner-prompt-input').value.trim().toLowerCase();
+            if (val.includes('lab')) {
+                renderBackwardTimeline(planPresets.lab.steps);
+            } else if (val.includes('slide') || val.includes('group')) {
+                renderBackwardTimeline(planPresets.slides.steps);
+            } else if (val.includes('10-page') || val.includes('essay')) {
+                renderBackwardTimeline(planPresets.essay.steps);
+            } else {
+                const topic = val.slice(0, 26) || 'Emergency Assignment';
+                renderBackwardTimeline([
+                    { time: '11:12 PM', label: `Scaffold "${topic}..." outline` },
+                    { time: '11:25 PM', label: 'Gather 3 core sources / examples' },
+                    { time: '11:45 PM', label: 'Zero-edit speed draft sprint' },
+                    { time: '11:54 PM', label: 'Intro, conclusion & spellcheck' },
+                    { time: '11:58:30 PM', label: 'SUBMIT TO CANVAS ✓' }
+                ]);
+            }
+        }
+
+        // Initialize default backward timeline
+        renderBackwardTimeline(planPresets.essay.steps);
+
+        // ========================================================================
+        // 8. BONUS WIDGET: "PLAN B: LAST-MINUTE EXCUSE ROULETTE"
+        // ========================================================================
+        const excuseLibrary = {
+            pro: [
+                "Subject: Brief Extension Request — [Course Code] Assignment\n\nDear Professor [Last Name],\n\nI have completed the core research and draft for tonight's assignment, and I want to ensure my final formatting and citations meet the rubric standards. Would it be possible to submit by 9:00 AM tomorrow morning? Thank you for your time and consideration.\n\nBest regards,\n[Your Name]",
+                "Subject: Submission Confirmation & Technical Clarification — [Course Code]\n\nDear Professor [Last Name],\n\nI am finalizing my submission for tonight's deadline and encountered a brief formatting sync issue while exporting my bibliography. I am actively resolving it now and wanted to flag this ahead of 11:59 PM. Thank you for your understanding.\n\nSincerely,\n[Your Name]",
+                "Subject: Request for Short Grace Period — [Assignment Name]\n\nDear Professor [Last Name],\n\nI am writing to respectfully ask for a 12-hour extension on tonight's submission due to an unexpected scheduling conflict today. I have 80% of the draft completed and will upload the polished file before noon tomorrow.\n\nWarm regards,\n[Your Name]"
+            ],
+            chaos: [
+                "Professor, my laptop battery swelled to the size of a burrito at 11:54 PM and I had to evacuate my dorm desk for safety.",
+                "I accidentally exported my 10-page essay as a corrupted .PNG of a raccoon and Canvas won't let me overwrite the file.",
+                "My Wi-Fi router entered airplane mode spiritually at 11:57 PM. I am currently transmitting this email via library microwave."
+            ]
+        };
+
+        let currentExcuseMode = 'pro';
+        let excuseIdx = 0;
+
+        function renderExcuse() {
+            const list = excuseLibrary[currentExcuseMode];
+            const text = list[excuseIdx % list.length];
+            document.getElementById('excuse-output-text').textContent = text;
+            document.getElementById('excuse-counter').textContent = `OPTION ${(excuseIdx % list.length) + 1} OF ${list.length}`;
+
+            const badge = document.getElementById('excuse-tag-badge');
+            if (currentExcuseMode === 'pro') {
+                badge.textContent = 'TEMPLATE // POLITE & CREDIBLE';
+                badge.className = 'px-2.5 py-1 rounded bg-electric text-white border border-ink uppercase';
+            } else {
+                badge.textContent = 'WARNING // HIGH RISK DESPERATION';
+                badge.className = 'px-2.5 py-1 rounded bg-emergency text-white border border-ink uppercase';
+            }
+        }
+
+        function setExcuseMode(mode) {
+            playSynthEffect('click');
+            currentExcuseMode = mode;
+            excuseIdx = 0;
+
+            const proBtn = document.getElementById('excuse-mode-pro');
+            const chaosBtn = document.getElementById('excuse-mode-chaos');
+            if (mode === 'pro') {
+                proBtn.className = 'font-mono text-[11px] sm:text-xs font-extrabold px-3 py-1.5 rounded-lg bg-acid text-ink transition-colors cursor-pointer';
+                chaosBtn.className = 'font-mono text-[11px] sm:text-xs font-extrabold px-3 py-1.5 rounded-lg text-white hover:bg-white/15 transition-colors cursor-pointer';
+            } else {
+                chaosBtn.className = 'font-mono text-[11px] sm:text-xs font-extrabold px-3 py-1.5 rounded-lg bg-emergency text-white transition-colors cursor-pointer';
+                proBtn.className = 'font-mono text-[11px] sm:text-xs font-extrabold px-3 py-1.5 rounded-lg text-white hover:bg-white/15 transition-colors cursor-pointer';
+            }
+            renderExcuse();
+        }
+
+        function spinExcuseRoulette() {
+            playSynthEffect('fanfare');
+            excuseIdx++;
+            renderExcuse();
+        }
+
+        function copyExcuseToClipboard() {
+            playSynthEffect('click');
+            const text = document.getElementById('excuse-output-text').textContent;
+            const tempArea = document.createElement('textarea');
+            tempArea.value = text;
+            tempArea.style.position = 'fixed';
+            tempArea.style.opacity = '0';
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            try {
+                document.execCommand('copy');
+            } catch (e) {
+                // Fallback ignored
+            }
+            document.body.removeChild(tempArea);
+
+            const btn = document.getElementById('copy-excuse-btn');
+            const original = btn.textContent;
+            btn.textContent = '✓ COPIED TO CLIPBOARD!';
+            btn.classList.remove('bg-ink');
+            btn.classList.add('bg-electric');
+            setTimeout(() => {
+                btn.textContent = original;
+                btn.classList.remove('bg-electric');
+                btn.classList.add('bg-ink');
+            }, 1600);
+        }
+
+        renderExcuse();
+
+        // ========================================================================
+        // 9. ACADEMIC WEAPON COCKPIT MODAL + SPRINT TIMER + WEB AUDIO SOUNDSCAPE
+        // ========================================================================
+        let sprintSeconds = 25 * 60;
+        let sprintDurationMinutes = 25;
+        let sprintTimerId = null;
+        let sprintRunning = false;
+
+        const cockpitQuotes = [
+            '"Drink water. Unclench your jaw. Nobody reads the third body paragraph carefully."',
+            '"A submitted C+ beats an imaginary A+ sitting in your Google Drive at 12:01 AM."',
+            '"Close the 19 extra tabs. You only need two sources that vaguely agree with your thesis."',
+            '"Words first, dignity second. Type ugly sentences now and polish in the last 4 minutes."'
+        ];
+        let cockpitQuoteIdx = 0;
+
+        function openPanicModal(label = 'ACADEMIC WEAPON COCKPIT') {
+            playSynthEffect('alarm');
+            document.getElementById('cockpit-mode-label').textContent = `${label} // LIVE`;
+            const modal = document.getElementById('panic-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePanicModal() {
+            playSynthEffect('click');
+            setFocusSoundscape('off');
+            const modal = document.getElementById('panic-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function updateSprintDisplay() {
+            const m = Math.floor(sprintSeconds / 60);
+            const s = sprintSeconds % 60;
+            document.getElementById('sprint-clock-display').textContent =
+                `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+
+        function setSprintDuration(mins) {
+            playSynthEffect('click');
+            clearInterval(sprintTimerId);
+            sprintRunning = false;
+            sprintDurationMinutes = mins;
+            sprintSeconds = mins * 60;
+            updateSprintDisplay();
+            document.getElementById('sprint-toggle-btn').textContent = 'START SPRINT ▶';
+            document.getElementById('sprint-status-text').textContent = 'READY TO COOK';
+
+            document.querySelectorAll('.sprint-preset-btn').forEach((b) => {
+                if (b.textContent.startsWith(String(mins))) {
+                    b.className = 'sprint-preset-btn font-mono text-xs font-extrabold px-3.5 py-1.5 rounded-lg bg-acid text-ink border border-ink cursor-pointer';
+                } else {
+                    b.className = 'sprint-preset-btn font-mono text-xs font-extrabold px-3.5 py-1.5 rounded-lg bg-white/10 text-white border border-white/25 hover:bg-white/20 cursor-pointer';
+                }
+            });
+        }
+
+        function toggleSprintTimer() {
+            const btn = document.getElementById('sprint-toggle-btn');
+            const status = document.getElementById('sprint-status-text');
+            if (sprintRunning) {
+                clearInterval(sprintTimerId);
+                sprintRunning = false;
+                btn.textContent = 'RESUME SPRINT ▶';
+                status.textContent = 'PAUSED (HURRY UP)';
+                playSynthEffect('click');
+            } else {
+                sprintRunning = true;
+                btn.textContent = 'PAUSE SPRINT ❚❚';
+                status.textContent = 'LOCKED IN // DO NOT TAB OUT';
+                playSynthEffect('fanfare');
+                sprintTimerId = setInterval(() => {
+                    if (sprintSeconds > 0) {
+                        sprintSeconds--;
+                        updateSprintDisplay();
+                    } else {
+                        clearInterval(sprintTimerId);
+                        sprintRunning = false;
+                        btn.textContent = 'START SPRINT ▶';
+                        status.textContent = 'SPRINT COMPLETE! UPLOAD NOW!';
+                        playSynthEffect('alarm');
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetSprintTimer() {
+            setSprintDuration(sprintDurationMinutes);
+        }
+
+        function toggleCockpitObjective() {
+            const cb = document.getElementById('cockpit-objective-cb');
+            const input = document.getElementById('cockpit-objective-input');
+            playSynthEffect(cb.checked ? 'fanfare' : 'click');
+            input.classList.toggle('line-through', cb.checked);
+            input.classList.toggle('opacity-50', cb.checked);
+        }
+
+        function rotateCockpitQuote() {
+            playSynthEffect('click');
+            cockpitQuoteIdx = (cockpitQuoteIdx + 1) % cockpitQuotes.length;
+            document.getElementById('cockpit-coach-quote').textContent = cockpitQuotes[cockpitQuoteIdx];
+        }
+
+        // Built-in Web Audio Focus Soundscape Generator (Brown Noise & Rain Static)
+        let scapeSourceNode = null;
+        let scapeGainNode = null;
+
+        function setFocusSoundscape(mode) {
+            // Stop existing noise node cleanly
+            if (scapeSourceNode) {
+                try {
+                    scapeSourceNode.stop();
+                    scapeSourceNode.disconnect();
+                } catch (e) { }
+                scapeSourceNode = null;
+            }
+
+            document.querySelectorAll('.scape-btn').forEach((btn) => {
+                if (btn.getAttribute('data-scape') === mode) {
+                    btn.className = 'scape-btn font-mono text-xs font-extrabold py-2 px-3 rounded-lg brutal-border bg-ink text-acid cursor-pointer';
+                } else {
+                    btn.className = 'scape-btn font-mono text-xs font-extrabold py-2 px-3 rounded-lg brutal-border bg-cream text-ink hover:bg-acid cursor-pointer';
+                }
+            });
+
+            const statusEl = document.getElementById('soundscape-status');
+            if (mode === 'off') {
+                statusEl.textContent = 'MUTED';
+                return;
+            }
+
+            try {
+                const ctx = getAudioContext();
+                const bufferSize = ctx.sampleRate * 2;
+                const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+
+                if (mode === 'brown') {
+                    let lastOut = 0.0;
+                    for (let i = 0; i < bufferSize; i++) {
+                        const white = Math.random() * 2 - 1;
+                        output[i] = (lastOut + 0.02 * white) / 1.02;
+                        lastOut = output[i];
+                        output[i] *= 2.8;
+                    }
+                    statusEl.textContent = 'PLAYING: DEEP BROWN NOISE';
+                } else {
+                    // Filtered rain static
+                    for (let i = 0; i < bufferSize; i++) {
+                        output[i] = (Math.random() * 2 - 1) * 0.45;
+                    }
+                    statusEl.textContent = 'PLAYING: LIBRARY RAIN STATIC';
+                }
+
+                const whiteNoise = ctx.createBufferSource();
+                whiteNoise.buffer = noiseBuffer;
+                whiteNoise.loop = true;
+
+                const filter = ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.value = mode === 'brown' ? 320 : 1400;
+
+                const gain = ctx.createGain();
+                gain.gain.value = mode === 'brown' ? 0.14 : 0.07;
+
+                whiteNoise.connect(filter);
+                filter.connect(gain);
+                gain.connect(ctx.destination);
+                whiteNoise.start(0);
+
+                scapeSourceNode = whiteNoise;
+                scapeGainNode = gain;
+            } catch (e) {
+                statusEl.textContent = 'AUDIO UNAVAILABLE';
+            }
+        }
+
+        // ========================================================================
+        // 10. PORTFOLIO CAMPAIGN STRATEGY DRAWER CONTROLS
+        // ========================================================================
+        function openCampaignDrawer() {
+            playSynthEffect('click');
+            const drawer = document.getElementById('campaign-drawer-backdrop');
+            drawer.classList.remove('hidden');
+            drawer.classList.add('flex');
+        }
+
+        function closeCampaignDrawer() {
+            playSynthEffect('click');
+            const drawer = document.getElementById('campaign-drawer-backdrop');
+            drawer.classList.add('hidden');
+            drawer.classList.remove('flex');
+        }
+
+        // Close modals/drawers on Escape key or backdrop click
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePanicModal();
+                closeCampaignDrawer();
+            }
+        });
+
+        document.getElementById('panic-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'panic-modal') closePanicModal();
+        });
+
+        document.getElementById('campaign-drawer-backdrop').addEventListener('click', (e) => {
+            if (e.target.id === 'campaign-drawer-backdrop') closeCampaignDrawer();
+        });
+    </script>
+</body>
+
+</html>

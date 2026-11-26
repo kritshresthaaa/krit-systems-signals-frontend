@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DON’T TAKE THE BAIT. — Cyber Hygiene / 001 (Dark-Mode Cyber-Ops)</title>
+    <meta name="description"
+        content="University IT phishing-awareness campaign poster: Urgent. Official-looking. Slightly weird. That’s usually the point." />
+
+    <!-- Google Fonts: Space Grotesk (700/800 Display), Inter (400-700 UI), JetBrains Mono (500/600 Telemetry) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Space+Grotesk:wght@700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Custom Cyber-Intelligence Design Tokens -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#030509',
+                        obsidian: '#06090F',
+                        glass: 'rgba(15, 22, 36, 0.78)',
+                        snow: '#F8FAFC',
+                        slatex: '#94A3B8',
+                        laserred: '#FF3B30',
+                        cyberblue: '#38BDF8',
+                        cobalt: '#3B82F6',
+                        amberwarn: '#FBBF24',
+                    },
+                    fontFamily: {
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        /* ==========================================================================
+       APPLE / LINEAR-GRADE DARK-MODE CYBER-INTELLIGENCE & IT SECURITY DESIGN
+       ========================================================================== */
+        :root {
+            --bg-void: #030509;
+            --bg-obsidian: #06090F;
+            --surface-glass: rgba(15, 22, 36, 0.78);
+            --border-specular: rgba(255, 255, 255, 0.12);
+            --text-primary: #F8FAFC;
+            --text-muted: #94A3B8;
+            --laser-red: #FF3B30;
+            --laser-glow: rgba(255, 59, 48, 0.25);
+            --cyber-blue: #38BDF8;
+            --electric-blue: #3B82F6;
+            --caution-amber: #FBBF24;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            /* Subtle Dark Cyber-Ops Optical Grid */
+            background-image:
+                radial-gradient(circle at 50% 18%, rgba(56, 189, 248, 0.06) 0%, transparent 48%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Deep Obsidian Poster Canvas (#06090F) with Optical Ambient Lighting */
+        .cyber-poster-canvas {
+            background-color: #06090F;
+            color: #F8FAFC;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow:
+                0 35px 95px rgba(0, 0, 0, 0.85),
+                0 0 60px rgba(56, 189, 248, 0.07),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            background-image:
+                radial-gradient(circle at 38% 24%, rgba(255, 59, 48, 0.13) 0%, transparent 44%),
+                radial-gradient(circle at 72% 62%, rgba(56, 189, 248, 0.09) 0%, transparent 48%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.024) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.024) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+            transition: max-width 0.35s cubic-bezier(0.22, 1, 0.36, 1), aspect-ratio 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Aspect Ratio Modes: 3:4 Campus Print Poster vs. 4:5 Digital Signage / Feed */
+        @media (min-width: 640px) {
+            .poster-mode-3x4 {
+                width: 100%;
+                max-width: 780px;
+                aspect-ratio: 3 / 4;
+            }
+
+            .poster-mode-4x5 {
+                width: 100%;
+                max-width: 720px;
+                aspect-ratio: 4 / 5;
+            }
+        }
+
+        /* Elevated Dark Glass Surface */
+        .dark-glass-panel {
+            background: rgba(15, 22, 36, 0.78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* Suspended Dark-Glass Phishing Threat Card */
+        .threat-email-card {
+            background: linear-gradient(165deg, rgba(19, 28, 46, 0.92) 0%, rgba(11, 16, 28, 0.94) 100%);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(255, 59, 48, 0.45);
+            box-shadow:
+                0 24px 55px -12px rgba(0, 0, 0, 0.78),
+                0 0 36px rgba(255, 59, 48, 0.16),
+                inset 0 1px 0 rgba(255, 255, 255, 0.16);
+            transform: rotate(-1.5deg);
+            transform-origin: 50% -14px;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .threat-email-card:hover {
+            transform: rotate(-0.3deg);
+            border-color: rgba(255, 59, 48, 0.75);
+            box-shadow:
+                0 28px 65px -10px rgba(0, 0, 0, 0.85),
+                0 0 46px rgba(255, 59, 48, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        }
+
+        /* Laser Red Headline Glow */
+        .laser-red-glow {
+            color: #FF3B30;
+            text-shadow: 0 0 32px rgba(255, 59, 48, 0.42);
+        }
+
+        /* Subtle Redaction / Obfuscation Marker */
+        .cyber-redact {
+            background: rgba(255, 59, 48, 0.18);
+            border: 1px solid rgba(255, 59, 48, 0.4);
+            color: #FF3B30;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+
+        /* Interactive Trap Zone Highlights */
+        .trap-target {
+            transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            border-radius: 5px;
+        }
+
+        .trap-target.is-lit {
+            background-color: rgba(255, 59, 48, 0.18);
+            box-shadow: 0 0 0 1.5px #FF3B30, 0 0 18px rgba(255, 59, 48, 0.32);
+        }
+
+        .trap-target[data-trap="destination"].is-lit {
+            background-color: rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 0 1.5px #38BDF8, 0 0 22px rgba(56, 189, 248, 0.42);
+        }
+
+        /* Interactive Red-Flag Annotation Pills */
+        .flag-callout-btn {
+            background: rgba(15, 22, 36, 0.76);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #F8FAFC;
+            transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+        }
+
+        .flag-callout-btn:hover,
+        .flag-callout-btn.is-active {
+            background: rgba(255, 59, 48, 0.16);
+            border-color: #FF3B30;
+            box-shadow: 0 0 20px rgba(255, 59, 48, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform: translateX(-3px);
+        }
+
+        .flag-callout-btn.is-active .flag-arrow {
+            color: #FBBF24;
+        }
+
+        /* Pulsing Radar Dot for Status Pill & Hovering Cursor */
+        @keyframes telemetryPulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.95;
+            }
+
+            100% {
+                transform: scale(2.1);
+                opacity: 0;
+            }
+        }
+
+        .animate-telemetry-pulse {
+            animation: telemetryPulse 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        }
+
+        /* Laser Red Bottom Action Bar Gradient */
+        .laser-cta-bar {
+            background: linear-gradient(90deg, #D9261C 0%, #FF3B30 52%, #E11D48 100%);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow: 0 10px 30px -6px rgba(255, 59, 48, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: transform 0.18s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        .laser-cta-bar:hover {
+            filter: brightness(1.07);
+            box-shadow: 0 14px 36px -4px rgba(255, 59, 48, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+        }
+
+        /* Studio Toolbar Controls */
+        .studio-pill {
+            background: rgba(15, 22, 36, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.16s ease;
+            cursor: pointer;
+        }
+
+        .studio-pill:hover {
+            border-color: rgba(255, 255, 255, 0.28);
+            background: rgba(26, 37, 58, 0.9);
+        }
+
+        /* ==========================================================================
+       PRINT STYLESHEET: Hides Studio Chrome & Prints Clean Obsidian Poster
+       ========================================================================== */
+        @media print {
+            @page {
+                size: 18in 24in;
+                margin: 0;
+            }
+
+            body {
+                background: #06090F !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            #studio-stage {
+                padding: 0 !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+
+            #poster-artboard {
+                width: 100vw !important;
+                max-width: 100% !important;
+                height: 100vh !important;
+                aspect-ratio: auto !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                margin: 0 auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- ========================================================================
+       INTERACTIVE PORTFOLIO STUDIO TOOLBAR (OUTSIDE THE POSTER ARTBOARD)
+       ======================================================================== -->
+    <header
+        class="no-print sticky top-0 z-50 bg-obsidian/90 backdrop-blur-xl border-b border-white/12 px-4 sm:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+
+            <!-- Left Case Label -->
+            <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-laserred shadow-[0_0_10px_#FF3B30]"></span>
+                <div>
+                    <p class="font-mono text-[11px] sm:text-xs font-semibold tracking-wider text-snow uppercase">
+                        PORTFOLIO CASE 04 // DARK-MODE CYBERSECURITY RESTYLE
+                    </p>
+                    <p class="font-sans text-[11px] text-slatex hidden md:block">
+                        University IT Security Awareness • Enterprise Cyber-Ops Visual System
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Studio Controls -->
+            <div class="flex flex-wrap items-center gap-2">
+
+                <!-- Format Toggle: 18x24" Campus Poster (3:4) vs Digital Signage / Feed (4:5) -->
+                <div class="inline-flex items-center p-0.5 rounded-lg bg-obsidian border border-white/12" role="group"
+                    aria-label="Poster Aspect Ratio">
+                    <button id="ratio-btn-3x4" type="button" onclick="setPosterFormat('3x4')"
+                        class="font-mono text-[11px] font-semibold px-2.5 sm:px-3 py-1.5 rounded-md bg-white/12 text-snow transition-colors cursor-pointer">
+                        18×24″ Campus Poster (3:4)
+                    </button>
+                    <button id="ratio-btn-4x5" type="button" onclick="setPosterFormat('4x5')"
+                        class="font-mono text-[11px] font-medium px-2.5 sm:px-3 py-1.5 rounded-md text-slatex hover:text-snow transition-colors cursor-pointer">
+                        Digital Signage / Feed (4:5)
+                    </button>
+                </div>
+
+                <!-- Interactive Toggle: Inspect Red Flags (Highlights all 4 traps on card) -->
+                <button id="inspect-all-btn" type="button" onclick="toggleInspectAllTraps()"
+                    class="studio-pill font-mono text-[11px] font-semibold px-3 py-1.5 rounded-lg text-cyberblue flex items-center gap-1.5">
+                    <span id="inspect-all-dot" class="w-2 h-2 rounded-full bg-cyberblue"></span>
+                    <span id="inspect-all-label">Inspect Red Flags</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================================================
+       CONCISE SECURITY BREAKDOWN BANNER (Appears when inspecting traps)
+       ======================================================================== -->
+    <div id="security-breakdown-bar"
+        class="no-print hidden bg-obsidian/95 border-b border-laserred/40 px-4 py-2.5 backdrop-blur-md">
+        <div class="max-w-3xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-2.5">
+                <span id="breakdown-tag" class="font-mono text-[11px] font-semibold text-amberwarn uppercase">
+                    TRAP DIAGNOSTIC // ALL 4 VECTORS EXPOSED
+                </span>
+                <span class="text-white/20">|</span>
+                <span id="breakdown-text" class="font-sans text-slatex">
+                    Lookalike domain, artificial 30-minute timer, direct credential prompt, and external SSO harvest
+                    URL.
+                </span>
+            </div>
+            <button type="button" onclick="resetTrapInspection()"
+                class="font-mono text-[11px] text-slatex hover:text-snow underline cursor-pointer">
+                Clear [×]
+            </button>
+        </div>
+    </div>
+
+    <!-- ========================================================================
+       MAIN GALLERY STAGE: CENTERED DARK-MODE POSTER ARTBOARD (#06090F)
+       ======================================================================== -->
+    <main id="studio-stage" class="flex-1 flex flex-col items-center justify-center px-3 sm:px-6 py-6 sm:py-10">
+
+        <!-- POSTER ARTBOARD -->
+        <article id="poster-artboard"
+            class="cyber-poster-canvas poster-mode-3x4 relative rounded-2xl flex flex-col justify-between p-5 sm:p-7 select-none overflow-hidden"
+            aria-label="Don't Take The Bait Dark-Mode Cybersecurity Poster">
+
+            <!-- ====================================================================
+           LAYERED CHROME & OPTICAL FISHING HOOK SYSTEM
+           - Upper Line SVG (z-10): Descends cleanly BEHIND "DON'T TAKE"
+           - Lower Metallic Hook SVG (z-30): Loops IN FRONT OF "THE BAIT." & snags the top chrome ring of the email card
+           ==================================================================== -->
+            <!-- Upper Taut Glowing Monofilament Line (Behind Line 1: DON'T TAKE) -->
+            <svg class="hidden sm:block absolute top-[46px] left-[43%] -translate-x-1/2 w-[120px] h-[205px] pointer-events-none z-10"
+                viewBox="0 0 120 205" fill="none" aria-hidden="true">
+                <defs>
+                    <linearGradient id="monoLineGrad" x1="60" y1="0" x2="60" y2="205" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.25" />
+                        <stop offset="55%" stop-color="#38BDF8" stop-opacity="0.85" />
+                        <stop offset="100%" stop-color="#F8FAFC" stop-opacity="0.95" />
+                    </linearGradient>
+                </defs>
+                <!-- Precision Optical Line -->
+                <line x1="60" y1="0" x2="60" y2="205" stroke="url(#monoLineGrad)" stroke-width="1.75" />
+                <line x1="60" y1="0" x2="60" y2="205" stroke="#38BDF8" stroke-width="5" stroke-opacity="0.14" />
+                <!-- Brushed Titanium Swivel Anchor -->
+                <rect x="56.5" y="4" width="7" height="10" rx="2" fill="#1E293B" stroke="#94A3B8" stroke-width="1.2" />
+            </svg>
+
+            <!-- Lower Brushed-Chrome Metallic Fishing Hook (Weaves IN FRONT OF "THE BAIT." & snags the Email Card Ring) -->
+            <svg class="hidden sm:block absolute top-[204px] left-[43%] -translate-x-1/2 w-[150px] h-[242px] pointer-events-none z-30"
+                viewBox="0 0 150 242" fill="none" aria-hidden="true">
+                <defs>
+                    <linearGradient id="chromeHookGrad" x1="70" y1="0" x2="122" y2="195" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#E2E8F0" />
+                        <stop offset="35%" stop-color="#F8FAFC" />
+                        <stop offset="68%" stop-color="#64748B" />
+                        <stop offset="100%" stop-color="#CBD5E1" />
+                    </linearGradient>
+                    <filter id="hookDropGlow" x="-25%" y="-15%" width="150%" height="140%">
+                        <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.7" />
+                    </filter>
+                </defs>
+
+                <g filter="url(#hookDropGlow)">
+                    <!-- Brushed Chrome Hook Shank -->
+                    <line x1="75" y1="0" x2="75" y2="112" stroke="url(#chromeHookGrad)" stroke-width="5"
+                        stroke-linecap="round" />
+                    <!-- Specular Edge Highlight -->
+                    <line x1="73.5" y1="2" x2="73.5" y2="110" stroke="#FFFFFF" stroke-width="1.1"
+                        stroke-opacity="0.85" />
+
+                    <!-- Precision Machined J-Hook Curve -->
+                    <path d="M75 110 V166 C75 193 114 193 114 164 V133" stroke="url(#chromeHookGrad)" stroke-width="5.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <!-- Inner Chrome Highlight -->
+                    <path d="M73.5 112 V165 C73.5 189 111.5 189 111.5 164 V136" stroke="#FFFFFF" stroke-width="1.1"
+                        stroke-opacity="0.8" stroke-linecap="round" />
+
+                    <!-- Razor Laser-Red Tip & Barb -->
+                    <path d="M114 128 L106.5 143 L114 139 L119.5 143 Z" fill="#FF3B30" stroke="#F8FAFC"
+                        stroke-width="0.9" stroke-linejoin="round" />
+                </g>
+            </svg>
+
+            <!-- ====================================================================
+           1. TOP MICRO-HEADER BAR (1px Hairline Divider)
+           ==================================================================== -->
+            <header class="relative z-20 flex items-center justify-between pb-3 border-b border-white/12">
+                <!-- Left Telemetry Tag -->
+                <div
+                    class="flex items-center gap-2.5 font-mono text-[11px] sm:text-xs font-semibold tracking-widest uppercase text-slatex">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyberblue shadow-[0_0_8px_#38BDF8]"></span>
+                    <span class="text-snow">CYBER HYGIENE / 001</span>
+                </div>
+
+                <!-- Right Pulsing Status Pill -->
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-laserred/12 border border-laserred/40 font-mono text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase">
+                    <!-- Tiny Caution Amber Warning Triangle -->
+                    <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M8 1.5L15 14H1L8 1.5Z" fill="#FBBF24" />
+                        <rect x="7.3" y="6" width="1.4" height="4.2" fill="#06090F" />
+                        <rect x="7.3" y="11.2" width="1.4" height="1.4" fill="#06090F" />
+                    </svg>
+                    <span class="text-laserred">STATUS: SUSPICIOUS</span>
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-telemetry-pulse absolute inline-flex h-full w-full rounded-full bg-laserred opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-laserred"></span>
+                    </span>
+                </div>
+            </header>
+
+            <!-- ====================================================================
+           2. HERO HEADLINE + SUPPORTING SUBHEADLINE
+           ==================================================================== -->
+            <section class="relative pt-3 sm:pt-4">
+                <h1 class="font-display font-extrabold uppercase tracking-[-0.04em] leading-[0.9] text-snow">
+                    <!-- Line 1 sits IN FRONT OF the upper monofilament line (z-20) -->
+                    <span class="block relative z-20 text-[3.1rem] sm:text-[5.35rem] md:text-[5.75rem]">
+                        DON’T TAKE
+                    </span>
+                    <!-- Line 2 sits BEHIND the lower metallic hook curve (z-15 < z-30) -->
+                    <span class="block relative z-15 text-[3.1rem] sm:text-[5.35rem] md:text-[5.75rem] mt-0.5">
+                        <span class="laser-red-glow">THE BAIT.</span>
+                    </span>
+                </h1>
+
+                <!-- Supporting Subheadline Underneath -->
+                <p
+                    class="relative z-20 mt-2.5 sm:mt-3 font-sans text-sm sm:text-[16px] font-medium leading-snug text-slatex max-w-lg">
+                    <span class="text-snow font-semibold">Urgent. Official-looking. Slightly weird.</span>
+                    That’s usually the point.
+                </p>
+            </section>
+
+            <!-- ====================================================================
+           3. SUSPENDED FAKE PHISHING EMAIL CARD + FOUR INTERACTIVE ANNOTATIONS
+           ==================================================================== -->
+            <section class="relative z-20 my-auto py-3 sm:py-2" aria-label="Phishing Email Anatomy">
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-3 items-center">
+
+                    <!-- LEFT/CENTER (7 Cols): Suspended Dark-Glass Phishing Threat Card -->
+                    <div class="sm:col-span-7 relative pt-3">
+
+                        <!-- Top Brushed-Chrome Suspension Ring Snagged by the Hook -->
+                        <div class="hidden sm:flex w-6 h-6 rounded-full border-2 border-slate-300 bg-obsidian items-center justify-center absolute -top-0.5 left-[53.5%] -translate-x-1/2 z-30 shadow-[0_0_12px_rgba(248,250,252,0.3)]"
+                            aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-cyberblue"></span>
+                        </div>
+
+                        <!-- Dark-Mode Mobile/Web Email Notification Card -->
+                        <div id="threat-email-card" class="threat-email-card rounded-xl overflow-hidden relative">
+
+                            <!-- Notification Header Bar -->
+                            <div
+                                class="px-3.5 py-2 border-b border-white/10 bg-white/[0.03] flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-cyberblue"></span>
+                                    <span
+                                        class="font-mono text-[10px] font-semibold tracking-wider text-slatex uppercase">
+                                        CAMPUS MAIL // SECURITY ALERT
+                                    </span>
+                                </div>
+                                <!-- Glowing Red URGENT Badge -->
+                                <span
+                                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-laserred text-snow font-mono text-[9.5px] font-semibold tracking-wider uppercase shadow-[0_0_14px_rgba(255,59,48,0.6)]">
+                                    URGENT
+                                </span>
+                            </div>
+
+                            <!-- Trap 01: Suspicious Lookalike University Sender -->
+                            <div data-trap="sender" onclick="highlightSingleTrap('sender')"
+                                class="trap-target mx-2.5 mt-2.5 px-2.5 py-2 rounded-lg bg-white/[0.03] border border-white/8 font-mono text-[10.5px] sm:text-[11px] space-y-1 cursor-pointer">
+                                <div class="flex items-center justify-between gap-1 flex-wrap">
+                                    <span class="text-slatex">
+                                        FROM: <span class="text-snow font-semibold">it-supp0rt@</span><span
+                                            class="cyber-redact font-semibold">ttu-verify-auth.com</span>
+                                    </span>
+                                </div>
+                                <div class="text-[9.5px] text-slatex/75 flex items-center justify-between">
+                                    <span>REPLY-TO: external-relay [UNVERIFIED]</span>
+                                    <span class="text-amberwarn">⚠ SPOOF</span>
+                                </div>
+                            </div>
+
+                            <!-- Email Body Copy -->
+                            <div class="p-3.5 sm:p-4 space-y-3.5">
+                                <p class="font-sans text-xs sm:text-[13.5px] leading-[1.48] text-slatex">
+                                    <span class="text-snow font-medium">Your university account has been temporarily
+                                        suspended.</span>
+                                    <span data-trap="login" onclick="highlightSingleTrap('login')"
+                                        class="trap-target text-snow font-semibold px-1 cursor-pointer">Verify your
+                                        password</span>
+                                    <span data-trap="urgency" onclick="highlightSingleTrap('urgency')"
+                                        class="trap-target text-laserred font-semibold px-1 cursor-pointer">within 30
+                                        minutes to avoid permanent deletion.</span>
+                                </p>
+
+                                <!-- Trap 04: Electric/Cyber Blue Underlined CTA Link + Sleek Vector Cursor -->
+                                <div class="pt-0.5 pb-1 relative flex items-center justify-between">
+                                    <button type="button" data-trap="destination"
+                                        onclick="highlightSingleTrap('destination')"
+                                        class="trap-target relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cobalt/20 border border-cyberblue/60 text-cyberblue font-mono text-xs sm:text-[13px] font-semibold underline decoration-cyberblue decoration-2 underline-offset-4 shadow-[0_0_22px_rgba(56,189,248,0.22)] hover:bg-cobalt/30 transition-colors cursor-pointer">
+                                        <span>VERIFY ACCOUNT →</span>
+
+                                        <!-- Sleek Vector Pointer Cursor Hovering Over CTA -->
+                                        <span
+                                            class="absolute -bottom-4 -right-3 pointer-events-none flex items-center justify-center"
+                                            aria-hidden="true">
+                                            <span
+                                                class="animate-telemetry-pulse w-6 h-6 rounded-full border border-cyberblue absolute -top-1 -left-1"></span>
+                                            <svg class="w-5 h-5 drop-shadow-[0_3px_8px_rgba(0,0,0,0.85)]"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path d="M4 2V20L8.8 15.2L12.2 22L15.2 20.5L11.8 13.7H18.5L4 2Z"
+                                                    fill="#38BDF8" stroke="#06090F" stroke-width="1.8"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Dark-Glass Link Destination Preview Strip -->
+                            <div
+                                class="px-3.5 py-1.5 bg-obsidian/90 border-t border-white/10 font-mono text-[9.5px] flex items-center justify-between gap-2">
+                                <span class="text-slatex truncate">
+                                    DEST: <span
+                                        class="text-cyberblue">https://ttu-verify-auth.com/sso-login-reset</span>
+                                </span>
+                                <span class="text-laserred font-semibold shrink-0">NON-.EDU</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN (5 Cols): Four Red-Flag Callout Annotations + Laser-Red Leader Lines -->
+                    <div class="sm:col-span-5 space-y-2.5 sm:pl-2 relative">
+                        <div
+                            class="font-mono text-[9.5px] font-semibold uppercase tracking-widest text-slatex pb-1 border-b border-white/12 flex items-center justify-between">
+                            <span>THREAT INDICATORS</span>
+                            <span class="text-laserred">[04 FLAGS]</span>
+                        </div>
+
+                        <!-- Flag 1: unfamiliar sender -->
+                        <div class="relative flex items-center">
+                            <!-- Laser-Red SVG Leader Line (Desktop) -->
+                            <svg class="hidden sm:block w-5 h-3 -ml-5 shrink-0 pointer-events-none" viewBox="0 0 20 12"
+                                fill="none" aria-hidden="true">
+                                <circle cx="2.5" cy="6" r="2" fill="#FF3B30" />
+                                <line x1="4" y1="6" x2="20" y2="6" stroke="#FF3B30" stroke-width="1.2"
+                                    stroke-dasharray="2 2" />
+                            </svg>
+                            <button type="button" data-flag-pill="sender" onclick="highlightSingleTrap('sender')"
+                                class="flag-callout-btn w-full text-left px-3 py-2 rounded-lg font-mono text-[11px] sm:text-xs font-medium flex items-center justify-between gap-2">
+                                <span><span class="flag-arrow text-laserred font-bold mr-1">←</span> unfamiliar
+                                    sender</span>
+                                <span class="text-[9px] text-slatex">01</span>
+                            </button>
+                        </div>
+
+                        <!-- Flag 2: fake urgency -->
+                        <div class="relative flex items-center">
+                            <svg class="hidden sm:block w-5 h-3 -ml-5 shrink-0 pointer-events-none" viewBox="0 0 20 12"
+                                fill="none" aria-hidden="true">
+                                <circle cx="2.5" cy="6" r="2" fill="#FF3B30" />
+                                <line x1="4" y1="6" x2="20" y2="6" stroke="#FF3B30" stroke-width="1.2"
+                                    stroke-dasharray="2 2" />
+                            </svg>
+                            <button type="button" data-flag-pill="urgency" onclick="highlightSingleTrap('urgency')"
+                                class="flag-callout-btn w-full text-left px-3 py-2 rounded-lg font-mono text-[11px] sm:text-xs font-medium flex items-center justify-between gap-2">
+                                <span><span class="flag-arrow text-laserred font-bold mr-1">←</span> fake urgency</span>
+                                <span class="text-[9px] text-slatex">02</span>
+                            </button>
+                        </div>
+
+                        <!-- Flag 3: asks you to log in -->
+                        <div class="relative flex items-center">
+                            <svg class="hidden sm:block w-5 h-3 -ml-5 shrink-0 pointer-events-none" viewBox="0 0 20 12"
+                                fill="none" aria-hidden="true">
+                                <circle cx="2.5" cy="6" r="2" fill="#FF3B30" />
+                                <line x1="4" y1="6" x2="20" y2="6" stroke="#FF3B30" stroke-width="1.2"
+                                    stroke-dasharray="2 2" />
+                            </svg>
+                            <button type="button" data-flag-pill="login" onclick="highlightSingleTrap('login')"
+                                class="flag-callout-btn w-full text-left px-3 py-2 rounded-lg font-mono text-[11px] sm:text-xs font-medium flex items-center justify-between gap-2">
+                                <span><span class="flag-arrow text-laserred font-bold mr-1">←</span> asks you to log
+                                    in</span>
+                                <span class="text-[9px] text-slatex">03</span>
+                            </button>
+                        </div>
+
+                        <!-- Flag 4: suspicious destination -->
+                        <div class="relative flex items-center">
+                            <svg class="hidden sm:block w-5 h-3 -ml-5 shrink-0 pointer-events-none" viewBox="0 0 20 12"
+                                fill="none" aria-hidden="true">
+                                <circle cx="2.5" cy="6" r="2" fill="#38BDF8" />
+                                <line x1="4" y1="6" x2="20" y2="6" stroke="#38BDF8" stroke-width="1.2"
+                                    stroke-dasharray="2 2" />
+                            </svg>
+                            <button type="button" data-flag-pill="destination"
+                                onclick="highlightSingleTrap('destination')"
+                                class="flag-callout-btn w-full text-left px-3 py-2 rounded-lg font-mono text-[11px] sm:text-xs font-medium flex items-center justify-between gap-2">
+                                <span><span class="flag-arrow text-cyberblue font-bold mr-1">←</span> suspicious
+                                    destination</span>
+                                <span class="text-[9px] text-slatex">04</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====================================================================
+           4. EDUCATIONAL SECTION ("BEFORE YOU CLICK" — 4-COLUMN DARK GLASS GRID)
+           ==================================================================== -->
+            <section aria-label="Before You Click Checklist"
+                class="relative z-20 dark-glass-panel rounded-xl overflow-hidden my-1.5">
+                <!-- Header Strip -->
+                <div class="px-3.5 py-2 border-b border-white/12 flex items-center justify-between bg-white/[0.02]">
+                    <div
+                        class="flex items-center gap-2 font-mono text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase text-snow">
+                        <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M8 1.5L15 14H1L8 1.5Z" fill="#FBBF24" />
+                            <rect x="7.3" y="6" width="1.4" height="4.2" fill="#06090F" />
+                            <rect x="7.3" y="11.2" width="1.4" height="1.4" fill="#06090F" />
+                        </svg>
+                        <span>BEFORE YOU CLICK</span>
+                    </div>
+                    <span class="font-mono text-[9.5px] text-slatex uppercase">ZERO-TRUST VERIFICATION</span>
+                </div>
+
+                <!-- 4-Column Grid Separated by 1px Hairlines -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-white/12">
+                    <div class="p-3">
+                        <div class="flex items-center gap-1.5 font-mono text-[10px] font-semibold text-amberwarn">
+                            <span>01 /</span>
+                        </div>
+                        <p class="font-sans text-xs sm:text-[13px] font-semibold text-snow leading-snug mt-0.5">
+                            Stop.
+                        </p>
+                    </div>
+
+                    <div class="p-3 border-l border-white/12 sm:border-l-0">
+                        <div class="flex items-center gap-1.5 font-mono text-[10px] font-semibold text-amberwarn">
+                            <span>02 /</span>
+                        </div>
+                        <p class="font-sans text-xs sm:text-[13px] font-semibold text-snow leading-snug mt-0.5">
+                            Check the sender.
+                        </p>
+                    </div>
+
+                    <div class="p-3">
+                        <div class="flex items-center gap-1.5 font-mono text-[10px] font-semibold text-cyberblue">
+                            <span>03 /</span>
+                        </div>
+                        <p class="font-sans text-xs sm:text-[13px] font-semibold text-snow leading-snug mt-0.5">
+                            Hover over the link.
+                        </p>
+                    </div>
+
+                    <div class="p-3 border-l border-white/12 sm:border-l-0">
+                        <div class="flex items-center gap-1.5 font-mono text-[10px] font-semibold text-laserred">
+                            <span>04 /</span>
+                        </div>
+                        <p class="font-sans text-xs sm:text-[13px] font-semibold text-snow leading-snug mt-0.5">
+                            If something feels off, report it.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====================================================================
+           5. CLOSING LINE & BOTTOM CALL-TO-ACTION BAR
+           ==================================================================== -->
+            <footer class="relative z-20 pt-2 space-y-2.5">
+                <!-- Bold Uppercase Punchline -->
+                <p
+                    class="font-display font-extrabold uppercase text-xl sm:text-[1.85rem] leading-[0.98] tracking-[-0.03em] text-snow">
+                    PHISHING WORKS <span class="laser-red-glow">WHEN PANIC CLICKS FIRST.</span>
+                </p>
+
+                <!-- High-Contrast Laser Red Gradient Action Bar -->
+                <div onclick="triggerIncidentReported()" role="button" tabindex="0"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')triggerIncidentReported()"
+                    class="laser-cta-bar w-full rounded-xl px-4 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between gap-2 cursor-pointer group">
+                    <div class="flex items-center gap-2.5">
+                        <span
+                            class="px-2 py-0.5 rounded bg-obsidian/45 border border-white/20 font-mono text-[9.5px] sm:text-[10px] font-semibold tracking-wider text-snow uppercase shrink-0">
+                            IT HELP CENTRAL
+                        </span>
+                        <span
+                            class="font-display font-extrabold uppercase text-base sm:text-xl tracking-[-0.02em] text-snow">
+                            REPORT. DELETE. MOVE ON.
+                        </span>
+                    </div>
+                    <span
+                        class="font-display font-extrabold text-xl sm:text-2xl text-snow group-hover:translate-x-1 transition-transform">
+                        →
+                    </span>
+                </div>
+            </footer>
+
+        </article>
+
+        <!-- Subtle Studio Caption Below Artboard -->
+        <p class="no-print font-mono text-[11px] text-slatex mt-4 text-center max-w-xl">
+            Interactive Cyber-Ops Mode: Click any red-flag annotation or toggle <strong class="text-snow">Inspect Red
+                Flags</strong> in the top bar to illuminate all 4 phishing vectors.
+        </p>
+    </main>
+
+    <!-- ========================================================================
+       JAVASCRIPT: ASPECT RATIO SWITCHER, TRAP INSPECTOR & 2X HIGH-RES PNG EXPORT
+       ======================================================================== -->
+    <script>
+        const trapDiagnostics = {
+            sender: {
+                tag: 'VECTOR 01 // UNFAMILIAR SENDER',
+                text: 'Lookalike domain “it-supp0rt@ttu-verify-auth.com” substitutes a zero for “o” and uses an external non-.edu domain.'
+            },
+            urgency: {
+                tag: 'VECTOR 02 // FAKE URGENCY',
+                text: 'Artificial 30-minute deletion countdown is engineered to trigger panic before you verify the source.'
+            },
+            login: {
+                tag: 'VECTOR 03 // ASKS YOU TO LOG IN',
+                text: 'University IT security will never email a direct link asking you to verify your eRaider password.'
+            },
+            destination: {
+                tag: 'VECTOR 04 // SUSPICIOUS DESTINATION',
+                text: 'Hovering exposes “https://ttu-verify-auth.com/sso-login-reset” — a credential-harvesting clone page.'
+            }
+        };
+
+        let allTrapsActive = false;
+
+        // Toggle between 18x24" Campus Poster (3:4) and Digital Signage / Feed (4:5)
+        function setPosterFormat(mode) {
+            const artboard = document.getElementById('poster-artboard');
+            const btn3x4 = document.getElementById('ratio-btn-3x4');
+            const btn4x5 = document.getElementById('ratio-btn-4x5');
+
+            if (mode === '4x5') {
+                artboard.classList.remove('poster-mode-3x4');
+                artboard.classList.add('poster-mode-4x5');
+                btn4x5.className = 'font-mono text-[11px] font-semibold px-2.5 sm:px-3 py-1.5 rounded-md bg-white/12 text-snow transition-colors cursor-pointer';
+                btn3x4.className = 'font-mono text-[11px] font-medium px-2.5 sm:px-3 py-1.5 rounded-md text-slatex hover:text-snow transition-colors cursor-pointer';
+            } else {
+                artboard.classList.remove('poster-mode-4x5');
+                artboard.classList.add('poster-mode-3x4');
+                btn3x4.className = 'font-mono text-[11px] font-semibold px-2.5 sm:px-3 py-1.5 rounded-md bg-white/12 text-snow transition-colors cursor-pointer';
+                btn4x5.className = 'font-mono text-[11px] font-medium px-2.5 sm:px-3 py-1.5 rounded-md text-slatex hover:text-snow transition-colors cursor-pointer';
+            }
+        }
+
+        // Highlight a single trap on the dark-glass email card
+        function highlightSingleTrap(key) {
+            allTrapsActive = false;
+            updateInspectAllButtonUI(false);
+
+            document.querySelectorAll('.trap-target').forEach((el) => el.classList.remove('is-lit'));
+            document.querySelectorAll('.flag-callout-btn').forEach((btn) => btn.classList.remove('is-active'));
+
+            const target = document.querySelector(`.trap-target[data-trap="${key}"]`);
+            const pill = document.querySelector(`.flag-callout-btn[data-flag-pill="${key}"]`);
+            if (target) target.classList.add('is-lit');
+            if (pill) pill.classList.add('is-active');
+
+            const info = trapDiagnostics[key];
+            if (info) {
+                document.getElementById('breakdown-tag').textContent = info.tag;
+                document.getElementById('breakdown-text').textContent = info.text;
+                document.getElementById('security-breakdown-bar').classList.remove('hidden');
+            }
+        }
+
+        // Toggle "Inspect Red Flags" in Studio Bar (Illuminates all 4 traps at once)
+        function toggleInspectAllTraps() {
+            if (allTrapsActive) {
+                resetTrapInspection();
+                return;
+            }
+
+            allTrapsActive = true;
+            updateInspectAllButtonUI(true);
+
+            document.querySelectorAll('.trap-target').forEach((el) => el.classList.add('is-lit'));
+            document.querySelectorAll('.flag-callout-btn').forEach((btn) => btn.classList.add('is-active'));
+
+            document.getElementById('breakdown-tag').textContent = 'FULL THREAT SCAN // 4 OF 4 VECTORS ILLUMINATED';
+            document.getElementById('breakdown-text').textContent =
+                'Lookalike sender domain + artificial 30-min urgency + direct password prompt + external credential harvest link.';
+            document.getElementById('security-breakdown-bar').classList.remove('hidden');
+        }
+
+        function resetTrapInspection() {
+            allTrapsActive = false;
+            updateInspectAllButtonUI(false);
+            document.querySelectorAll('.trap-target').forEach((el) => el.classList.remove('is-lit'));
+            document.querySelectorAll('.flag-callout-btn').forEach((btn) => btn.classList.remove('is-active'));
+            document.getElementById('security-breakdown-bar').classList.add('hidden');
+        }
+
+        function updateInspectAllButtonUI(isOn) {
+            const btn = document.getElementById('inspect-all-btn');
+            const dot = document.getElementById('inspect-all-dot');
+            const label = document.getElementById('inspect-all-label');
+            if (isOn) {
+                btn.classList.add('border-laserred', 'text-snow', 'bg-laserred/20');
+                btn.classList.remove('text-cyberblue');
+                dot.className = 'w-2 h-2 rounded-full bg-laserred animate-ping';
+                label.textContent = 'Clear Inspection';
+            } else {
+                btn.classList.remove('border-laserred', 'text-snow', 'bg-laserred/20');
+                btn.classList.add('text-cyberblue');
+                dot.className = 'w-2 h-2 rounded-full bg-cyberblue';
+                label.textContent = 'Inspect Red Flags';
+            }
+        }
+
+        function triggerIncidentReported() {
+            document.getElementById('breakdown-tag').textContent = 'INCIDENT LOGGED // CYBER HYGIENE VERIFIED';
+            document.getElementById('breakdown-text').textContent =
+                'Phishing simulation reported to IT Help Central and purged. Zero campus credentials exposed.';
+            document.getElementById('security-breakdown-bar').classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>
