@@ -31,7 +31,9 @@ export function Navbar({ paletteName, onCyclePalette }) {
             title={`Current palette: ${paletteName}`}
           >
             <Palette size={14} aria-hidden="true" />
-            <span>change color mood</span>
+            <span>
+              <span className="hide-xs">change </span>color mood
+            </span>
           </button>
         </div>
       </nav>
