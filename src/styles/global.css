@@ -104,6 +104,13 @@ body {
   text-decoration-thickness: 2px;
 }
 
+.bar-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem;
+}
+
 .mode {
   display: inline-flex;
   align-items: center;
@@ -115,6 +122,75 @@ body {
   padding: .46rem .72rem;
   font: 500 .68rem "DM Mono", monospace;
   cursor: pointer;
+}
+
+.audio-group {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.audio-toggle.is-playing {
+  background: var(--mint);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.audio-label {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.audio-next {
+  padding: .46rem .56rem;
+}
+
+.eq-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 11px;
+}
+
+.eq-bars span {
+  width: 2.5px;
+  height: 10px;
+  background: var(--ink);
+  border-radius: 2px;
+  transform-origin: bottom center;
+  transform: scaleY(.35);
+}
+
+.audio-toggle.is-playing .eq-bars span:nth-child(2) {
+  transform: scaleY(.85);
+}
+
+.audio-toggle.is-playing .eq-bars span:nth-child(3) {
+  transform: scaleY(.6);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .audio-toggle.is-playing .eq-bars span {
+    animation: eqPulse .9s ease-in-out infinite alternate;
+  }
+
+  .audio-toggle.is-playing .eq-bars span:nth-child(2) {
+    animation-delay: .2s;
+  }
+
+  .audio-toggle.is-playing .eq-bars span:nth-child(3) {
+    animation-delay: .45s;
+  }
+}
+
+@keyframes eqPulse {
+  from {
+    transform: scaleY(.3);
+  }
+  to {
+    transform: scaleY(1);
+  }
 }
 
 .hero {

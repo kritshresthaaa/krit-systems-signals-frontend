@@ -1,4 +1,5 @@
 import { Palette } from 'lucide-react';
+import { AmbientPlayer } from './AmbientPlayer';
 
 export function Navbar({ paletteName, onCyclePalette }) {
   return (
@@ -21,15 +22,18 @@ export function Navbar({ paletteName, onCyclePalette }) {
           <a href="#contact">Contact</a>
         </div>
 
-        <button
-          className="mode"
-          type="button"
-          onClick={onCyclePalette}
-          title={`Current palette: ${paletteName}`}
-        >
-          <Palette size={14} aria-hidden="true" />
-          <span>change color mood</span>
-        </button>
+        <div className="bar-tools">
+          <AmbientPlayer />
+          <button
+            className="mode"
+            type="button"
+            onClick={onCyclePalette}
+            title={`Current palette: ${paletteName}`}
+          >
+            <Palette size={14} aria-hidden="true" />
+            <span>change color mood</span>
+          </button>
+        </div>
       </nav>
     </header>
   );
